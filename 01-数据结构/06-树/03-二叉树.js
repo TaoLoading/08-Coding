@@ -7,7 +7,7 @@ const binaryTree = {
       left: null,
       right: null
     },
-    left: {
+    right: {
       val: '3-1-2',
       left: null,
       right: null
@@ -20,7 +20,7 @@ const binaryTree = {
       left: null,
       right: null
     },
-    left: {
+    right: {
       val: '3-2-2',
       left: null,
       right: null
