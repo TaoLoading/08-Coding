@@ -9,7 +9,7 @@ export default function patchVnode(oldVnode, newVnode) {
   // 判断新节点是否有子节点
   if (newVnode.children == undefined) {
     if (newVnode.text !== oldVnode.text) {
-      // 当新节点没有子节点并且文本不相同时，将老节点的文本替换为新节点的文本
+      // 当新节点没有子节点并且新老节点文本不相同时，将老节点的文本替换为新节点的文本
       oldVnode.elm.innerText = newVnode.text
     }
   } else {

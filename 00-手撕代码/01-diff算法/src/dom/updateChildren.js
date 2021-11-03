@@ -1,6 +1,7 @@
 /**
  * 新老节点为同一个节点，且新老节点都有子节点时处理情况
  * 
+ * 接收三个参数：
  * 参数一：真实DOM节点
  * 参数二：老的子节点
  * 参数三：新的子节点
@@ -67,7 +68,7 @@ export default function updateChildren(parentElm, oldCh, newCh) {
       // 情况三：老前 VS 新后
       patchVnode(oldStartVnode, newEndVnode)
       if (newEndVnode) {
-        newEndVnode.elm = oldEndVnode?.elm
+        newEndVnode.elm = oldStartVnode?.elm
         /* console.log('newEndVnode.elm是', newEndVnode.elm)
         console.log('oldEndVnode.elm是', oldEndVnode.elm) */
       }
