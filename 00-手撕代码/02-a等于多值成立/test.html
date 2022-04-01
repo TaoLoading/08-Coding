@@ -30,11 +30,13 @@
     } */
 
     /**
-     * 解法二：类型转换(数组) (TODO)
-     * 原理：数组在进行隐式类型转换时，会先转换为字符串，再转换为数组。可使用join将数组转换为字符串后，在逐个切割得到对应的值
+     * 解法二：类型转换(数组)
+     * 原理：利用toString()将数组强制转换为字符串，每次对比时即会调用a.toString()， 从而每次对其进行自加1
      */
-    /* let a = [1, 2, 3]
-    a.join = a.shift */
+    let a = [0]
+    a.toString = () => {
+      return ++a[0]
+    }
 
     /**
      * 解法三：数据劫持(Object.defineProperty)
@@ -51,11 +53,11 @@
      * 解法四：数据劫持(Proxy)
      * 原理：同理Object.defineProperty
      */
-    let a = new Proxy({ i: 1 }, {
+    /* let a = new Proxy({ i: 1 }, {
       get(target) {
         return () => target.i++
       }
-    })
+    }) */
 
 
     if (a == 1 && a == 2 && a == 3) {
