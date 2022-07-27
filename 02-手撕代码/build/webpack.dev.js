@@ -17,7 +17,7 @@ module.exports = merge(webpackCommonConf, {
         // 根目录
         contentBase: distPath,
         // 自动打开浏览器
-        open: true,
+        open: false,
         // 启动 gzip 压缩
         compress: true
     },

@@ -10,3 +10,5 @@
 /**
  * 解法二：把后k项元素取出，直接放到数组最前面
  */
+const a: boolean = false
+console.log('a', a)
