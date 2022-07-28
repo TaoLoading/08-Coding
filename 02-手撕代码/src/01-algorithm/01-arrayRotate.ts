@@ -44,15 +44,19 @@ export function rotate2(arr: number[], k: number): number[] {
 console.log('结果是', rotate2(arr, 3)) */
 
 // 性能测试
-const testArr = []
+const testArr1 = []
 for (let i = 0; i < 100000; i++) {
-  testArr.push(i)
+  testArr1.push(i)
+}
+const testArr2 = []
+for (let i = 0; i < 100000; i++) {
+  testArr2.push(i)
 }
 
 console.time('rotate1')
-rotate1(testArr, 90000) // 时间复杂度为O(n^2)
+rotate1(testArr1, 90000) // 时间复杂度为O(n^2)
 console.timeEnd('rotate1')
 
 console.time('rotate2')
-rotate2(testArr, 90000) // 时间复杂度为O(1)
+rotate2(testArr2, 90000) // 时间复杂度为O(1)
 console.timeEnd('rotate2')
