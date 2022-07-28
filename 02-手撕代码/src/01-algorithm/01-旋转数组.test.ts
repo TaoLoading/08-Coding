@@ -5,7 +5,7 @@
 import { rotate1, rotate2 } from './01-旋转数组'
 
 // 测试用例组
-describe('arrayRotate', () => {
+describe('旋转数组', () => {
   // 以下每个it为单个测试用例
 
   // 普通情况
@@ -14,7 +14,7 @@ describe('arrayRotate', () => {
     const k = 3
     const result = rotate1(arr, k)
     // 期望结果
-    expect(result).toEqual([5, 6, 7, 1, 2, 3, 4])
+    expect(result).toEqual([5, 6, 7, 1, 2, 3, 4]) // toEqual()用于判断对象或数组
   })
 
   // 数组为空
