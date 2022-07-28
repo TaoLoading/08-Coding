@@ -1,4 +1,4 @@
-import { Queue } from './03-两个栈实现一个队列'
+import { Queue } from './03-使用栈的思想实现队列'
 
 // 测试用例组
 describe('两个栈实现一个队列', () => {
