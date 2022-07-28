@@ -2,7 +2,7 @@
  * arrayRotate的单元测试
  */
 
-import { rotate1, rotate2 } from './01-arrayRotate'
+import { rotate1, rotate2 } from './01-旋转数组'
 
 // 测试用例组
 describe('arrayRotate', () => {
