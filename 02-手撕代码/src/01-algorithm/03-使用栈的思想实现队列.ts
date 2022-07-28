@@ -43,6 +43,7 @@ export class Queue {
     return res || null
   }
 
+  // 查看队列长度
   get length(): number {
     return this.stack1.length
   }
