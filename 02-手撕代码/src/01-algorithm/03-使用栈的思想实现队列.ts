@@ -14,12 +14,12 @@ export class Queue {
   private stack2: number[] = []
 
   // 入队
-  add(n: number) {
+  enqueue(n: number) {
     this.stack1.push(n)
   }
 
   // 出队
-  delete(): number | null {
+  dequeue(): number | null {
     let res
     // 将stack1中元素转移到stack2中，注意顺序
     while (this.stack1.length) {
@@ -51,15 +51,15 @@ export class Queue {
 
 // 功能测试
 /* const q = new Queue()
-q.add(100)
-q.add(200)
-q.add(300)
+q.enqueue(100)
+q.enqueue(200)
+q.enqueue(300)
 console.log('队列长度为', q.length)
-console.log('出队元素为', q.delete())
+console.log('出队元素为', q.dequeue())
 console.log('出队后队列长度为', q.length) */
 
 /**
  * 时间复杂度：
- * add：O(1)
- * delete：O(n)。虽然循环了两次，但并未嵌套，即2*n，由于n是一个数量级，2*n也可看做n
+ * enqueue：O(1)
+ * dequeue：O(n)。虽然循环了两次，但并未嵌套，即2*n，由于n是一个数量级，2*n也可看做n
  */
