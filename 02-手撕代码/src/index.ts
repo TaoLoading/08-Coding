@@ -2,4 +2,4 @@
  * 在此处引入想要执行的代码
  */
 
-import './01-algorithm/05-反转单向链表'
+import './01-algorithm/06-使用链表实现队列'
