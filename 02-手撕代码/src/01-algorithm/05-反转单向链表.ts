@@ -8,8 +8,8 @@
 
 /**
  * 链表节点类型
- * @value 当前值
- * @next 下一个节点
+ * @param value 当前值
+ * @param next 下一个节点
  */
 interface LinkListNodeType {
   value: number
