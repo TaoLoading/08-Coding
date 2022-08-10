@@ -14,7 +14,7 @@ interface resultType {
  * @returns 结果
  * 时间复杂度为O(n)。虽然存在两层嵌套，但是存在跳步的现象，即i会从下一个不同的字符处继续开始循环
  */
-function findConsecutiveChar1(str: string): resultType {
+export function findConsecutiveChar1(str: string): resultType {
   const res: resultType = {
     char: '',
     num: 0
@@ -24,14 +24,17 @@ function findConsecutiveChar1(str: string): resultType {
     return res
   }
 
-  // 记录当前字符连续出现的长度
+  // 记录当前字符连续出现的次数
   let charNum = 0
   for (let i = 0; i < str.length; i++) {
     // 重置次数
     charNum = 0
 
     for (let j = i; j < str.length; j++) {
-      charNum++
+      // 连续时，次数+1
+      if (str[i] === str[j]) {
+        charNum++
+      }
 
       if (str[i] !== str[j] || j === str.length - 1) {
         // 不再连续或字符串到头时，进行比较
