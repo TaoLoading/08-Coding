@@ -63,5 +63,5 @@ export function format2(n: number): string {
 
 // 功能测试
 const n = 11011001
-// console.info('format1', format1(n))
-console.info('format2', format2(n))
+// console.log('format1', format1(n))
+console.log('format2', format2(n))
