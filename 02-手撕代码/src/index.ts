@@ -2,4 +2,4 @@
  * 在此处引入想要执行的代码
  */
 
-import './01-algorithm/16-求1~n之间的对称数'
+import './01-algorithm/17-数字千分位格式化'
