@@ -82,7 +82,7 @@ export function findTowNumbers2(arr: number[], n: number): number[] {
 
 // 功能测试
 /* const arr = [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 4, 7, 11, 15]
-console.info(findTowNumbers2(arr, 15)) */
+console.log(findTowNumbers2(arr, 15)) */
 
 // 性能测试
 const arr = [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 4, 7, 11, 15]
