@@ -25,7 +25,7 @@ export function moveZero1(arr: number[]): number[] {
       arr.push(0)
       arr.splice(i, 1)
       zeroLength++
-      // 数组截取1个元素后i要减1，否则遇到连续0时会出错。[1, 0, 0, 0, 1]
+      // 数组截取1个元素后i要减1，否则遇到连续0时会跳过第二个0。 [1, 0, 0, 0, 1]
       i--
     }
   }
