@@ -50,4 +50,6 @@ Object.defineProperty(window, 'a', {
 
 if (a == 1 && a == 2 && a == 3) {
   console.log('该等式通过')
+} else {
+  console.log('该等式不通过')
 }
