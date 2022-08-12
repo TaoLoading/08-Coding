@@ -10,7 +10,12 @@
  * 重点：栈的使用
  */
 
-// 判断括号是否匹配
+/**
+ * 判断括号是否匹配
+ * @param left 左括号
+ * @param right 右括号
+ * @returns 匹配的结果
+ */
 function isMatch(left: string, right: string): boolean {
   if ((left === '{' && right === '}') || (left === '[' && right === ']') || (left === '(' && right === ')')) {
     return true
@@ -19,15 +24,22 @@ function isMatch(left: string, right: string): boolean {
   }
 }
 
+/**
+ * 有效的括号
+ * @param str 原字符串
+ * @returns 匹配结果
+ */
 export function validBrackets(str: string): boolean {
   if (str.length === 0) {
     return true
   }
+
   const stack = []
   const leftBrackets = '{[('
   const rightBrackets = '}])'
   for (let i = 0; i < str.length; i++) {
     const s = str[i]
+
     if (leftBrackets.includes(s)) {
       // 匹配左括号入栈
       stack.push(s)

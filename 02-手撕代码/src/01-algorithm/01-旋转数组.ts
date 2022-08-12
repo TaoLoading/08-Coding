@@ -1,6 +1,6 @@
 /**
  * 题目：将数组旋转k步后输出
- * 例：原数组为：[1, 2, 3, 4, 5]，k = 3，即旋转3步后为：[5, 4, 3 ,1, 2]
+ * 例：原数组为：[1, 2, 3, 4, 5]，k = 3，即旋转3步后为：[3, 4, 5, 1, 2, 3]
  * 重点：识破内置API的时间复杂度，如unshift()
  */
 
@@ -12,7 +12,7 @@ export function rotate1(arr: number[], k: number): number[] {
   if (!k || length === 0) {
     return arr
   }
-  // 计算排列次数
+  // 计算排列次数。去除重复旋转之后的次数
   const step = Math.abs(k % length)
 
   for (let i = 0; i < step; i++) {

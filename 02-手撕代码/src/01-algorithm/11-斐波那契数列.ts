@@ -54,4 +54,5 @@ export function fibonacci2(n: number): number {
 }
 
 // 功能测试
+// console.log('斐波那契数列中第10个值为', fibonacci1(10))
 console.log('斐波那契数列中第10个值为', fibonacci2(10))

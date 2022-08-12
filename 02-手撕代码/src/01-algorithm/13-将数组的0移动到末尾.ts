@@ -9,7 +9,7 @@
  */
 
 /**
- * 遍历数组，遇0push到末尾，splice截取掉该元素
+ * 遍历数组，遇0 push到末尾，splice截取掉该元素
  * @param arr 初始数组
  * @returns 处理后的数组
  * 时间复杂度为O(n^2)。循环为O(n)，splice()为O(n)
@@ -64,8 +64,9 @@ export function moveZero2(arr: number[]): number[] {
 }
 
 // 功能测试
-/* const arr = [1, 0, 3, 4, 0, 0, 11, 0]
-console.log('将数组中的0移动到末尾', moveZero2(arr)) */
+const arr = [1, 0, 3, 4, 0, 0, 11, 0]
+console.log('将数组中的0移动到末尾', moveZero1(arr))
+// console.log('将数组中的0移动到末尾', moveZero2(arr))
 
 // 性能测试
 const testArr = []

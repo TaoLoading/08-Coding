@@ -26,22 +26,15 @@ export function findTowNumbers1(arr: number[], n: number): number[] {
 
   for (let i = 0; i < arr.length - 1; i++) {
     const n1 = arr[i]
-    // 是否得到了结果
-    let flag = false
 
-    for (let j = i + 1; j < arr.length; j++) {
+    for (let j = i + 1; j < arr.length; j++) { // 注意j从i+1，因为j不能与i为同一个数
       const n2 = arr[j]
 
       if (n1 + n2 === n) {
         res.push(n1)
         res.push(n2)
-        flag = true
-        break
+        return res
       }
-    }
-
-    if (flag) {
-      break
     }
   }
 
@@ -81,11 +74,12 @@ export function findTowNumbers2(arr: number[], n: number): number[] {
 }
 
 // 功能测试
-/* const arr = [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 4, 7, 11, 15]
-console.log(findTowNumbers2(arr, 15)) */
+const arr = [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 4, 7, 11, 15]
+// console.log(findTowNumbers1(arr, 15))
+console.log(findTowNumbers2(arr, 15))
 
 // 性能测试
-const arr = [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 4, 7, 11, 15]
+/* const arr = [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 4, 7, 11, 15]
 console.time('findTowNumbers1')
 for (let i = 0; i < 100 * 10000; i++) {
   findTowNumbers1(arr, 15)
@@ -96,4 +90,4 @@ console.time('findTowNumbers2')
 for (let i = 0; i < 100 * 10000; i++) {
   findTowNumbers2(arr, 15)
 }
-console.timeEnd('findTowNumbers2')
+console.timeEnd('findTowNumbers2') */

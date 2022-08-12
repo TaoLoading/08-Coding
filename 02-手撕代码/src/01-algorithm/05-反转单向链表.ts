@@ -48,7 +48,7 @@ export function reverseLinkList(linkListNode: LinkListNodeType): LinkListNodeTyp
 
   // 以nextNode为主遍历链表。当nextNode存在时执行，即执行到倒数第二个节点
   while (nextNode) {
-    // 第一个元素时，删除其next
+    // 第一个元素时，删除其next。因为第一个元素反转后没有nextNode
     if (curNode && !prevNode) {
       delete curNode.next
     }

@@ -18,6 +18,7 @@ export function binarySearch1(arr: number[], target: number): number {
     return -1
   }
 
+  // 二分查找的开始与结束位置。逐步缩小
   let startIndex = 0
   let endIndex = arr.length - 1
 
@@ -44,20 +45,23 @@ export function binarySearch1(arr: number[], target: number): number {
  * 采用递归方式实现二分法
  * @param arr 有序数组
  * @param target 目标数字
- * @param startIndex 头部下标
- * @param endIndex 尾部下标
+ * @param startIndex 二分查找起始位置（递归时使用）
+ * @param endIndex 二分查找结束位置（递归时使用）
  * @returns 目标数字存在时则返回其下标，不存在时则返回-1
  */
 export function binarySearch2(arr: number[], target: number, startIndex?: number, endIndex?: number): number {
   if (arr.length < 0) {
     return -1
   }
+
   if (startIndex === undefined) {
     startIndex = 0
   }
   if (endIndex === undefined) {
     endIndex = arr.length - 1
   }
+
+  // 起始位置大于结束位置，则没有找到
   if (startIndex > endIndex) {
     return -1
   }
