@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>防抖和节流</title>
+</head>
+
+<body>
+  <button id="debounce">测试防抖</button>
+  <button id="throttle">测试节流</button>
+
+  <script>
+    /**
+     * 防抖
+     * 定义：函数在特定时间段内多次执行时，只让最后一次执行生效
+     * 应用场景：搜索框
+     */
+
+    function debounce(fn, delay = 200) {
+      let timer = 0
+      return function () {
+        if (timer) {
+          clearTimeout(timer)
+        }
+
+        timer = setTimeout(() => {
+          fn.apply(this, arguments)
+          timer = 0
+        }, delay)
+      }
+    }
+
+
+    /**
+     * 节流
+     * 定义：将函数按照特定时间间隔进行执行
+     * 应用场景：1.窗口拖拽 2.点击抢购商品
+     */
+    function throttle(fn, delay = 100) {
+      let timer = 0
+      return function () {
+        if (timer) {
+          return
+        }
+
+        timer = setTimeout(() => {
+          fn.apply(this, arguments)
+          timer = 0
+        }, delay)
+      }
+    }
+
+
+    // 功能测试
+    document.getElementById("debounce").onclick = debounce(() => {
+      console.log('-------------------防抖')
+    })
+    document.getElementById("throttle").onclick = throttle(() => {
+      console.log('-------------------节流')
+    })
+    document
+  </script>
+</body>
+
+</html>
