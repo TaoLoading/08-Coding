@@ -39,7 +39,7 @@
      * 定义：将函数按照特定时间间隔进行执行
      * 应用场景：1.窗口拖拽 2.点击抢购商品
      */
-    function throttle(fn, delay = 100) {
+    function throttle(fn, delay = 500) {
       let timer = 0
       return function () {
         if (timer) {
