@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>call()&apply()&bind()</title>
+  <title>call() & apply() & bind()</title>
 </head>
 
 <body>
@@ -14,8 +14,8 @@
      * 区别：
      * 1. call(obj)/apply(obj): 调用函数, 指定函数中的this为第一个参数的值
      * 2. bind(obj): 返回一个新的函数, 新函数内部会调用原来的函数, 且this为bind()指定的第一参数的值
-     * 3. 如果obj是null/undefined, this为window
-     * 4. call()的性能比apply()好一些，尤其是传参大于3个时
+     * 3. call()的性能比apply()好一些，尤其是传参大于3个时
+     * 4. 当obj为null/undefined时, this为window
      * 
      * 
      * 应用：
@@ -39,43 +39,43 @@
 
     // 手写call
     Function.prototype.call = function (obj, ...args) {
-      // 1.处理obj是undefined或null的情况
+      // 1. 处理obj是undefined或null的情况
       if (obj == undefined || obj == null) {
         // obj为undefined或null时，this变为window
         obj = window
       }
-      // 2.给函数添加一个方法。this就是调用的方法
+      // 2. 给函数添加一个方法。this就是调用的方法
       obj.temFn = this
-      // 3.调用添加的方法，传入args参数，得到返回的值
+      // 3. 调用添加的方法，传入args参数，得到返回的值
       const result = obj.temFn(...args)
-      // 4.删除添加的方法
+      // 4. 删除添加的方法
       delete obj.temFn
-      // 5.返回方法返回的值
+      // 5. 返回方法返回的值
       return result
     }
 
     // 手写apply
     Function.prototype.apply = function (obj, args) {
-      // 1.处理obj是undefined或null的情况
+      // 1. 处理obj是undefined或null的情况
       if (obj == undefined || obj == null) {
         // obj为undefined或null时，this变为window
         obj = window
       }
-      // 2.给函数添加一个方法。this就是调用的方法
+      // 2. 给函数添加一个方法。this就是调用的方法
       obj.temFn = this
-      // 3.调用添加的方法，传入args参数，得到返回的值
+      // 3. 调用添加的方法，传入args参数，得到返回的值
       const result = obj.temFn(...args)
-      // 4.删除添加的方法
+      // 4. 删除添加的方法
       delete obj.temFn
-      // 5.返回方法返回的值
+      // 5. 返回方法返回的值
       return result
     }
 
     // 手写bind
     Function.prototype.bind = function (obj, ...args) {
-      // 1.返回一个新函数
+      // 1. 返回一个新函数
       return (...args2) => {
-        // 2.新函数内部调用原来的函数，指定this为obj，参数列表由args和args2组成
+        // 2. 新函数内部调用原来的函数，指定this为obj，参数列表由args和args2组成
         return this.call(obj, ...args, ...args2)
       }
     }
