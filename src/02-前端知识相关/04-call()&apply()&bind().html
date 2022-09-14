@@ -87,7 +87,6 @@
       console.log(a, b, this, arguments.length)
       return a + b
     }
-
     fn(1, 2)
     const obj = { m: 0 }
     fn.call(obj, 10, 20) // 相当于执行了obj.fn()。10 2o obj 2
