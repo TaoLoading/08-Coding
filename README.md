@@ -1,9 +1,9 @@
 # 手撕代码
 
 ## 使用方法
-1. 执行 ` npm i ` 或 ` yarn ` 安装依赖
+1. 执行  ` yarn ` 安装依赖
 2. 在 ` src/index.ts ` 文件内引入想要执行的代码文件 
-3. 执行 ` npm run dev ` 或 ` yarn dev ` 运行项目，等待打包完毕
+3. 执行 ` yarn dev ` 运行项目，等待打包完毕
 4. 访问 ` localhost:3000 `，查看浏览器console中的代码执行结果
 
 ## 主要代码
