@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      height: 100px;
+      border: 1px solid #000;
+    }
+
+    .box1 {
+      float: left;
+      width: 100px;
+    }
+
+    .box2 {
+      width: 200px;
+      /* 开启 BFC 后，不会与浮动元素重叠 */
+      display: flex;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box1">
+    1111111111111111111111111111
+  </div>
+  <div class="box2">
+    2222222222222222222222222222
+  </div>
+
+  <script>
+    /**
+     * BFC：Block format context，块级格式化上下文。BFC 是一块独立渲染区域，内部元素的渲染不会影响边界以外的元素
+     * 
+     * BFC 可以解决的问题：
+     * 1. float 元素和普通元素重叠 ———— 对普通元素开启 BFC
+     * 2. 上下 margin 重叠 ———— 对其中一个元素开启 BFC
+     * 3. 内部节点设置了 float 导致父节点高度塌陷 ———— 对父元素开启 BFC
+     * 
+     * 开启 BFC：
+     * 1. float 不是 none
+     * 2. position 不是 absolute 或 fixed
+     * 3. overflow 不是 visible
+     * 4. display不是flex/inline-block等
+     */
+  </script>
+</body>
+
+</html>

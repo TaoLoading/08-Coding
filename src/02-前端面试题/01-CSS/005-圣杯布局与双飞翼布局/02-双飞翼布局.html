@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>双飞翼布局</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      text-align: center;
+      background-color: pink;
+    }
+
+    .float {
+      float: left;
+    }
+
+    .center {
+      width: 100%;
+      height: 200px;
+      text-align: center;
+      background-color: cornflowerblue;
+    }
+
+    .center-wrap {
+      margin: 0 200px 0 200px;
+    }
+
+    .left {
+      width: 200px;
+      height: 200px;
+      margin-left: -100%;
+      text-align: center;
+      background-color: bisque;
+    }
+
+    .right {
+      width: 200px;
+      height: 200px;
+      margin-left: -200px;
+      text-align: center;
+      background-color: cadetblue;
+    }
+
+    .footer {
+      clear: both;
+      text-align: center;
+      background-color: aquamarine;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">header</div>
+  <div class="center float">
+    <div class="center-wrap">
+      center
+    </div>
+  </div>
+  <div class="left float">
+    left
+  </div>
+  <div class="right float">
+    right
+  </div>
+  <div class="footer">footer</div>
+
+  <script>
+    /**
+     * 实现步骤：
+     * 1. 将 container 内所有列都设置 float:left
+     * 2. 对 center-wrap 设置外边距，空出左右列的位置
+     * 3. 通过设置负值的 margin 来移动位置，实现圣杯布局
+     * 
+     * 左侧移动位置的代码：
+     * margin-left: -100%;
+     * 
+     * 右侧移动位置的代码：
+     * margin-left: -200px;
+     * 
+     * 
+     * 
+     * 总结
+     * 相同点：
+     * 1. 优先渲染中间部分
+     * 2. 可以自适应宽度
+     * 不同点：
+     * 1. 实现方式不同
+     */
+  </script>
+</body>
+
+</html>

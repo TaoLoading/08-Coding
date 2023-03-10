@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /**
+     * 问题 1：div1 的 offsetWidth 宽度为多少？
+     * 答：100+10+10+1+1 = 122px
+     * 原理：offsetWidth = 宽度 + 内边距 + 边框（不算外边距）
+     * 
+     * 问题 2：如何把 div1 的宽度修改为 100px？
+     * 答：加入'box-sizing: border-box'
+     * 原理：此时 offsetWidth = 宽度
+     */
+    #div1 {
+      width: 100px;
+      padding: 10px;
+      border: 1px solid #000;
+      margin: 10px;
+    }
+
+    /**
+     * 问题 3：AAA 和 BBB 之间的距离为多少？
+     * 答：15 = 45
+     * 原理：margin 纵向重叠，空的 p 标签高度可忽略
+     */
+    p {
+      margin-top: 10px;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <p>AAA</p>
+  <p></p>
+  <p></p>
+  <p></p>
+  <p>BBB</p>
+</body>
+
+</html>
