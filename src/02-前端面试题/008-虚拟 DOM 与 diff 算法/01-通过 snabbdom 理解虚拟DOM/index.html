@@ -15,37 +15,37 @@
 </head>
 
 <body>
-  <h1>虚拟DOM</h1>
+  <h1>虚拟 DOM</h1>
   <div id="container"></div>
   <button id="btn">改变</button>
 
   <script>
     /**
-     * 虚拟DOM其实就是把真实DOM数据化
+     * 虚拟 DOM 其实就是把真实 DOM 数据化
      * 
      * 
-     * 虚拟DOM的构成：
+     * 虚拟 DOM 的构成：
      * 1.tag：标签名
      * 2.props：标签属性
      * 3.children：子节点
      * 
      * 
-     * 通过snabbdom封装后的虚拟节点的构成：
+     * 通过 snabbdom 封装后的虚拟节点的构成：
      * 1.children：子节点
      * 2.text：文本
      * 3.data：元素属性
-     * 4.elm：对应的DOM元素
+     * 4.elm：对应的 DOM 元素
      * 5.key
      * 6.sel：元素选择器
      * 
      * 
-     * diff算法基本规则：
+     * diff 算法基本规则：
      * 1.之比较同级，不跨级比较
-     * 2.tag不相同，则直接删除重建，不再深度比较
-     * 3.tag和key两者都相同，则认为是相同节点，不再深度比较
+     * 2.tag 不相同，则直接删除重建，不再深度比较
+     * 3.tag 和 key 两者都相同，则认为是相同节点，不再深度比较
      */
 
-    // 初始化patch(用于新老节点的替换)
+    // 初始化 patch(用于新老节点的替换)
     const patch = snabbdom.init([
       snabbdom_class,
       snabbdom_props,
@@ -53,7 +53,7 @@
       snabbdom_eventlisteners
     ])
 
-    // 初始化h(用于创建虚拟节点)
+    // 初始化 h(用于创建虚拟节点)
     const h = snabbdom.h
 
     // 获取容器
@@ -61,13 +61,13 @@
     // 获取按钮
     const btn = document.getElementById('btn')
 
-    // 创建vnode虚拟节点
+    // 创建 vnode 虚拟节点
     let vnode = h('ul#list', {}, [
       h('li.item', { key: 'a' }, 'a'),
       h('li.item', { key: 'b' }, 'b')
     ])
 
-    // 将虚拟节点放到空容器中(将container替换为vnode)
+    // 将虚拟节点放到空容器中 (将 container 替换为 vnode)
     patch(container, vnode)
 
     // 给按钮添加监听，当点击按钮时更新节点

@@ -1,7 +1,7 @@
 import h from './dom/h'
 import patch from './dom/patch'
 
-// 获取真实DOM节点
+// 获取真实 DOM 节点
 let container = document.getElementById('container')
 
 // 虚拟节点

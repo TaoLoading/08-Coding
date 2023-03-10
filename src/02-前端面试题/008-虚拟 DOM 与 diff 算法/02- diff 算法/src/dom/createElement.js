@@ -1,5 +1,5 @@
 /**
- * 将虚拟节点创建为dom节点
+ * 将虚拟节点创建为 dom 节点
  */
 
 export default function createElement(vnode) {
@@ -17,7 +17,7 @@ export default function createElement(vnode) {
     }
   }
 
-  // 补充elm属性
+  // 补充 elm 属性
   vnode.elm = domNode
 
   return domNode
