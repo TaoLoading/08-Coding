@@ -3,9 +3,9 @@
  * 获取字符串中连续最多的字符和次数
  * 
  * 双指针方法思路：
- * 1. 定义指针i和j，j不动，i向后移动
- * 2. 如果i和j的值一直相等，i继续向后移动
- * 3. 如果i和j的值不相等，则记录，并让j追上i
+ * 1. 定义指针 i 和 j，j 不动，i 向后移动
+ * 2. 如果 i 和 j 的值一直相等，i 继续向后移动
+ * 3. 如果 i 和 j 的值不相等，则记录，并让 j 追上 i
  * 4. 重复上述操作直到结束
  */
 
@@ -18,7 +18,7 @@ interface resultType {
  * 循环嵌套方法
  * @param str 原始字符串
  * @returns 结果
- * 时间复杂度为O(n)。虽然存在两层嵌套，但是存在跳步的现象，即i会从下一个不同的字符处继续开始循环
+ * 时间复杂度为 O(n)。虽然存在两层嵌套，但是存在跳步的现象，即 i 会从下一个不同的字符处继续开始循环
  */
 export function findConsecutiveChar1(str: string): resultType {
   const res: resultType = {
@@ -97,10 +97,10 @@ export function findConsecutiveChar2(str: string): resultType {
       // 重置次数
       charNum = 0
 
-      // j追上i
+      // j 追上 i
       if (i < str.length - 1) {
         j = i
-        // 细节，防止i和j错开
+        // 细节，防止 i 和 j 错开
         i--
       }
     }

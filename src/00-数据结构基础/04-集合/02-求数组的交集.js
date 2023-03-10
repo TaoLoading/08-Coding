@@ -9,5 +9,5 @@ var intersection = function (nums1, nums2) {
   return [...new Set(nums1)].filter(n => nums2.includes(n))
 }
 
-// 时间复杂度是O(m*n)
-// 空间复杂度是O(m)，m是去重后的nums1数组
+// 时间复杂度是 O(m*n)
+// 空间复杂度是 O(m)，m 是去重后的 nums1 数组

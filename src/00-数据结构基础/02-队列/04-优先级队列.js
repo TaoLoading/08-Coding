@@ -1,5 +1,5 @@
 /**
- * 优先级队列：入队列时传入两个数，第一个数是元素值，第二个数是优先级值，队列中按照优先级的顺序(可大可小)排列元素
+ * 优先级队列：入队列时传入两个数，第一个数是元素值，第二个数是优先级值，队列中按照优先级的顺序 (可大可小) 排列元素
  */
 
 // 将传入的元素转换为对象
@@ -15,19 +15,19 @@ function priorityQueue() {
   // 入队列：enqueue()
   this.enqueue = function (data, priority) {
     const element = new elementType(data, priority)
-    // 插入元素到arr
-    // 当arr为空时，直接插入
+    // 插入元素到 arr
+    // 当 arr 为空时，直接插入
     if (arr.length === 0) {
       arr.push(element)
     } else {
-      // 当arr不为空时，将元素插入到第一个优先级值比当前优先级值大的元素的左侧
+      // 当 arr 不为空时，将元素插入到第一个优先级值比当前优先级值大的元素的左侧
       for (let i = 0; i < arr.length; i++) {
         if (arr[i].priority > priority) {
           arr.splice(i, 0, element)
           return
         }
       }
-      // 结束for循环后还未return则说明当前元素优先级值最大，放到最烈尾部
+      // 结束 for 循环后还未 return 则说明当前元素优先级值最大，放到最烈尾部
       arr.push(element)
     }
   }

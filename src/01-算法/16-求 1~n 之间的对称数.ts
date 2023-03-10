@@ -1,6 +1,6 @@
 /**
  * 题目：
- * 求1~n之间的对称数/回文
+ * 求 1~n 之间的对称数/回文
  * 
  * 思路一：整体字符串反转
  * 1. 数字转换为字符串，在转换为数组
@@ -18,7 +18,7 @@
 
 /**
  * 整体字符串反转
- * @param max 最大值，即n
+ * @param max 最大值，即 n
  * @returns 包含对称数的数组
  */
 export function findPalindromeNumber1(max: number): number[] {
@@ -97,7 +97,7 @@ export function findPalindromeNumber3(max: number): number[] {
 
     // 生成翻转数
     while (n > 0) {
-      // 以123为例
+      // 以 123 为例
       rev = rev * 10 + n % 10 // rev: 3   32  321
       n = Math.floor(n / 10)  // n:   12  1   0
     }
@@ -111,9 +111,9 @@ export function findPalindromeNumber3(max: number): number[] {
 }
 
 // 功能测试
-console.log('100以内的对称数', findPalindromeNumber1(200))
-console.log('100以内的对称数', findPalindromeNumber2(200))
-console.log('100以内的对称数', findPalindromeNumber3(200))
+console.log('100 以内的对称数', findPalindromeNumber1(200))
+console.log('100 以内的对称数', findPalindromeNumber2(200))
+console.log('100 以内的对称数', findPalindromeNumber3(200))
 
 // 性能测试
 /* console.time('findPalindromeNumber')

@@ -5,12 +5,12 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>数组的拼接与切割</title>
+  <title>数组去重</title>
 </head>
 
 <body>
   <script>
-    // 方法1，利用forEach() + indexOf。双重遍历，效率低
+    // 方法 1，利用 forEach() + indexOf。双重遍历，效率低
     Array.prototype.unique1 = function (arr) {
       const newArr = []
       arr.forEach(item => {
@@ -21,10 +21,10 @@
       return newArr
     }
 
-    // 方法2，利用forEach() + 对象形式。单次遍历，效率稍高
+    // 方法 2，利用 forEach() + 对象形式。单次遍历，效率稍高
     Array.prototype.unique2 = function (arr) {
       const newArr = []
-      // 空对象，存放第一次遍历的元素，元素为属性名，true为属性值
+      // 空对象，存放第一次遍历的元素，元素为属性名，true 为属性值
       const obj = {}
       arr.forEach(item => {
         if (!obj.hasOwnProperty(item)) {
@@ -35,12 +35,11 @@
       return newArr
     }
 
-    // 方法3，利用ES6语法
+    // 方法 3，利用 ES6 语法
     Array.prototype.unique3 = function (arr) {
       // return [...new Set(arr)]
       return Array.from(new Set(arr))
     }
-
 
     // 测试
     const arr = [1, 1, 2, 3, 4, 5, 6, 2, 33, 2, 5]

@@ -6,7 +6,7 @@ describe('数组千分位格式化', () => {
     const res = format1(n)
     expect(res).toBe('10,201,004,050')
   })
-  it('小于1000', () => {
+  it('小于 1000', () => {
     expect(format1(0)).toBe('0')
     expect(format1(10)).toBe('10')
   })

@@ -1,12 +1,12 @@
 /**
- * 题目：计算斐波那契数列的第n个值
+ * 题目：计算斐波那契数列的第 n 个值
  */
 
 /**
  * 递归方式
  * @param n 下标
  * @returns 值
- * 时间复杂度是O(2^n)，存在大量重复计算
+ * 时间复杂度是 O(2^n)，存在大量重复计算
  */
 export function fibonacci1(n: number): number {
   // 特殊值处理
@@ -24,7 +24,7 @@ export function fibonacci1(n: number): number {
  * 循环方式
  * @param n 下标
  * @returns 值
- * 时间复杂度是O(n)
+ * 时间复杂度是 O(n)
  */
 export function fibonacci2(n: number): number {
   // 特殊值处理
@@ -35,17 +35,17 @@ export function fibonacci2(n: number): number {
     return 1
   }
 
-  // 记录n-1的结果
+  // 记录 n-1 的结果
   let n1 = 1
-  // 记录n-2的结果
+  // 记录 n-2 的结果
   let n2 = 0
-  // 记录n1+n2的结果，即下一个值
+  // 记录 n1+n2 的结果，即下一个值
   let res = 0
 
-  for (let i = 2; i <= n; i++) { // 注意i从2开始
+  for (let i = 2; i <= n; i++) { // 注意 i 从 2 开始
     res = n1 + n2
 
-    // 更新n2和n1的值
+    // 更新 n2 和 n1 的值
     n2 = n1
     n1 = res
   }
@@ -54,5 +54,5 @@ export function fibonacci2(n: number): number {
 }
 
 // 功能测试
-// console.log('斐波那契数列中第10个值为', fibonacci1(10))
-console.log('斐波那契数列中第10个值为', fibonacci2(10))
+// console.log('斐波那契数列中第 10 个值为', fibonacci1(10))
+console.log('斐波那契数列中第 10 个值为', fibonacci2(10))

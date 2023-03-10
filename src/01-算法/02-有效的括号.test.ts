@@ -2,12 +2,12 @@ import { validBrackets } from './02-有效的括号'
 
 // 测试用例组
 describe('有效的括号', () => {
-  // 以下每个it为单个测试用例
+  // 以下每个 it 为单个测试用例
 
   it('正常情况', () => {
     const str = '[(a{b})]'
     const result = validBrackets(str)
-    expect(result).toBe(true) // toBe()用于判断基本数据类型
+    expect(result).toBe(true) // toBe() 用于判断基本数据类型
   })
 
   it('括号不匹配', () => {

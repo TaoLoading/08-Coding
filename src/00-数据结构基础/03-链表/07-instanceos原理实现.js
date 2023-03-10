@@ -1,5 +1,5 @@
 /**
- * 实例对象A instanceof 构造函数B：检测构造函数B的prototype属性是否出现在实例对象A的原型链上
+ * 实例对象 A instanceof 构造函数 B：检测构造函数 B 的 prototype 属性是否出现在实例对象 A 的原型链上
  */
 
 const _instanceof = function (A, B) {

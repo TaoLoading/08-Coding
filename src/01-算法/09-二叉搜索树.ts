@@ -1,9 +1,9 @@
 /**
- * 题目：求一个二叉搜索树中第k小的值
+ * 题目：求一个二叉搜索树中第 k 小的值
  * 
  * 思路：
  *    1. 对二叉搜索树进行中序遍历，得到一个从小到大顺序排列的数组
- *    2. 第k小值的数即为第k个数
+ *    2. 第 k 小值的数即为第 k 个数
  * 
  * 二叉树的遍历 (判断根在哪)：
  *    1. 前序遍历：root → left → right
@@ -15,7 +15,7 @@
  *    2. right(包括其后代).value => root.value
  *    3. 便于使用二分法进行快速查找
  * 
- * 平衡二叉搜索树 (BBST)进行增删查时，时间复杂度都是O(logn)，n为节点数，logn为树的高度
+ * 平衡二叉搜索树 (BBST) 进行增删查时，时间复杂度都是 O(logn)，n 为节点数，logn 为树的高度
  * 
  * 红黑树：
  *    1. 一种自平衡二叉树
@@ -111,7 +111,7 @@ console.log('中序遍历的结果：', resArr) */
 console.log('后序遍历的结果：', resArr) */
 
 /**
- * 求一个二叉搜索树中第k小的值
+ * 求一个二叉搜索树中第 k 小的值
  * @param tree 二叉搜索树
  * @param k 第几个值
  * @returns 存在时返回
@@ -122,4 +122,4 @@ export function getKValue(bst: TreeNode, k: number): number | null {
 }
 
 // 功能测试
-console.log('此二叉搜索树中第3小的值为：', getKValue(bst, 3))
+console.log('此二叉搜索树中第 3 小的值为：', getKValue(bst, 3))

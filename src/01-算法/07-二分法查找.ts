@@ -11,7 +11,7 @@
  * 采用递归方式实现二分法
  * @param arr 有序数组
  * @param target 目标数字
- * @returns 目标数字存在时则返回其下标，不存在时则返回-1
+ * @returns 目标数字存在时则返回其下标，不存在时则返回 -1
  */
 export function binarySearch1(arr: number[], target: number): number {
   if (arr.length < 0) {

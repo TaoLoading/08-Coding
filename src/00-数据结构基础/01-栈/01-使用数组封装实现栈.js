@@ -1,5 +1,5 @@
 /**
- * JavaScript没有栈的概念，但可以使用Array实现栈的功能
+ * JavaScript 没有栈的概念，但可以使用 Array 实现栈的功能
  */
 
 function Stack() {

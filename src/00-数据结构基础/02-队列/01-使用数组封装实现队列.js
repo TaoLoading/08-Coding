@@ -1,5 +1,5 @@
 /**
- * JavaScript没有队列的概念，但可以使用Array实现队列的功能
+ * JavaScript 没有队列的概念，但可以使用 Array 实现队列的功能
  */
 
 function Queue() {

@@ -41,14 +41,14 @@ export function createLinkList(arr: number[]): LinkListNodeType {
 
 // 反转单向链表
 export function reverseLinkList(linkListNode: LinkListNodeType): LinkListNodeType {
-  // 定义三个指针，分别是上一下节点、当前节点、下一个节点。下一个节点初始值赋linkListNode
+  // 定义三个指针，分别是上一下节点、当前节点、下一个节点。下一个节点初始值赋 linkListNode
   let prevNode: LinkListNodeType | undefined = undefined
   let curNode: LinkListNodeType | undefined = undefined
   let nextNode: LinkListNodeType | undefined = linkListNode
 
-  // 以nextNode为主遍历链表。当nextNode存在时执行，即执行到倒数第二个节点
+  // 以 nextNode 为主遍历链表。当 nextNode 存在时执行，即执行到倒数第二个节点
   while (nextNode) {
-    // 第一个元素时，删除其next。因为第一个元素反转后没有nextNode
+    // 第一个元素时，删除其 next。因为第一个元素反转后没有 nextNode
     if (curNode && !prevNode) {
       delete curNode.next
     }
@@ -64,7 +64,7 @@ export function reverseLinkList(linkListNode: LinkListNodeType): LinkListNodeTyp
     nextNode = nextNode?.next
   }
 
-  // 对最后一个节点进行处理。因为其没有nextNode
+  // 对最后一个节点进行处理。因为其没有 nextNode
   curNode!.next = prevNode
 
   return curNode!

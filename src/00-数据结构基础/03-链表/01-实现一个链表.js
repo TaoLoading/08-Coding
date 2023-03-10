@@ -1,10 +1,10 @@
-/* JavaScript没有链表，但可以使用Object模拟出链表 */
+/* JavaScript 没有链表，但可以使用 Object 模拟出链表 */
 
 const a = { val: 'a' }
 const b = { val: 'b' }
 const c = { val: 'c' }
 const d = { val: 'd' }
-// 使用next将每个object进行连接
+// 使用 next 将每个 object 进行连接
 a.next = b
 b.next = c
 c.next = d

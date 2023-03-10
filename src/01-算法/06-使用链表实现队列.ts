@@ -2,11 +2,11 @@
  * 题目：使用链表实现队列
  * 
  * 思路：
- * 假设链表为：A → B → C → D，设置两个指针head和tail，head指向头部的A，tail指向尾部的D，
- * 需要注意，从tail入队，从head出队。入队时tail指向新入队的节点，出队时head指向下一个节点，
- * 因为单向链表中只有next指向下一个节点，如果从tail出队，则无法找到其前一个节点
+ * 假设链表为：A → B → C → D，设置两个指针 head 和 tail，head 指向头部的 A，tail 指向尾部的 D，
+ * 需要注意，从 tail 入队，从 head 出队。入队时 tail 指向新入队的节点，出队时 head 指向下一个节点，
+ * 因为单向链表中只有 next 指向下一个节点，如果从 tail 出队，则无法找到其前一个节点
  * 
- * 在计算长度时不能直接遍历链表去计算，因为时间复杂度高O(n)，而是要单独存取
+ * 在计算长度时不能直接遍历链表去计算，因为时间复杂度高 O(n)，而是要单独存取
  */
 
 interface LinkListNodeType {
@@ -27,14 +27,14 @@ export class Queue {
       next: null
     }
 
-    // 处理head
-    // head为空时说明队列为空，此时head和tail都指向同一个节点
+    // 处理 head
+    // head 为空时说明队列为空，此时 head 和 tail 都指向同一个节点
     if (this.head === null) {
       this.head = newNode
     }
 
-    // 处理tail
-    // 先保留最后一个节点，再将原本最后一个节点的next指向新入队的节点，再将tail指向新入队的节点
+    // 处理 tail
+    // 先保留最后一个节点，再将原本最后一个节点的 next 指向新入队的节点，再将 tail 指向新入队的节点
     const tailNode = this.tail
     if (tailNode) {
       tailNode.next = newNode
@@ -53,7 +53,7 @@ export class Queue {
       return null
     }
     if (this.len === 0) {
-      console.log('长度为0')
+      console.log('长度为 0')
       return null
     }
 

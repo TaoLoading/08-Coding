@@ -27,18 +27,18 @@ function passGame(names, number) {
   names.forEach((name, index) => {
     queue.enqueue({ name, index })
   })
-  // 只要队列元素个数不为1，进行出入队列循环
+  // 只要队列元素个数不为 1，进行出入队列循环
   while (queue.size() > 1) {
-    // 将前number-1个元素依次放到队列尾部
+    // 将前 number-1 个元素依次放到队列尾部
     for (let i = 0; i < number - 1; i++) {
       queue.enqueue(queue.dequeue())
     }
-    // 移出第number个元素即头部元素
+    // 移出第 number 个元素即头部元素
     queue.dequeue()
   }
   // 队列中只剩一个元素，结束游戏
   const { name, index } = queue.front()
-  console.log(`${name}获得胜利, 它是第${index + 1}个元素`)
+  console.log(`${name}获得胜利，它是第${index + 1}个元素`)
 }
 
 var names = ['A', 'B', 'C']
