@@ -106,6 +106,6 @@ const obj1 = {
   },
   d: function () { }
 }
-obj2 = deepClone1(obj1)
+const obj2 = deepClone1(obj1)
 console.log('obj2', obj2)
 console.log(obj2 === obj1, obj2.a === obj1.a, obj2.b === obj1.b, obj2.c === obj1.c, obj2.d === obj1.d) // false true false false false

@@ -57,8 +57,8 @@ export function validBrackets(str: string): boolean {
   return stack.length === 0
 }
 
-/* const str = '[ad{)}]'
-console.log('判断结果：', validBrackets(str)) */
+const str = '[ad{)}]'
+console.log('判断结果：', validBrackets(str))
 
 /**
  * 时间复杂度为 O(n)
