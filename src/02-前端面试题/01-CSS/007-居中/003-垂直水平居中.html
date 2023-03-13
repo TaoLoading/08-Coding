@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>垂直水平居中</title>
+  <style>
+    .container {
+      border: 1px solid #ccc;
+      margin: 10px;
+      padding: 10px;
+      height: 200px;
+    }
+
+    .item {
+      background-color: #ccc;
+    }
+
+    .container-1 {
+      text-align: center;
+      line-height: 200px;
+      height: 200px;
+    }
+
+    .container-2 {
+      position: relative;
+    }
+
+    .container-2 .item {
+      width: 300px;
+      height: 100px;
+      position: absolute;
+      left: 50%;
+      margin-left: -150px;
+      top: 50%;
+      margin-top: -50px;
+    }
+
+    .container-3 {
+      position: relative;
+    }
+
+    .container-3 .item {
+      width: 200px;
+      height: 80px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%)
+    }
+
+    .container-4 {
+      position: relative;
+    }
+
+    .container-4 .item {
+      width: 100px;
+      height: 50px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container container-1">
+    <span>行内元素</span>
+  </div>
+
+  <div class="container container-2">
+    <div class="item">
+      块级元素
+    </div>
+  </div>
+
+  <div class="container container-3">
+    <div class="item">
+      定位元素
+    </div>
+  </div>
+
+  <div class="container container-4">
+    <div class="item">
+      定位元素
+    </div>
+  </div>
+  <script>
+    /**
+     * 垂直水平居中
+     * 1. 手动设置偏移量
+     * 2. 绝对定位，top, left, bottom, right = 0 + margin: auto;
+     * 3. 绝对定位，top, left = 50% + transform: translate(-50%, -50%)
+     * 4. flex 布局
+     */
+  </script>
+</body>
+
+</html>

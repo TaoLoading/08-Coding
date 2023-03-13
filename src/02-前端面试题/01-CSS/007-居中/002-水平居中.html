@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>水平居中</title>
+  <style>
+    .container {
+      border: 1px solid #ccc;
+      margin: 10px;
+      padding: 10px;
+    }
+
+    .item {
+      background-color: #ccc;
+    }
+
+    .container-1 {
+      text-align: center;
+    }
+
+    .container-2 .item {
+      width: 500px;
+      margin: auto;
+    }
+
+    .container-3 {
+      position: relative;
+      height: 100px;
+    }
+
+    .container-3 .item {
+      width: 300px;
+      height: 100px;
+      position: absolute;
+      left: 50%;
+      margin-left: -150px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container container-1">
+    <span>行内元素</span>
+  </div>
+
+  <div class="container container-2">
+    <div class="item">
+      块级元素
+    </div>
+  </div>
+
+  <div class="container container-3">
+    <div class="item">
+      定位元素
+    </div>
+  </div>
+  <script>
+    /**
+     * 水平居中
+     * 内联元素：line-height: 行高;
+     * 块级元素：margin: auto;
+     * 定位元素：
+     *    1. top: 50% +margin-top 负值
+     *    2. transform(-50%，-50%);
+     *    3. 绝对定位，top, left, bottom, right = 0 + margin: auto;
+     */
+  </script>
+</body>
+
+</html>
