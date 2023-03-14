@@ -1,4 +1,4 @@
-import './02-前端面试题/02-JS/010-测试遍历效率/002-测试遍历数组效率.js'
+import './02-前端面试题/02-JS/011-函数柯里化'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
