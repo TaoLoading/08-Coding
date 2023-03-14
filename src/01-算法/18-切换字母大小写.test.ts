@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest'
 import { switchLetterCase1, switchLetterCase2 } from './18-切换字母大小写'
 
 describe('切换字母大小写', () => {

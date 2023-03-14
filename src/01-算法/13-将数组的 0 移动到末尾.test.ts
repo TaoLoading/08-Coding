@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest'
 import { moveZero1, moveZero2 } from './13-将数组的 0 移动到末尾'
 
 describe('将数组的 0 移动到末尾', () => {

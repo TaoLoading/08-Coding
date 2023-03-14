@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest'
 import { findConsecutiveChar1, findConsecutiveChar2 } from './14-获取字符串中连续最多的字符和次数'
 
 describe('连续字符和长度', () => {

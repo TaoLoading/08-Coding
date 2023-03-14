@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest'
 import { fibonacci1, fibonacci2 } from './11-斐波那契数列'
 
 describe('斐波那契数列', () => {

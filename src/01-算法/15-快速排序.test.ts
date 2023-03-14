@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest'
 import { quickSort1, quickSort2 } from './15-快速排序'
 
 describe('快速排序', () => {

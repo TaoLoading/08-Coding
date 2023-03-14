@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest'
 import { findPalindromeNumber1, findPalindromeNumber2, findPalindromeNumber3 } from './16-求 1~n 之间的对称数'
 
 describe('对称数', () => {

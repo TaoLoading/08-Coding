@@ -2,6 +2,7 @@
  * arrayRotate 的单元测试
  */
 
+import { describe, expect, it } from 'vitest'
 import { rotate1, rotate2 } from './01-旋转数组'
 
 // 测试用例组

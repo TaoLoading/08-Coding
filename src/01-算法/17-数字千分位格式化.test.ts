@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest'
 import { format1, format2 } from './17-数字千分位格式化'
 
 describe('数组千分位格式化', () => {

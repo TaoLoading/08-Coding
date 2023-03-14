@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest'
 import { binarySearch1, binarySearch2 } from './07-二分法查找'
 
 describe('二分查找', () => {
