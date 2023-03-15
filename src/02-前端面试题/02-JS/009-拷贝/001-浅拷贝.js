@@ -15,7 +15,7 @@ const shallowClone2 = (target) => {
   if (target instanceof Array || (target !== null && typeof target === 'object')) {
     const cloneTarget = target instanceof Array ? [] : {}
     for (const key in target) {
-      if (target.hasOwnProperty(key)) {
+      if (target.hasOwnProperty(key)) { // hasOwnProperty 是为了保证 key 是来自 target 而不是 target 的原型对象
         cloneTarget[key] = target[key]
       }
     }

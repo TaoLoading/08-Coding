@@ -8,6 +8,7 @@ const deepClone1 = (target) => {
 
 /**
  * 方法二：浅拷贝 + 递归
+ * 思路：获取源数组中的元素向新数组中依次添加
  * 缺点：1.函数属性丢失   2.抛弃对象的 constructor，将对象的构造函数变为 Object，存在循环引用时出错
  */
 const deepClone2 = (target) => {
@@ -15,7 +16,7 @@ const deepClone2 = (target) => {
     // 创建拷贝对象
     const cloneTarget = target instanceof Array ? [] : {}
     for (const key in target) {
-      if (target.hasOwnProperty(key)) {
+      if (target.hasOwnProperty(key)) { // hasOwnProperty 是为了保证 key 是来自 target 而不是 target 的原型对象
         // 通过对属性值进行递归拷贝，实现深拷贝
         cloneTarget[key] = deepClone2(target[key])
       }
