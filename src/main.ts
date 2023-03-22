@@ -1,4 +1,4 @@
-import './02-前端面试题/02-JS/016-点击标签弹出对应序号'
+import './02-前端面试题/03-异步/02-Promise/03-catch 返回的状态.js'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
