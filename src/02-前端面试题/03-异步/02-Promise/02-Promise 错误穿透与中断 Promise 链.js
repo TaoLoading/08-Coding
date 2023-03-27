@@ -19,8 +19,7 @@
   value => console.log('1-3 成功', value)
 ).catch(err => {
   console.log('1-1 失败', err)
-})
- */
+}) */
 
 // 中断 Promise 链
 new Promise((resolve, reject) => {
