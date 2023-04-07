@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文本溢出</title>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      border: 1px solid red;
+    }
+
+    /*  */
+    .singleOverflow {
+      overflow: hidden;
+      /* 溢出部分使用省略号显示 */
+      text-overflow: ellipsis;
+      /* 规定段落中的文本不可换行 */
+      white-space: nowrap;
+    }
+
+    /* 存在兼容性问题，限定基于 WebKit 的浏览器 */
+    .moreOverflow {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      /* 作为弹性伸缩盒子模型显示 */
+      display: -webkit-box;
+      /* 设置伸缩盒子的子元素排列方式：从上到下垂直排列 */
+      -webkit-box-orient: vertical;
+      /* 显示的行数 */
+      -webkit-line-clamp: 3;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 单行文本溢出 -->
+  <div class="box singleOverflow">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+
+  <!-- 多行文本溢出 -->
+  <div class="box moreOverflow1">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+
+  <!-- 推荐 npm 包：auto-ellipsis-text -->
+</body>
+
+</html>
