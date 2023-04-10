@@ -7,15 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
-    /**
-     * 问题 1：div1 的 offsetWidth 宽度为多少？
-     * 答：100+10+10+1+1 = 122px
-     * 原理：offsetWidth = 宽度 + 内边距 + 边框（不算外边距）
-     * 
-     * 问题 2：如何把 div1 的宽度修改为 100px？
-     * 答：加入'box-sizing: border-box'
-     * 原理：此时 offsetWidth = 宽度
-     */
     #div1 {
       width: 100px;
       padding: 10px;
@@ -23,11 +14,6 @@
       margin: 10px;
     }
 
-    /**
-     * 问题 3：AAA 和 BBB 之间的距离为多少？
-     * 答：15 = 45
-     * 原理：margin 纵向重叠，空的 p 标签高度可忽略
-     */
     p {
       margin-top: 10px;
       margin-bottom: 15px;
@@ -41,6 +27,29 @@
   <p></p>
   <p></p>
   <p>BBB</p>
+
+  <script>
+    /**
+     * 盒模型
+     * 1. 组成
+     * margin、border、padding、content
+     * 2. 标准盒模型和 IE 盒模型
+     * box-sizing: content-box; 标准盒模型的 width 和 height 属性的范围只包含了 content
+     * box-sizing: border-box; IE 盒模型的 width 和 height 属性的范围包含了 border、padding 和 content
+     * 
+     * 问题 1：div1 的 offsetWidth 宽度为多少？
+     * 答：100+10+10+1+1 = 122px
+     * 原理：offsetWidth = 宽度 + 内边距 + 边框（不算外边距）
+     * 
+     * 问题 2：如何把 div1 的宽度修改为 100px？
+     * 答：加入'box-sizing: border-box'
+     * 原理：此时 offsetWidth = 宽度
+     * 
+     * 问题 3：AAA 和 BBB 之间的距离为多少？
+     * 答：15 = 45
+     * 原理：margin 纵向重叠，空的 p 标签高度可忽略
+     */
+  </script>
 </body>
 
 </html>
