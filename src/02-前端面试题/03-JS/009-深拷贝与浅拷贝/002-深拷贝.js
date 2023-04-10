@@ -107,6 +107,19 @@ const obj1 = {
   },
   d: function () { }
 }
-const obj2 = deepClone1(obj1)
-console.log('obj2', obj2)
-console.log(obj2 === obj1, obj2.a === obj1.a, obj2.b === obj1.b, obj2.c === obj1.c, obj2.d === obj1.d) // false true false false false
+
+// 测试定义的深拷贝方法
+const testObj1 = deepClone1(obj1)
+console.log('testObj1', testObj1)
+console.log(testObj1 === obj1, testObj1.a === obj1.a, testObj1.b === obj1.b, testObj1.c === obj1.c, testObj1.d === obj1.d) // false true false false false
+
+
+// 可直接使用的数组深拷贝方法
+const testArr1 = obj1.b.slice()
+const testArr2 = [].concat(obj1.b)
+console.log('testArr1 === obj1.b', testArr1 === obj1.b)
+console.log('testArr2 === obj1.b', testArr2 === obj1.b)
+
+// 可直接使用的对象深拷贝方法
+const testObj2 = { ...obj1 }
+console.log('testObj2 === obj1', testObj2 === obj1)

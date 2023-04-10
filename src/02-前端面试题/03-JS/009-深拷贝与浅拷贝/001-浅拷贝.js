@@ -25,6 +25,7 @@ const shallowClone2 = (target) => {
   }
 }
 
+// 测试定义的浅拷贝方法
 const obj1 = {
   a: 1,
   b: ['1', '2', '3'],
