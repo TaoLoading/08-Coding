@@ -119,7 +119,3 @@ const testArr1 = obj1.b.slice()
 const testArr2 = [].concat(obj1.b)
 console.log('testArr1 === obj1.b', testArr1 === obj1.b)
 console.log('testArr2 === obj1.b', testArr2 === obj1.b)
-
-// 可直接使用的对象深拷贝方法
-const testObj2 = { ...obj1 }
-console.log('testObj2 === obj1', testObj2 === obj1)
