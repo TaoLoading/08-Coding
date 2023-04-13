@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>画一条0.5px的线</title>
+  <style>
+    .intLine {
+      width: 200px;
+      margin-bottom: 5px;
+    }
+
+    .line1px {
+      height: 1px;
+      background-color: #000;
+    }
+
+    .line1 {
+      height: 0.5px;
+      background-color: #000;
+      /* 或者可以设置 border 为 0.5px */
+    }
+
+    .line2 {
+      height: 1px;
+      transform: scaleY(0.5);
+      background-color: #000;
+    }
+
+    .line3 {
+      position: relative;
+    }
+
+    .line3::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 0;
+      border-top: 0.5px solid #000;
+      transform: scaleY(0.5);
+    }
+
+    .line4 {
+      border-width: 0.5px;
+      border-style: solid;
+      border-image: url(border.png) 1 repeat;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 1px 对照线 -->
+  <div class="intLine line1px"></div>
+
+  <!-- 方法 1：直接设置 0.5px（hight/border） -->
+  <!-- 存在兼容性问题 -->
+  <div class="intLine line1"></div>
+
+  <!-- 方法 2：使用 scaleY -->
+  <!-- 当内部存在文字时会导致文字模糊 -->
+  <div class="intLine line2"></div>
+
+  <!-- 方法 3：使用伪元素+scaleY -->
+  <div class="intLine line3"></div>
+
+  <!-- 方法 4：使用 border-image -->
+  <!-- <div class="intLine line4"></div> -->
+
+  <!-- 方法 5：使用 svg -->
+  <svg width="100%" height="100%">
+    <line x1="10" y1="10" x2="100" y2="10" stroke="#000" stroke-width="0.5"></line>
+  </svg>
+
+  <!-- 方法 6：修改 viewport，控制缩放 -->
+  <!-- 存在兼容性问题 -->
+  <!-- 
+    <meta name="viewport" content="width=device-width, initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5"/>
+   -->
+</body>
+
+</html>
