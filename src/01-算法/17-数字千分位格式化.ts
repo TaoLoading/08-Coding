@@ -16,17 +16,17 @@ export function format1(n: number): string {
   // 反转字符串
   const arr = s.split('').reverse()
   // 拼接字符串
-  return arr.reduce((prev, value, index) => {
+  return arr.reduce((acc, value, index) => {
     if (index % 3 === 0) {
-      if (prev) {
+      if (acc) {
         // 非第一次到三位数，加逗号
-        return value + ',' + prev
+        return value + ',' + acc
       } else {
         // 第一次到三位数，不加逗号直接返回
         return value
       }
     } else {
-      return value + prev
+      return value + acc
     }
   }, '')
 }
@@ -63,5 +63,5 @@ export function format2(n: number): string {
 
 // 功能测试
 const n = 11011001
-// console.log('format1', format1(n))
-console.log('format2', format2(n))
+console.log('format1', format1(n))
+// console.log('format2', format2(n))
