@@ -1,4 +1,4 @@
-import './02-前端面试题/03-JS/003-手写实现已有方法/002-concat() & slice().js'
+import './02-前端面试题/03-JS/015-实现一个组合函数/index.js'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
