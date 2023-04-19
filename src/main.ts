@@ -1,4 +1,4 @@
-import './02-前端面试题/03-JS/003-手写已有方法/01-对象相关/02-JSON.pase.js'
+import './02-前端面试题/03-JS/003-手写已有方法/02-数组相关/09-some.js'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>

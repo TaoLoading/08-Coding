@@ -16,17 +16,17 @@ export function format1(n: number): string {
   // 反转字符串
   const arr = s.split('').reverse()
   // 拼接字符串
-  return arr.reduce((acc, value, index) => {
+  return arr.reduce((acc, cur, index) => {
     if (index % 3 === 0) {
       if (acc) {
         // 非第一次到三位数，加逗号
-        return value + ',' + acc
+        return cur + ',' + acc
       } else {
         // 第一次到三位数，不加逗号直接返回
-        return value
+        return cur
       }
     } else {
-      return value + acc
+      return cur + acc
     }
   }, '')
 }
