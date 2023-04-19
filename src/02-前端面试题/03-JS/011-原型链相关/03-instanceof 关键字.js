@@ -27,7 +27,6 @@ function myInstanceof(fn, obj) {
 
 // 测试
 function Foo() { }
-var obj = new (Foo)
-// console.log(myInstanceof(Foo, obj))
-// console.log(myInstanceof(Object, obj))
-console.log()
+var obj = new Foo()
+console.log(myInstanceof(Foo, obj))
+console.log(myInstanceof(Object, obj))
