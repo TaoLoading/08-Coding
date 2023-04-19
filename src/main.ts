@@ -1,4 +1,4 @@
-import './02-前端面试题/03-JS/011-原型链相关/03-instanceof 关键字.js'
+import './02-前端面试题/04-异步/02-Promise/04-手写 Promise.js'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
