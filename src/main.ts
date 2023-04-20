@@ -1,4 +1,4 @@
-import './02-前端面试题/04-异步/02-Promise/04-手写 Promise.js'
+import './02-前端面试题/04-异步/02-Promise/05-测试 Promise.js'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
