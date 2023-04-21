@@ -1,5 +1,7 @@
 import MyPromise from './04-手写 Promise'
 
+/* Promise 核心部分的多种情况测试 start */
+
 // 普通状态
 /* new MyPromise((resolve, reject) => {
   resolve('成功')
@@ -60,7 +62,7 @@ promise.then(value => {
 }).then(undefined, undefined) */
 
 // 异步执行顺序
-/* console.log(1)
+console.log(1)
 const promise = new MyPromise((resolve, reject) => {
   console.log(2)
   setTimeout(() => {
@@ -76,7 +78,7 @@ promise.then(
     console.log('rejected:', reason)
   }
 )
-console.log(3) */
+console.log(3)
 
 // 返回当前 promise
 /* const promise = new MyPromise((resolve, reject) => {
@@ -88,7 +90,7 @@ const p1 = promise.then(value => {
 }) */
 
 // 链式调用
-new MyPromise((resolve, reject) => {
+/* new MyPromise((resolve, reject) => {
   setTimeout(() => {
     resolve('success')
   }, 1000)
@@ -101,4 +103,16 @@ new MyPromise((resolve, reject) => {
   console.log('2-resolve', value)
 }, error => {
   console.log('2-error', error)
+}) */
+
+/* Promise 核心部分的多种情况测试 end */
+
+// Promise.resolve
+/* let promise = new MyPromise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('Hello, world!')
+  }, 1000)
 })
+Promise.resolve(promise).then(result => {
+  console.log(result)
+}) */

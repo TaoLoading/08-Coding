@@ -31,7 +31,11 @@ export default class MyPromise {
     if (this.promiseStatus === 'pending') {
       this.promiseStatus = 'rejected'
       this.PromiseResult = error
-      this.onRejectedCallbacks.forEach(callback => callback(error))
+      if (this.onRejectedCallbacks.length > 0) {
+        this.onRejectedCallbacks.forEach(callback => callback(error))
+      } else {
+        throw error
+      }
     }
   }
 
@@ -45,7 +49,7 @@ export default class MyPromise {
       if (this.promiseStatus === 'pending') {
         // 等待
         this.onFulfilledCallbacks.push(() => {
-          setTimeout(() => {
+          queueMicrotask(() => {
             try {
               if (typeof onFulfilled !== 'function') {
                 resolve(this.PromiseResult)
@@ -59,7 +63,7 @@ export default class MyPromise {
           })
         })
         this.onRejectedCallbacks.push(() => {
-          setTimeout(() => {
+          queueMicrotask(() => {
             try {
               if (typeof onRejected !== 'function') {
                 reject(this.PromiseResult)
@@ -74,7 +78,7 @@ export default class MyPromise {
         })
       } else if (this.promiseStatus === 'fulfilled') {
         // 成功
-        setTimeout(() => {
+        queueMicrotask(() => {
           try {
             if (typeof onFulfilled !== 'function') {
               resolve(this.PromiseResult)
@@ -88,7 +92,7 @@ export default class MyPromise {
         })
       } else if (this.promiseStatus === 'rejected') {
         // 失败
-        setTimeout(() => {
+        queueMicrotask(() => {
           try {
             if (typeof onRejected !== 'function') {
               reject(this.PromiseResult)
@@ -104,6 +108,20 @@ export default class MyPromise {
     })
 
     return newPromise
+  }
+
+  static resolve(value) {
+    if (value instanceof MyPromise) {
+      return value
+    } else if (value instanceof Object && 'then' in value) {
+      return new MyPromise((resolve, reject) => {
+        value.then(resolve, reject)
+      })
+    }
+
+    return new MyPromise((resolve) => {
+      resolve(value)
+    })
   }
 }
 
@@ -167,3 +185,4 @@ function resolvePromise(newPromise, x, resolve, reject) {
     return resolve(x)
   }
 }
+
