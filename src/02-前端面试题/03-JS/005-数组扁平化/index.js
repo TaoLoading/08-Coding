@@ -1,6 +1,6 @@
 // 方法 1：使用 flat()
 function flat1(arr) {
-  const newArr = arr.flat(Infinity)
+  const newArr = arr.flat(Infinity) // Infinity 为展开所有嵌套
   return newArr
 }
 
@@ -10,7 +10,8 @@ function flat2(arr) {
   return newArr
 }
 
-// 方法 3：递归 + reduce()
+// 方法 3：递归 + reduce() + concat()
+// 当元素类型为数组时，通过递归的方式将其展开放到新数组中
 function flat3(arr, deep = 1) {
   if (deep <= 0) {
     return arr
@@ -21,8 +22,8 @@ function flat3(arr, deep = 1) {
 }
 
 // 方法 4：... + some() + concat()
+// 当元素类型为数组时，将其展开放到新数组中
 function flat4(arr) {
-  // 判断 item 是否为数组
   while (arr.some(item => Array.isArray(item))) {
     // 通过 concat() 达到去除一层数组的效果
     arr = [].concat(...arr)

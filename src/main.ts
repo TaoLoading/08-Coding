@@ -1,4 +1,4 @@
-import './02-前端面试题/03-JS/004-数组去重'
+import './02-前端面试题/03-JS/005-数组扁平化'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
