@@ -6,7 +6,11 @@
 // 获得一个类数组
 function foo() {
   console.log('类数组：', arguments)
-  console.log('真数组：', toArr4(arguments))
+  console.log('真数组：', toArr1(arguments))
+  console.log('类数组：', arguments)
+  console.log('真数组：', toArr2(arguments))
+  console.log('类数组：', arguments)
+  console.log('真数组：', toArr3(arguments))
 }
 foo(1, 2, 3)
 
