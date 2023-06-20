@@ -1,11 +1,8 @@
 /**
  * 函数柯里化：
- * 把接受多个参数的函数变换成接受一个单一参数 (最初函数的第一个参数) 的函数，并且返回接受余下的参数且返回结果的新函数
+ * 把接受多个参数的函数变换成接受一个单一参数的函数，并且返回接受余下的参数且返回结果的新函数
+ * 如：function(arg1, arg2, …, argN)  =>  function(arg1)(arg2)…(argN)
  */
-
-function add(a, b, c) {
-  return a + b + c
-}
 
 function currying(func) {
   // 形参的个数
@@ -20,6 +17,9 @@ function currying(func) {
   return curried
 }
 
+function add(a, b, c) {
+  return a + b + c
+}
 let curriedAdd = currying(add)
 console.log(curriedAdd(1, 2, 3))
 console.log(curriedAdd(1)(2, 3))
