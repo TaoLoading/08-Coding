@@ -145,6 +145,14 @@ console.log(arr) */
 console.log(arr)  */
 
 /**
+ * includes()
+ * 作用：查找数组中是否包含某个元素
+ * 备注：不会改变原数组
+ */
+console.log(arr.includes('1'))
+console.log(arr)
+
+/**
  * findIndex()
  * 作用：查找数组中第 1 个满足条件的元素的下标
  * 备注：不会改变原数组
