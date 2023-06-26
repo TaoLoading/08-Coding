@@ -11,7 +11,7 @@ if (value !== null && value !== undefined && value !== '') {
   //...
 }
 // 或者
-if (value != null && value !== '') {
+if (value != null && value !== '') { // null 和 undefined 隐式转换成立
   //...
 }
 
