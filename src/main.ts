@@ -1,4 +1,4 @@
-import './02-前端面试题/03-JS/020-常用的方法/02-数组.js'
+import './02-前端面试题/03-JS/007-测试遍历效率/002-测试遍历数组效率.js'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>

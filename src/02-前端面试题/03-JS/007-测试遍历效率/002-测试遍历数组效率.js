@@ -1,5 +1,5 @@
 const arr = []
-for (let i = 0; i < 100000; i++) {
+for (let i = 0; i < 10000000; i++) {
   arr.push(1)
 }
 
@@ -53,7 +53,21 @@ while (index++ < length) {
 }
 console.timeEnd()
 
+// map
+console.time()
+console.log('map')
+arr.map(function (item) {
+  return item
+})
+console.timeEnd()
+
 /**
  * 效率：
- * for | while | forEach | for..of > for..in | keys() + forEach
+ * for | while | forEach | map |for..of > for..in | keys() + forEach
+ */
+
+/**
+ * 补充：map 和 forEach 的区别：
+ * 1. forEach() 不会返回新函数，可以在回调函数中修改原数组，适合于只需要遍历数组的场景
+ * 2. map() 会返回新数组，不会修改原数组，适合于需要对数组中的元素进行处理并返回新数组的场景
  */
