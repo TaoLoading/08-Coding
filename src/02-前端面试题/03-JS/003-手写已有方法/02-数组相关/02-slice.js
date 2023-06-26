@@ -1,12 +1,12 @@
 /**
  * slice()
- * 作用：返回一个由 start 和 end 决定的原数组的浅拷贝。该方法不会改变原数组
+ * 作用：返回一个由 start 和 end 决定的原数组的浅拷贝。该方法返回一个新数组不会改变原数组
  * 注意：
  * 1. 只传入 start 时，即从 start 开始截取一直到最后，start 可以为负值
  * 2. 当 start 超出数组索引范围时，返回一个空数组
  * 
- * @param {Number} start 索引起始值，从 0 开始
- * @param {Number} end 索引终止值
+ * @param {Number} start 起始位置，从 0 开始。（包括该位置）
+ * @param {Number} end 终止位置。（不包括该位置）
  */
 Array.prototype.mySlice = function (start = null, end = null) {
   const newArr = []
