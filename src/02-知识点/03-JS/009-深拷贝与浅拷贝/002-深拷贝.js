@@ -1,5 +1,5 @@
 /**
- * 方法一：JSON 转化
+ * 方法 1：JSON 转化
  * 缺点：1.函数属性丢失   2.抛弃对象的 constructor，将对象的构造函数变为 Object，存在循环引用时出错
  */
 const deepClone1 = (target) => {
@@ -7,7 +7,7 @@ const deepClone1 = (target) => {
 }
 
 /**
- * 方法二：浅拷贝 + 递归
+ * 方法 2：浅拷贝 + 递归
  * 思路：获取源数组中的元素向新数组中依次添加
  * 缺点：1.函数属性丢失   2.抛弃对象的 constructor，将对象的构造函数变为 Object，存在循环引用时出错
  */
@@ -28,7 +28,7 @@ const deepClone2 = (target) => {
 }
 
 /**
- * 方法三：map 容器 + 递归
+ * 方法 3：map 容器 + 递归
  * 思路：对同一个对象/数组只拷贝一次。如果已经拷贝，则直接返回；如果没有拷贝，则保存到拷贝对象中
  * 缓存容器的结构：Map，key: target，value: cloneTarget
  */
@@ -57,7 +57,7 @@ const deepClone3 = (target, map = new Map()) => {
 }
 
 /**
- * 方法三优化版：map 容器 + 递归
+ * 方法 3 优化版：map 容器 + 递归
  * 思路：优化数组遍历效率。因为 forEach() 遍历效率更高
  */
 const deepClone4 = (target, map = new Map()) => {
