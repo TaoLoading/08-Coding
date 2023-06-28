@@ -76,8 +76,8 @@
       ```
 
 5. 编译
-   1. Less 使用 Less 编译器直接编译成 CSS 文件
-   2. SCSS 使用 SCSS 编译器或 Node-sass 需要将 SCSS 文件转换成 CSS 文件后再进行编译。SCSS 编译器或 Node-sass 赖于 Node 来执行编译任务，在不同的 Node 版本之间存在一些兼容性问题
+   1. Less 使用 Less 编译器编译成 CSS 文件
+   2. SCSS 使用 SASS 编译器或 Node-sass 编译成 CSS 文件。SASS 编译器或 Node-sass 赖于 Node 来执行编译任务，在不同的 Node 版本之间存在一些兼容性问题
 
 ## 注意
 
