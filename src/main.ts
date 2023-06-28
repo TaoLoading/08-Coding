@@ -1,4 +1,4 @@
-import './02-知识点/03-JS/023-判断对象有无循环引用'
+import './02-知识点/03-JS/024-Nan === Nan'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
