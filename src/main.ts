@@ -1,4 +1,4 @@
-import './02-知识点/03-JS/024-类型转换/03-valueOf().js'
+import './02-知识点/03-JS/028-创建对象的几种方式'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
