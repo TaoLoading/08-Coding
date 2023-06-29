@@ -1,4 +1,4 @@
-import './02-知识点/03-JS/027-实现观察者模式'
+import './02-知识点/03-JS/024-类型转换/03-valueOf().js'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
