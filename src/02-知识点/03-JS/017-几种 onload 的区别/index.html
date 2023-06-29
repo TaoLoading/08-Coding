@@ -12,7 +12,11 @@
 
   <script>
     window.onload = function () {
-      console.log('window.onload')
+      console.log('window.onload1')
+    }
+
+    window.onload = function () {
+      console.log('window.onload2')
     }
 
     window.addEventListener('load', function () {
@@ -26,7 +30,6 @@
     $(document).ready(function () {
       console.log('document.ready1')
     })
-
 
     $(document).ready(function () {
       console.log('document.ready2')
