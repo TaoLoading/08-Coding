@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件捕获与事件冒泡</title>
+</head>
+
+<body>
+  <div id="outer">
+    <div id="inner">
+      点击
+    </div>
+  </div>
+
+  <script>
+    const outer = document.getElementById('outer')
+    const inner = document.getElementById('inner')
+
+    outer.addEventListener('click', function () {
+      console.log('外层 冒泡')
+    }, false)
+
+    outer.addEventListener('click', function () {
+      console.log('外层 捕获')
+    }, true)
+
+    inner.addEventListener('click', function () {
+      console.log('内层 冒泡')
+    }, false)
+
+    inner.addEventListener('click', function () {
+      console.log('内层 捕获')
+    }, true)
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>事件委托与事件代理</title>
+</head>
+
+<body>
+  <ul id="myList">
+    <li class="item">Item 1</li>
+    <li class="item">Item 2</li>
+    <li class="item">Item 3</li>
+    <li class="item">Item 4</li>
+  </ul>
+
+  <script>
+    const myList = document.getElementById('myList')
+
+    // 在父元素上监听
+    myList.addEventListener('click', function (event) {
+      if (event.target.tagName === 'LI') {
+        console.log('Clicked:', event.target.textContent)
+      }
+    })
+  </script>
+</body>
+
+</html>
