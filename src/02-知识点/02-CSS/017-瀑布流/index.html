@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>瀑布流</title>
+  <style>
+    #container {
+      /* 列宽度 */
+      column-width: 200px;
+      /* 列间距 */
+      column-gap: 20px;
+    }
+
+    .module {
+      /* 防止模块跨列分割 */
+      break-inside: avoid;
+      background-color: #eaeaea;
+      margin-bottom: 20px;
+      padding: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container"></div>
+
+  <script>
+    // 每个模块的高度
+    const moduleHeights = [200, 150, 180, 220, 250, 190, 210, 170, 190, 210, 170]
+
+    // 创建模块
+    function createModule(height) {
+      const module = document.createElement('div')
+      module.className = 'module'
+      module.style.height = height + 'px'
+      return module
+    }
+
+    // 在容器中添加模块
+    function addModuleToContainer(container, module) {
+      container.appendChild(module)
+    }
+
+    // 初始化瀑布流布局
+    function initWaterfallLayout() {
+      const container = document.getElementById('waterfall-container')
+
+      for (let i = 0; i < moduleHeights.length; i++) {
+        const module = createModule(moduleHeights[i])
+        addModuleToContainer(container, module)
+      }
+    }
+
+    // 页面加载完成后初始化布局
+    window.addEventListener('load', function () {
+      initWaterfallLayout()
+    })
+  </script>
+</body>
+
+</html>
