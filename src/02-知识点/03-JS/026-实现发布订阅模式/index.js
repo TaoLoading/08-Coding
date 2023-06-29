@@ -1,3 +1,4 @@
+// 事件类
 class EventEmitter {
   constructor() {
     this.cache = {}

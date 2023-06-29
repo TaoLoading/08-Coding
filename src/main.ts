@@ -1,4 +1,4 @@
-import './02-知识点/03-JS/025-反转字符串'
+import './02-知识点/03-JS/027-实现观察者模式'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
