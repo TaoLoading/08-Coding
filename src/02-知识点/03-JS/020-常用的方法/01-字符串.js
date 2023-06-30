@@ -11,7 +11,7 @@ console.log(str) */
 /**
  * indexOf()
  * 作用：查询字符串第 1 次出现的位置，有则返回第 1 次出现的下标，无则返回 -1
- * 参数：第 2 个参数是起始位置
+ * 参数：第 2 个参数是起始坐标
  * 备注：不会改变原字符串
  */
 /* console.log(str.indexOf('12'))
@@ -28,14 +28,25 @@ console.log(str) */
 /**
  * slice()
  * 作用：截取字符串
- * 参数：1. 第 1 个参数为起始位置，第 2 个参数为结束位置
+ * 参数：1. 第 1 个参数为起始坐标，第 2 个参数为终止坐标（不包括改坐标对应的元素）
  *       2. 当第 2 个参数大于第 1 个参数时，会返回 1 个空串
  *       3. 当只传入 1 个参数时，是截取起始到最后的位置
  *       4. 当传入负数时，表示从后倒数截取。如如果传入 -3，则表示倒数第 3 个字符
  * 备注：不会改变原字符串
  */
-/* console.log(str.slice(6, -2))
-console.log(str) */
+console.log(str.slice(2, 5))
+console.log(str)
+
+/**
+ * substring()
+ * 作用：截取字符串
+ * 参数：1. 第 1 个参数为起始坐标，第 2 个参数为终止坐标（不包括改坐标对应的元素）
+ *       2. substring() 方法会自动调整起始坐标和终止坐标的值，以确保起始坐标小于等于终止坐标
+ *       3. 当传入参数为负数时，会自动视为 0
+ * 备注：不会改变原字符串
+ */
+console.log(str.substring(2, 5))
+console.log(str)
 
 /**
  * split()
@@ -44,6 +55,6 @@ console.log(str) */
  *       2. 当传入的参数不存在时，则将整个字符串作为数组的 1 个元素
  * 备注：不会改变原字符串
  */
-console.log(str.split('12'))
+/* console.log(str.split('12'))
 console.log(str.split(','))
-console.log(str)
+console.log(str) */
