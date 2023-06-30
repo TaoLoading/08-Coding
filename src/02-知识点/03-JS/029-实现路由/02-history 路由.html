@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>history路由</title>
+</head>
+
+<body>
+  <ul>
+    <li><a href="/home" class="jumpLink">Home</a></li>
+    <li><a href="/about" class="jumpLink">About</a></li>
+    <li><a href="/contact" class="jumpLink">Contact</a></li>
+  </ul>
+
+  <div id="app"></div>
+
+  <script>
+    // 路由内容
+    const routeContent = {
+      '/home': '<h1>Home Page</h1>',
+      '/about': '<h1>About Page</h1>',
+      '/contact': '<h1>Contact Page</h1>'
+    }
+
+    // 根据路由渲染页面
+    function renderPage() {
+      const route = window.location.hash.substring(1)
+      const content = routeContent[route] || '<h1>404 Not Found</h1>'
+      document.getElementById('app').innerHTML = route
+    }
+
+    // 监听浏览器历史记录变化
+    window.addEventListener('popstate', renderPage)
+
+    // 监听导航链接点击事件
+    const links = document.getElementsByClassName('jumpLink')
+    const linksArr = Array.from(links)
+    linksArr.forEach(link => {
+      link.addEventListener('click', event => {
+        event.preventDefault()
+        const path = link.getAttribute('href')
+        console.log('path', path)
+        // TODO
+        window.history.pushState(null, '', path)
+        console.log('window.history', window.history)
+        renderPage()
+      })
+    })
+
+    // 初始化路由
+    renderPage()
+  </script>
+</body>
+
+</html>

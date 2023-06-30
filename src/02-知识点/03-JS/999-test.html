@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>History Routing Demo</title>
+</head>
+
+<body>
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div id="app"></div>
+
+  <script>
+    // 定义路由
+    const routes = {
+      '/': '<h1>Home Page</h1>',
+      '/about': '<h1>About Page</h1>',
+      '/contact': '<h1>Contact Page</h1>'
+    };
+
+    // 渲染路由组件
+    const renderRoute = () => {
+      const path = window.location.pathname;
+      const route = routes[path] || '<h1>404 Not Found</h1>';
+      document.getElementById('app').innerHTML = route;
+    };
+
+    // 监听浏览器历史记录变化
+    window.addEventListener('popstate', renderRoute);
+
+    // 监听导航链接点击事件
+    const links = document.querySelectorAll('nav a');
+    links.forEach(link => {
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        const path = link.getAttribute('href');
+        window.history.pushState(null, '', path);
+        renderRoute();
+      });
+    });
+
+    // 初始化路由
+    renderRoute();
+  </script>
+</body>
+
+</html>
