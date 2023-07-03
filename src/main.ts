@@ -1,4 +1,4 @@
-import './02-知识点/03-JS/013-精度丢失'
+import './02-知识点/03-JS/019-var let const 的区别/01-区别.js'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
