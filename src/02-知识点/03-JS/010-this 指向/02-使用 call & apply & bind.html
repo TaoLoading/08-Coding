@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>使用 call & apply & bind</title>
+</head>
+
+<body>
+  <script>
+    /**
+     * 作用：将 function 的 this 指向绑定到指定的 thisArg 上
+     * 
+     * call()
+     * 语法：function.call(thisArg, arg1, arg2, ...)
+     * 
+     * apply()
+     * 语法：function.apply(thisArg, [, arg1, arg2, ...])
+     * 
+     * bind()
+     * 语法：function.bind(thisArg, arg1, arg2, ...)
+     */
+
+    // 测试 call()
+    function greet1() {
+      console.log(`Hello, ${this.name}!`)
+    }
+    const person1 = { name: 'Alice' }
+    greet1.call(person1)
+
+    // 测试 apply()
+    function greet2(city) {
+      console.log(`Hello, ${this.name} from ${city}!`)
+    }
+    const person2 = { name: 'Alice' }
+    greet2.apply(person2, ['New York'])
+
+    // 测试 bind()
+    function greet(city) {
+      console.log(`Hello, ${this.name} from ${city}!`)
+    }
+    const person = { name: 'Alice' }
+    const greetPerson = greet.bind(person, 'London')
+    greetPerson()
+  </script>
+</body>
+
+</html>

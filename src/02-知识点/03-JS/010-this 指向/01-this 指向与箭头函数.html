@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>this指向与箭头函数</title>
+</head>
+
+<body>
+  <script>
+    /**
+     * 注意：
+     * 箭头函数的 this 指向是在函数定义时确定的，不可被修改，
+     * call & apply & bind 也无法修改箭头函数 this 指向
+     */
+
+    // 测试 this 指向
+    /* const example1 = {
+      fn1() {
+        console.log(this) // 当前对象
+      },
+      fn2() {
+        setTimeout(function () {
+          console.log(this) // window
+        }, 100)
+      },
+      fn3() {
+        setTimeout(() => {
+          console.log(this) // 当前对象
+        }, 100)
+      }
+    }
+    example1.fn1()
+    example1.fn2() // 虽然调用了 fn2()，但是最终的 setTimeout() 是由 window 调用的
+    example1.fn3() // 箭头函数的 this 指向外层对象 */
+
+    // 测试修改箭头函数 this
+    const example2 = {
+      fn1: () => {
+        console.log(this)
+      },
+      fn2: function () {
+        console.log(this)
+      }
+    }
+    const example3 = {}
+    example2.fn1.call(example3) // window。虽然调用了 call()，但在声明时指向 window
+    example2.fn2.call(example3) // example3
+  </script>
+</body>
+
+</html>
