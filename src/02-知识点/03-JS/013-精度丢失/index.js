@@ -18,7 +18,7 @@ function add1(num1, num2) {
   return (n1 + n2) / base
 }
 
-// 方法 3
+// 方法 2
 function add2(num1, num2) {
   const sum = num1 + num2
   // 保留 10 位小数

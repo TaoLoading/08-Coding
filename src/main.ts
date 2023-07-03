@@ -1,4 +1,4 @@
-import './02-知识点/03-JS/020-常用的方法/01-字符串.js'
+import './02-知识点/03-JS/013-精度丢失'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
