@@ -5,9 +5,15 @@
  * 3. 构造函数的显式原型（prototype） === 实例对象的隐式原型（__proto__）
  * 4. 当查找某一对象中的属性时，先查其本身，没有则沿着其 __proto__ 向上查找，查找属性的这条链就叫原型链
  * 
+ * 
+ * constructor
  * 每个对象都有一个 constructor 属性，它指向创建该对象的构造函数
+ * 
  * 
  * hasOwnProperty 和 in
  * 1. hasOwnProperty：判断一个对象是否包含自定义属性而不是原型链上的属性，是 JavaScript 中唯一一个处理属性但是不查找原型链的函数
  * 2. in：判断一个对象是否包含自定义属性，会查找原型链上的属性
+ * 
+ * 原型链的终点
+ * Object.prototype.__proto__=== null 成立，故原型链的终点是 null
  */
