@@ -26,9 +26,9 @@
 
     // 根据路由渲染页面
     function renderPage() {
-      const route = window.location.hash.substring(1)
-      const content = routeContent[route] || '<h1>404 Not Found</h1>'
-      document.getElementById('app').innerHTML = route
+      const route = window.location.pathname
+      const content = routeContent[route] || '<h1>首页</h1>'
+      document.getElementById('app').innerHTML = content
     }
 
     // 监听浏览器历史记录变化
@@ -41,10 +41,8 @@
       link.addEventListener('click', event => {
         event.preventDefault()
         const path = link.getAttribute('href')
-        console.log('path', path)
-        // TODO
+        // 替换路由
         window.history.pushState(null, '', path)
-        console.log('window.history', window.history)
         renderPage()
       })
     })
