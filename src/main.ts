@@ -1,4 +1,4 @@
-import './02-知识点/03-JS/032-自定义事件'
+import './02-知识点/03-JS/034-判断空对象'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>

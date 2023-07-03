@@ -4,8 +4,10 @@
 
 /**
  * 方法 1：类型转换 (对象)
- * 原理：利用 Symbol.toPrimitive。Symbol.toPrimitive 是一个内置的 Symbol 值，作为对象的函数值属性存在，当一个对象转换为对应的原始值时，会调用此函数
- * 讲解：在此方法中，每对对象 a 进行一次类型转换，即调用一次 Symbol.toPrimitive，从而分别得到 a=1, a=2, a=3。同理可使用 valueOf 得到对象的原始值
+ * 原理：利用 Symbol.toPrimitive。Symbol.toPrimitive 是一个内置的 Symbol 值，
+ *       作为对象的函数值属性存在，当一个对象转换为对应的原始值时，会调用此函数
+ * 讲解：在此方法中，每对对象 a 进行一次类型转换，即调用一次 Symbol.toPrimitive，
+ *       从而分别得到 a=1, a=2, a=3。同理可使用 valueOf 得到对象的原始值
  */
 /* const a = {
   i: 1,
