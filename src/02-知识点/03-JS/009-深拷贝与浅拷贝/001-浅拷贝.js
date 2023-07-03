@@ -1,3 +1,11 @@
+/**
+ * 常见的浅拷贝操作：
+ * 1. 扩展运算符
+ * 2. Object.assign()
+ * 3. 数组.slice()
+ * 4. Array.from()。作用：从可迭代或类数组对象创建一个新的浅拷贝的数组
+ */
+
 const shallowClone1 = (target) => {
   if (target instanceof Array) {
     // 拷贝目标为数组
