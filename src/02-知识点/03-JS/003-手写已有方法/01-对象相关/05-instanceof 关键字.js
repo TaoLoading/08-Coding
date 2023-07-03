@@ -1,7 +1,7 @@
 /**
  * instanceof：
  * 1. 表达式：obj/arr instanceof constructor
- * 2. 原理：判断对象或数组 obj/arr 是否是构造函数 constructor 的实例，是返回 true, 否则返回 false
+ * 2. 原理：判断引用数据类型（obj/arr）是否是构造函数 constructor 的实例，是返回 true, 否则返回 false
  */
 
 function myInstanceof(obj, constructor) {
@@ -25,3 +25,5 @@ var obj = new Foo()
 console.log(myInstanceof(obj, Foo))
 console.log(myInstanceof(obj, Foo2))
 console.log(myInstanceof(obj, Object))
+
+console.log('2 instanceof Number', 2 instanceof Number) // false。因为 instanceof 只能对引用数据类型做判断
