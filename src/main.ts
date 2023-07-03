@@ -1,4 +1,4 @@
-import './02-知识点/03-JS/034-判断空对象'
+import './02-知识点/03-JS/022-ES6 小技巧/01-使用解构赋值取值.js'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
