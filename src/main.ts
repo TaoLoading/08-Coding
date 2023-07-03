@@ -1,4 +1,4 @@
-import './02-知识点/03-JS/011-原型链相关/04-通过 constructor 判断数据类型.js'
+import './02-知识点/03-JS/032-自定义事件'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
