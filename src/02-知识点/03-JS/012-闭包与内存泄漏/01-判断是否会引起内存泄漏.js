@@ -12,7 +12,7 @@ getName()
 /**
  * 代码 2
  * 存在内存泄漏
- * 原因：button 被引用，导致虽然 removeChild 但不会被 GC 回收，会造成内存泄漏
+ * 原因：button 被 elements 引用，导致虽然 removeChild 但不会被 GC 回收，会造成内存泄漏
  */
 const elements = {
   button: document.getElementById('button')
