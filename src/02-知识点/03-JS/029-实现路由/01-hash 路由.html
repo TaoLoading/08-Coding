@@ -26,24 +26,22 @@
       '/contact': '<h1>Contact Page</h1>'
     }
 
-    // 根据路由渲染页面
-    function renderPage() {
-      const route = window.location.hash.substring(1)
-      const content = routeContent[route] || '<h1>404 Not Found</h1>'
-      document.getElementById('app').innerHTML = route
-    }
-
-    // 监听路由
-    window.addEventListener('hashchange', function () {
-      renderPage()
-    })
-
-    // 导航到新的路由
+    // 1. 点击跳转修改 hash
     function navigateTo(route) {
       window.location.hash = route
     }
 
-    // 初始路由
+    // 2. 监听 hash 变化
+    window.addEventListener('hashchange', renderPage)
+
+    // 3. 根据 hash 渲染页面
+    function renderPage() {
+      const route = window.location.hash.substring(1)
+      const content = routeContent[route] || '<h1>首页</h1>'
+      document.getElementById('app').innerHTML = route
+    }
+
+    // 初始化页面
     const initialRoute = 'home'
     navigateTo(initialRoute)
   </script>
