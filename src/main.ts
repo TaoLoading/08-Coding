@@ -1,4 +1,4 @@
-import './02-知识点/03-JS/022-ES6 小技巧/01-使用解构赋值取值.js'
+import './02-知识点/03-JS/035-点击标签打印对应序号'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
