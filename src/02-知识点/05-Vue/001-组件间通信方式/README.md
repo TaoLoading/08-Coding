@@ -175,7 +175,7 @@
 
    1. 子组件中使用`<solt name="插槽名"></solt>`指定插槽位置，用于渲染父组件传来的内容
    2. 父组件中引入子组件，并使用`<template #custom-slot></template>`定义插槽，其中放入需要渲染的内容
-   3. 注：此方式使用的是具名插槽，也可使用匿名插槽
+   3. 注意：此方式使用的是具名插槽，也可使用匿名插槽
 
 3. 代码：
 
@@ -352,7 +352,7 @@
    2. `$attrs`属性包含父作用域里除 class 和 style 除外的且***未被 props 接收***的属性集合
    3. `$listeners`属性包含父作用域里 .native 除外的监听事件集合
 
-3. 注：$attrs / $listeners 用于仅传递数据，不做中间处理的场景
+3. 注意：$attrs / $listeners 用于仅传递数据，不做中间处理的场景
 
 4. 代码：
 
@@ -498,3 +498,87 @@
 3. 步骤：通过`$root.xx`获得 App.vue 上对应的属性或方法
 
 ## Vue3
+
+### props
+
+与 Vue2 类似，只是子组件接收的写法上有区别：
+
+```vue
+<!-- 子组件 -->
+<script setup>
+// 使用 defineProps() 声明属性
+const props = defineProps({
+   msg: {
+      type: String,
+      default: '这是默认数据',
+      required: true
+    }
+})
+</script>
+```
+
+### $emit / v-on
+
+1. 与 Vue2 类似，只是子组件声明事件的写法上有区别：
+
+2. 注意：***useContext API 已于 3.2 版本移除***
+
+3. 代码：
+
+   ```vue
+   <!-- 子组件 -->
+   <template>
+     // 写法一
+     <button @click="emit('custom-event')">按钮</buttom>
+     // 写法二
+     <button @click="handleClick">按钮</buttom>
+   </template>
+   <script setup>
+     // 方法一 适用于 Vue3.2 版本 不需要引入
+     import { defineEmits } from 'vue'
+     // 对应写法一
+     const emit = defineEmits(['custom-event'])
+     // 对应写法二
+     const handleClick = () => {
+       emit('custom-event', '这是发送给父组件的信息')
+     }
+       
+     // 方法二 Vue3.2 之前版本
+     import { useContext } from 'vue'
+     const { emit } = useContext()
+     const handleClick = () => {
+       const data = 'Hello, parent!'
+       emit('custom-event', data)
+     }
+   </script>
+   ```
+
+### mitt
+
+
+
+### slot（插槽）
+
+与 Vue2 一致
+
+### expose / ref
+
+1. 方向：子向父
+
+2. 原理：子组件向外暴露属性或方法，父组件获取子组件实例后进一步获取属性或方法
+
+3. 代码：
+
+   ```vue
+   <!-- 子组件 -->
+   <script setup>
+   import { defineExpose } from 'vue'
+       
+   defineExpose({
+     xxx: '这是子组件的属性',
+     xxxMethod(){
+       console.log('这是子组件的方法')
+     }
+   })
+   </script>
+   ```
