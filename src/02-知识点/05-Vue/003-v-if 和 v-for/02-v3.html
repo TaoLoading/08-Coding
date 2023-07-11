@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v3</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+  <div id="app">
+    <ul>
+      <!-- 报错 -->
+      <li v-for="item in list" :key="item.id" v-if="item.id === 1">{{item.name}}</li>
+    </ul>
+  </div>
+
+  <script>
+    const { createApp, reactive, toRefs, ref, onMounted } = Vue
+
+    const app = createApp({
+      setup() {
+        const list = reactive([
+          { name: 'taoloading1', id: 1 },
+          { name: 'taoloading2', id: 2 },
+          { name: 'taoloading3', id: 3 }
+        ])
+        return {
+          list
+        }
+      }
+    })
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
