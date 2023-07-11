@@ -359,7 +359,7 @@
    ```vue
    <!-- 父组件 -->
    <template>
-     <child :name="name" title="666" ></child>
+     <child-component :name="name" title="666" ></child-component>
    </template>
    
    <script>
@@ -382,7 +382,7 @@
    <!-- 子组件 -->
    <template>
      <!-- 继续传给孙子组件 -->
-     <sun-child v-bind="$attrs" v-on="$listeners"></sun-child>
+     <grandson-component v-bind="$attrs" v-on="$listeners"></grandson-component>
    </template>
    
    <script>
@@ -439,7 +439,8 @@
      props: ['message'],
      methods: {
        updateParentMessage() {
-         this.$emit('update:message', 'New message from child') // 更新 message，注意这个更新是同步的
+         // 更新 message，注意这个更新是同步的
+         this.$emit('update:message', 'New message from child')
        }
      }
    }
@@ -484,7 +485,8 @@
      props: ['value'],
      methods: {
        updateValue(event) {
-         this.$emit('input', event.target.value) // 更新 message，注意这个更新是同步的
+         // 更新 message，注意这个更新是同步的
+         this.$emit('input', event.target.value)
        }
      }
    }
@@ -555,7 +557,59 @@ const props = defineProps({
 
 ### mitt
 
+1. 方向：任意组件
 
+2. 与 EventBus 相比，优点：
+
+   1. 小，不到 200 bytes
+   2. 完整的 ts 类型支持
+   3. 不依赖 Vue 实例
+   4. 可跨框架使用
+
+3. 代码：
+
+   ```vue
+   <!-- 发送事件的组件 -->
+   <template>
+     <button @click="sendMessage">Send Message</button>
+   </template>
+   
+   <script setup>
+   import mitt from 'mitt'
+   
+   // 事件总线实例
+   const emitter = mitt()
+   const sendMessage = () => {
+     // 发布事件
+     emitter.emit('custom-event', { some: 'payload' })
+   }
+   </script>
+   ```
+
+   ```vue
+   <!-- 发送事件的组件 -->
+   <template>
+     <div>
+       <p>Message received: {{ message }}</p>
+     </div>
+   </template>
+   
+   <script setup>
+   import mitt from 'mitt'
+   
+   // 事件总线实例
+   const emitter = mitt()
+   // 监听事件
+   emitter.on('custom-event', (payload) => {
+     console.log('接收到的参数:', payload) // { some: 'payload' }
+   })
+   
+   // 组件卸载前取消订阅
+   onUnmounted(()=>{
+     mitt.off('custom-event',someMethed)
+   })
+   </script>
+   ```
 
 ### slot（插槽）
 
@@ -582,3 +636,56 @@ const props = defineProps({
    })
    </script>
    ```
+
+   ```vue
+   <!-- 父组件 -->
+   <template>
+     <child-component ref="child"></child-component>
+     <button @click="handlerClick">按钮</button>
+   </template>
+   <script setup>
+     import { ref } from 'vue'
+     
+     const child = ref(null)
+     const handlerClick = () => {
+       // 使用子组件暴露的属性
+       console.log(child.value.xxx)
+       // 使用子组件暴露的方法
+       child.value.xxxMethod()
+     }
+   </script>
+   ```
+
+### provide / inject
+
+1. 与 Vue2 一致
+
+2. 代码：
+
+   ```vue
+   <!-- 子组件 -->
+   <script setup>
+     import { provide } from 'vue'
+     provide('name', 'TaoLoading')
+   </script>
+   ```
+
+   ```vue
+   <!-- 父组件 -->
+   <script setup>
+     import { inject } from 'vue'
+       
+     const name = inject('name')
+     console.log(name) // TaoLoading
+   </script>
+   ```
+
+### Vuex / Pinia
+
+1. 方向：任意组件
+2. 原理：状态管理工具
+3. 方法：见 "002-状态管理工具（Vuex & Pinia）"
+
+### v-model
+
+与 Vue2 一致
