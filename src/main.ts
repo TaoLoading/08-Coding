@@ -1,4 +1,4 @@
-import './02-知识点/03-JS/038-对象的继承方式/03-组合继承.js'
+import './01-算法/19-反转二叉树'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
