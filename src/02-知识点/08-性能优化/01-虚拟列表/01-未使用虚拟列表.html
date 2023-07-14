@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>未使用虚拟列表</title>
+</head>
+
+<body>
+  <button id="button">插入数据</button><br>
+  <ul id="container"></ul>
+</body>
+
+<script>
+  document.getElementById('button').addEventListener('click', function () {
+    normalList()
+  })
+
+  function normalList() {
+    /**
+     * 注：两个时间的计算依据（近似值）：
+     * 1. 第一个打印是在轮询后渲染前执行，时间间隔为 js 的执行时间
+     * 2. 第二个打印是在渲染结束后执行（宏任务），时间间隔为总的渲染时间
+     * 
+     * 根据浏览器的 Performance 可知，在 Rendering 阶段消耗的时间最多
+     */
+
+    const now = Date.now()
+    let ul = document.getElementById('container')
+    for (let i = 0; i < 100000; i++) {
+      let li = document.createElement('li')
+      li.innerText = i
+      ul.appendChild(li)
+    }
+    console.log('生成数据时间：', Date.now() - now) // 804
+    setTimeout(() => {
+      console.log('总运行时间：', Date.now() - now) // 6617
+    }, 0)
+  }
+</script>
+
+</html>
