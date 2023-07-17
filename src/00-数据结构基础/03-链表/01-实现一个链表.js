@@ -1,4 +1,6 @@
-/* JavaScript 没有链表，但可以使用 Object 模拟出链表 */
+/**
+ * JavaScript 没有链表，但可以使用 Object 模拟出链表
+ */
 
 const a = { val: 'a' }
 const b = { val: 'b' }

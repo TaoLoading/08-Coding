@@ -2,10 +2,10 @@
  * 广度优先遍历：先访问离根节点最近的子节点
  * 
  * 步骤：
- * 1.新建一个队列，把根节点入队
- * 2.把队头出队并访问
- * 3.把队头的没访问过的相邻节点入队
- * 4.重复 2 和 3，直到队列为空
+ * 1. 新建一个队列，把根节点入队
+ * 2. 把队头出队并访问
+ * 3. 把队头的没访问过的相邻节点入队
+ * 4. 重复 2 和 3，直到队列为空
  */
 
 // 使用邻接表标识图
@@ -18,20 +18,20 @@ const graph = {
 
 const bfs = (start) => {
   const visited = new Set()
-  // 2.将起始节点加入 visited 队列
+  // 2. 将起始节点加入 visited 队列
   visited.add(start)
   // 此处为从节点 2 开始遍历
   const q = [start]
   while (q.length) {
-    // 1.队头出队
+    // 1. 队头出队
     const n = q.shift()
     console.log(n)
     // visited.add(n)
     graph[n].forEach(c => {
-      // 4.将没访问过的节点的子节点依次入队
+      // 4. 将没访问过的节点的子节点依次入队
       if (!visited.has(c)) {
         q.push(c)
-        // 3.将没访问过的节点入队
+        // 3. 将没访问过的节点入队
         visited.add(n)
       }
     })

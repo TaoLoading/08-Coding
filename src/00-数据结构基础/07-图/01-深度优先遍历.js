@@ -14,7 +14,8 @@ const graph = {
   3: [3]
 }
 
-const visited = new Set() // 已经遍历过的元素的集合
+// 已经遍历过的元素的集合
+const visited = new Set()
 const dfs = () => {
   console.log(n)
   visited.add(n)

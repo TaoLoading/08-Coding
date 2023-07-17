@@ -1,11 +1,11 @@
 /**
- * 广度优先遍历(Breadth First Search，DFS)：当遍历节点时优先遍历当前节点和相邻节点，遍历完同级节点后再遍历下级节点
+ * 广度优先遍历 (Breadth First Search，DFS)：当遍历节点时优先遍历当前节点和相邻节点，遍历完同级节点后再遍历下级节点
  *
  * 步骤：
- * 1.新建一个队列，把根节点入队
- * 2.把队头出队并访问
- * 3.把队头的children依次入队
- * 4.重复2和3，直到队列为空
+ * 1. 新建一个队列，把根节点入队
+ * 2. 把队头出队并访问
+ * 3. 把队头的 children 依次入队
+ * 4. 重复 2 和 3，直到队列为空
  */
 
 const tree = {
@@ -47,7 +47,7 @@ const bfs = (root) => {
     // 2.把队头出队并访问
     const n = q.shift()
     console.log(n.val)
-    // 3.把队头的children依次入队
+    // 3.把队头的 children 依次入队
     n.children.forEach(child => {
       q.push(child)
     })

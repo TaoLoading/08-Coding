@@ -2,19 +2,19 @@
  * 中序遍历
  * 
  * 步骤：
- * 1.对根节点的左子树进行中序遍历
- * 2.访问根节点
- * 3.对根节点的右子树进行中序遍历
+ * 1. 对根节点的左子树进行中序遍历
+ * 2. 访问根节点
+ * 3. 对根节点的右子树进行中序遍历
  */
 
 const binaryTree = require('./03-二叉树')
 
 // 递归
-/* const inorder = (root) => {
+/* const inOrder = (root) => {
   if (!root) { return }
-  inorder(root.left)
+  inOrder(root.left)
   console.log(root.val)
-  inorder(root.right)
+  inOrder(root.right)
 } */
 
 // 非递归
@@ -25,7 +25,7 @@ const binaryTree = require('./03-二叉树')
  * 弹出头部节点后，将指针指向当前节点的右节点，开始新一轮压栈操作
  * 
  */
-const inorder = (root) => {
+const inOrder = (root) => {
   if (!root) { return }
   const stack = []
   let p = root
@@ -41,4 +41,4 @@ const inorder = (root) => {
   }
 }
 
-inorder(binaryTree)
+inOrder(binaryTree)
