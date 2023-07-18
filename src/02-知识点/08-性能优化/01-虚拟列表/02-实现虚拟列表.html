@@ -4,27 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>使用虚拟列表</title>
+  <title>实现虚拟列表</title>
   <style>
-    html {
-      height: 100%;
-    }
-
     body {
-      height: 100%;
       margin: 0;
     }
 
-    #app {
-      height: 100%;
-    }
-
-    .btn {
-      height: 30px;
-    }
-
     .infinite-list-container {
-      height: 90vh;
+      height: 100vh;
       overflow: auto;
       position: relative;
       -webkit-overflow-scrolling: touch;
@@ -57,13 +44,13 @@
 
 <body>
   <div id="app">
-    <button id="button" @click="insertData" class="btn">插入数据</button><br>
-
     <div ref="list" class="infinite-list-container" @scroll="scrollEvent($event)">
+      <!-- 占位元素，用于撑开高度出现滚动条 -->
       <div class="infinite-list-phantom" :style="{ height: listHeight + 'px' }"></div>
+      <!-- 用于渲染数据的元素 -->
       <div class="infinite-list" :style="{ transform: getTransform }">
         <div ref="items" class="infinite-list-item" v-for="item in visibleData" :key="item.id"
-          :style="{ height: itemSize + 'px',lineHeight: itemSize + 'px' }">{{ item.value }}</div>
+          :style="{ height: itemSize + 'px', lineHeight: itemSize + 'px' }">{{ item.value }}</div>
       </div>
     </div>
   </div>
@@ -90,25 +77,23 @@
       },
       methods: {
         scrollEvent() {
-          // 当前滚动位置
+          // 滚动位置。即滚动条相对于可视区域顶部的距离
           let scrollTop = this.$refs.list.scrollTop
-          // 此时的开始索引
+          // 所渲染元素的开始索引
           this.start = Math.floor(scrollTop / this.itemSize)
-          // 此时的结束索引
+          // 所渲染元素的结束索引
           this.end = this.start + this.visibleCount
-          // 此时的偏移量
+          // 偏移量
           this.startOffset = scrollTop - (scrollTop % this.itemSize)
         },
-        insertData() {
-          const now = Date.now()
+        initData() {
           for (let i = 0; i < 100000; i++) {
             this.listData.push({ id: i, value: i })
           }
-          console.log('生成数据时间：', Date.now() - now) // 60
         }
       },
-
       mounted() {
+        this.initData()
         this.screenHeight = this.$el.clientHeight
         this.start = 0
         this.end = this.start + this.visibleCount
@@ -118,17 +103,17 @@
         listHeight() {
           return this.listData.length * this.itemSize
         },
-        // 可显示的列表项数
+        // 需要渲染的元素数量
         visibleCount() {
           return Math.ceil(this.screenHeight / this.itemSize)
         },
-        // 偏移量对应的 style
-        getTransform() {
-          return `translate3d(0,${this.startOffset}px,0)`
-        },
-        // 获取真实显示列表数据
+        // 需要渲染的列表数据
         visibleData() {
           return this.listData.slice(this.start, Math.min(this.end, this.listData.length))
+        },
+        // 偏移量对应的 style
+        getTransform() {
+          return `translate3d(0, ${this.startOffset}px, 0)`
         }
       }
     })
