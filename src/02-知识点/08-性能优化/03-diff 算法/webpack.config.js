@@ -1,12 +1,13 @@
+const path = require('path')
+
 module.exports = {
-  entry: './src/index.js',
+  entry: path.join(__dirname, './src/index.js'),
   output: {
-    path: __dirname + '/public',
-    filename: './js/[name].js'
+    publicPath: 'virtual',
+    filename: 'bundle.js'
   },
   devServer: {
     port: 8080,
-    contentBase: 'public',
-    historyApiFallback: true
+    contentBase: 'public'
   }
 }
