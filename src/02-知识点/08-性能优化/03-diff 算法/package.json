@@ -1,0 +1,20 @@
+{
+  "name": "diff",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "webpack": "5",
+    "webpack-cli": "3",
+    "webpack-dev-server": "3"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^5.5.3"
+  }
+}
