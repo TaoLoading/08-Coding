@@ -366,7 +366,7 @@
    export default{
      data(){
        return {
-         name: "TaoLoading"
+         name: 'TaoLoading'
        }
      },
      methods: {
@@ -388,7 +388,7 @@
    <script>
    export default{
      mounted(){
-       console.log(this.$attrs) // { name: "TaoLoading", title: 666 }
+       console.log(this.$attrs) // { name: 'TaoLoading', title: 666 }
      }
    }
    </script>
