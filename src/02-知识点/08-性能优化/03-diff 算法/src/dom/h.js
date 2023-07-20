@@ -2,7 +2,7 @@
  * 根据节点类型配合 vnode() 创建虚拟节点
  */
 
-import vnode from "./vnode"
+import vnode from './vnode'
 
 export default function h(sel, data, params) {
   if (typeof params == 'string') {

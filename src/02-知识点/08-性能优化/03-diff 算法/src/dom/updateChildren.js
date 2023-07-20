@@ -6,8 +6,8 @@
  * 参数三：新的子节点
  */
 
-import patchVnode from "./patchVnode"
-import createElement from "./createElement"
+import patchVnode from './patchVnode'
+import createElement from './createElement'
 
 export default function updateChildren(parentElm, oldCh, newCh) {
   /**

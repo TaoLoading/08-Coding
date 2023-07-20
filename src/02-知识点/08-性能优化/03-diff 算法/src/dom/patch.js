@@ -2,8 +2,8 @@
  * 替换节点
  */
 
-import createElement from "./createElement"
-import vnode from "./vnode"
+import createElement from './createElement'
+import vnode from './vnode'
 import patchVnode from './patchVnode'
 
 export default function patch(oldVnode, newVnode) {
