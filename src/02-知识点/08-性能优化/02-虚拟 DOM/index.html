@@ -22,13 +22,6 @@
     /**
      * 虚拟 DOM 其实就是把真实 DOM 数据化
      * 
-     * 
-     * 虚拟 DOM 的构成：
-     * 1. tag：标签名
-     * 2. props：标签属性
-     * 3. children：子节点
-     * 
-     * 
      * 通过 snabbdom 封装后的虚拟节点的构成：
      * 1. children：子节点
      * 2. text：文本
@@ -49,9 +42,7 @@
       snabbdom_eventlisteners
     ])
 
-    // 获取容器
     const container = document.getElementById('container')
-    // 获取按钮
     const btn = document.getElementById('btn')
 
     // 创建 vnode 虚拟节点
