@@ -1,14 +1,13 @@
-/**
- * 新老节点为同一个节点，且新老节点都有子节点时处理情况
- * 
- * 参数一：真实 DOM 节点
- * 参数二：老的子节点
- * 参数三：新的子节点
- */
-
-import patchVnode from './patchVnode'
+import patchSameVnode from './patchSameVnode'
 import createElement from './createElement'
 
+/**
+ * 处理新老节点为同一个节点且都有子节点时的情况
+ * 
+ * @param {*} parentElm 真实 DOM 节点
+ * @param {*} oldCh 老节点的子节点
+ * @param {*} newCh 新的子节点
+ */
 export default function updateChildren(parentElm, oldCh, newCh) {
   /**
    * 替换规则：
@@ -45,7 +44,7 @@ export default function updateChildren(parentElm, oldCh, newCh) {
     } else if (sameVnode(oldStartVnode, newStartVnode)) {
       console.log('情况一')
       // 情况一：老前 VS 新前
-      patchVnode(oldStartVnode, newStartVnode)
+      patchSameVnode(oldStartVnode, newStartVnode)
       if (newStartVnode) {
         newStartVnode.elm = oldStartVnode?.elm
       }
@@ -55,7 +54,7 @@ export default function updateChildren(parentElm, oldCh, newCh) {
     } else if (sameVnode(oldEndVnode, newEndVnode)) {
       console.log('情况二')
       // 情况二：老后 VS 新后
-      patchVnode(oldEndVnode, newEndVnode)
+      patchSameVnode(oldEndVnode, newEndVnode)
       if (newEndVnode) {
         newEndVnode.elm = oldEndVnode?.elm
       }
@@ -65,7 +64,7 @@ export default function updateChildren(parentElm, oldCh, newCh) {
     } else if (sameVnode(oldStartVnode, newEndVnode)) {
       console.log('情况三')
       // 情况三：老前 VS 新后
-      patchVnode(oldStartVnode, newEndVnode)
+      patchSameVnode(oldStartVnode, newEndVnode)
       if (newEndVnode) {
         newEndVnode.elm = oldEndVnode?.elm
         /* console.log('newEndVnode.elm是', newEndVnode.elm)
@@ -79,7 +78,7 @@ export default function updateChildren(parentElm, oldCh, newCh) {
     } else if (sameVnode(oldEndVnode, newStartVnode)) {
       console.log('情况四')
       // 情况四：老后 VS 新前
-      patchVnode(oldEndVnode, newStartVnode)
+      patchSameVnode(oldEndVnode, newStartVnode)
       if (newStartVnode) {
         newStartVnode.elm = oldEndVnode?.elm
       }
@@ -103,7 +102,7 @@ export default function updateChildren(parentElm, oldCh, newCh) {
       if (idxInOld) {
         // 如果存在，则说明老节点中存在该新节点，即该节点在新老节点中都存在
         const existNode = oldCh[idxInOld]
-        patchVnode(existNode, newStartVnode)
+        patchSameVnode(existNode, newStartVnode)
         // 处理过的节点在老节点中设置为undefined
         oldCh[idxInOld] = undefined
         // 把该节点移动到老前指向节点的前面

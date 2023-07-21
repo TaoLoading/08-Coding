@@ -1,28 +1,27 @@
 import h from './dom/h'
 import patch from './dom/patch'
 
-// 获取真实 DOM 节点
-let container = document.getElementById('container')
+const container = document.getElementById('container')
+const btn = document.getElementById('btn')
 
-// 虚拟节点
-/* let vnode1 = h('h1', {}, '你好')
-let vnode2 = h('div', {}, '你好')
-let vnode3 = h('ul', {}, [
+// 创建虚拟 DOM
+const vnode1 = h('h1', {}, '你好')
+const vnode2 = h('div', {}, h('h1', {}, '你好'))
+const vnode3 = h('ul', {}, [
   h('li', {}, 'a'),
   h('li', {}, 'b'),
   h('li', {}, 'c'),
   h('li', {}, '天若有情天亦老')
-]) */
-let vnode4 = h('ul', {}, [
+])
+const vnode4 = h('ul', { key: 1 }, [
   h('li', { key: 'a' }, 'a'),
   h('li', { key: 'b' }, 'b'),
   h('li', { key: 'c' }, 'c'),
   h('li', { key: 'd' }, 'd'),
   // h('li', { key: 'e' }, 'e')
 ])
-patch(container, vnode4)
 
-let vnode5 = h('ul', {}, [
+const vnode5 = h('ul', { key: 2 }, [
   h('li', { key: 'b' }, 'b'),
   h('li', { key: 'e' }, 'e'),
   h('li', { key: 'c' }, 'c'),
@@ -30,7 +29,8 @@ let vnode5 = h('ul', {}, [
   h('li', { key: 'd' }, 'd'),
 ])
 
-// 替换节点
 btn.onclick = function () {
-  patch(vnode4, vnode5)
+  // 替换 DOM
+  patch(container, vnode1)
+  // patch(vnode4, vnode5)
 }
