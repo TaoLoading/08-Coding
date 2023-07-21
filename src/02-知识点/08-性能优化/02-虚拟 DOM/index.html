@@ -31,6 +31,9 @@
      * 6. sel：元素选择器
      */
 
+    const container = document.getElementById('container')
+    const btn = document.getElementById('btn')
+
     // 初始化 h。用于创建虚拟节点
     const h = snabbdom.h
 
@@ -41,9 +44,6 @@
       snabbdom_style,
       snabbdom_eventlisteners
     ])
-
-    const container = document.getElementById('container')
-    const btn = document.getElementById('btn')
 
     // 创建 vnode 虚拟节点
     let vnode = h('ul#list', {}, [
