@@ -1,4 +1,4 @@
-import './01-算法/19-反转二叉树'
+import './02-知识点/04-异步/03-宏任务与微任务/01-题目 1.js'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
