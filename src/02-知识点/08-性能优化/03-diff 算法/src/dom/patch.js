@@ -24,9 +24,11 @@ export default function patch(oldVnode, newVnode) {
 
   // 2. 判断否为同一个节点。依据：选择器和 key 相同
   if (oldVnode.sel === newVnode.sel && oldVnode.key === newVnode.key && oldVnode.key !== undefined) {
+    console.log('新老节点为同一个节点')
     patchSameVnode(oldVnode, newVnode)
   } else {
     // 不为同一个节点，则暴力删除老节点创建新节点
+    console.log('新老节点不为同一个节点')
 
     // 将虚拟 DOM 创建为真实 DOM
     const newVnodeElm = createElement(newVnode)
