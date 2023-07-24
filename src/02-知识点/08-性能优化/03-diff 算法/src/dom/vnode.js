@@ -10,7 +10,7 @@
  */
 export default function vnode(sel, data, children, text, elm) {
 
-  let key = data.key
+  const key = data.key
   return {
     sel,
     data,
