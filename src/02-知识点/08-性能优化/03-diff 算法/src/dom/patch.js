@@ -23,7 +23,7 @@ export default function patch(oldVnode, newVnode) {
   }
 
   // 2. 判断否为同一个节点。依据：选择器和 key 相同
-  if (oldVnode.sel === newVnode.sel && oldVnode.key === newVnode.key && oldVnode.key !== undefined) {
+  if (oldVnode.sel === newVnode.sel && oldVnode.key === newVnode.key) {
     console.log('新老节点为同一个节点')
     patchSameVnode(oldVnode, newVnode)
   } else {
