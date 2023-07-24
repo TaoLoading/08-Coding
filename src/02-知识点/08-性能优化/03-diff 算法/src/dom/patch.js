@@ -22,8 +22,8 @@ export default function patch(oldVnode, newVnode) {
     )
   }
 
-  // 2. 判断否为同一个节点。依据：选择器和 key 相同，key 都不存在时默认为同一个节点
-  if (oldVnode.sel === newVnode.sel && oldVnode.key === newVnode.key) {
+  // 2. 判断否为同一个节点。依据：选择器相同、key 存在且相同
+  if (oldVnode.sel === newVnode.sel && oldVnode.key === newVnode.key && oldVnode.key !== undefined) {
     console.log('新老节点为同一个节点')
     patchSameVnode(oldVnode, newVnode)
   } else {
