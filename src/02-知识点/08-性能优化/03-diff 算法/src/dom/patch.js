@@ -23,7 +23,7 @@ export default function patch(oldVnode, newVnode) {
   }
 
   // 2. 判断否为同一个节点。依据：选择器和 key 相同
-  if (oldVnode.sel === newVnode.sel && oldVnode.key === newVnode.key) {
+  if (oldVnode.sel === newVnode.sel && oldVnode.key === newVnode.key && oldVnode.key !== undefined) {
     patchSameVnode(oldVnode, newVnode)
   } else {
     // 不为同一个节点，则暴力删除老节点创建新节点
@@ -33,7 +33,7 @@ export default function patch(oldVnode, newVnode) {
     // 获取老节点的真实 DOM 节点
     const oldVnodeElm = oldVnode.elm
     // 插入新节点并删除老节点
-    if (oldVnodeElm.parentNode && newVnodeElm) {
+    if (oldVnodeElm && oldVnodeElm.parentNode && newVnodeElm) {
       oldVnodeElm.parentNode.insertBefore(newVnodeElm, oldVnodeElm)
       oldVnodeElm.parentNode.removeChild(oldVnodeElm)
     }
