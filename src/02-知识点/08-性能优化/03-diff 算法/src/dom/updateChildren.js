@@ -11,11 +11,11 @@ import createElement from './createElement'
 export default function updateChildren(parentElm, oldCh, newCh) {
   /**
    * 替换规则：
-   * 1. 老前 VS 新前。匹配则老前指针++，新前指针++
-   * 2. 老后 VS 新后。匹配则老后指针--，新后指针--
-   * 3. 老前 VS 新后。匹配则老前指针++，新后指针--
-   * 4. 老后 VS 新前。匹配则老后指针--，新前指针++
-   * 5. 不满足前四种条件时，
+   * 1. 老前 VS 新前，老前 = 新前。匹配则老前指针++，新前指针++
+   * 2. 老后 VS 新后，老后 = 新后。匹配则老后指针--，新后指针--
+   * 3. 老前 VS 新后，老前 = 新后。匹配则老前指针++，新后指针--
+   * 4. 老后 VS 新前，老后 = 新前。匹配则老后指针--，新前指针++
+   * 5. 查找老其他，老其他 VS 新前，老其他 = 新前
    * 6. 不满足前五种条件时，创建新节点
    * 7. 当新老节点个数不一样时，删除或添加
    */
@@ -39,21 +39,21 @@ export default function updateChildren(parentElm, oldCh, newCh) {
     if (oldStartVnode == undefined) {
       oldStartVnode = oldCh[++oldStartIdx]
     }
+
     if (oldEndVnode == undefined) {
       oldEndVnode = oldCh[--oldEndIdx]
     } else if (sameVnode(oldStartVnode, newStartVnode)) {
-      console.log('情况一')
       // 情况一：老前 VS 新前
+      console.log('情况一，老前 = 新前')
       patchSameVnode(oldStartVnode, newStartVnode)
       if (newStartVnode) {
         newStartVnode.elm = oldStartVnode?.elm
       }
       oldStartVnode = oldCh[++oldStartIdx]
       newStartVnode = newCh[++newStartIdx]
-
     } else if (sameVnode(oldEndVnode, newEndVnode)) {
-      console.log('情况二')
       // 情况二：老后 VS 新后
+      console.log('情况二，老后 = 新后')
       patchSameVnode(oldEndVnode, newEndVnode)
       if (newEndVnode) {
         newEndVnode.elm = oldEndVnode?.elm
@@ -62,8 +62,8 @@ export default function updateChildren(parentElm, oldCh, newCh) {
       newEndVnode = newCh[--newEndIdx]
 
     } else if (sameVnode(oldStartVnode, newEndVnode)) {
-      console.log('情况三')
       // 情况三：老前 VS 新后
+      console.log('情况三，老前 = 新后')
       patchSameVnode(oldStartVnode, newEndVnode)
       if (newEndVnode) {
         newEndVnode.elm = oldEndVnode?.elm
@@ -76,8 +76,8 @@ export default function updateChildren(parentElm, oldCh, newCh) {
       newEndVnode = newCh[--newEndIdx]
 
     } else if (sameVnode(oldEndVnode, newStartVnode)) {
-      console.log('情况四')
       // 情况四：老后 VS 新前
+      console.log('情况四，老后 = 新前')
       patchSameVnode(oldEndVnode, newStartVnode)
       if (newStartVnode) {
         newStartVnode.elm = oldEndVnode?.elm
@@ -87,7 +87,6 @@ export default function updateChildren(parentElm, oldCh, newCh) {
       oldEndVnode = oldCh[--oldEndIdx]
       newStartVnode = newCh[++newStartIdx]
     } else {
-      console.log('情况五')
       // 情况五：查找
       // 创建对象存取老节点
       const keyMap = {}
@@ -101,6 +100,7 @@ export default function updateChildren(parentElm, oldCh, newCh) {
       let idxInOld = keyMap[newStartVnode.key]
       if (idxInOld) {
         // 如果存在，则说明老节点中存在该新节点，即该节点在新老节点中都存在
+        console.log('情况五，老其他 = 新前')
         const existNode = oldCh[idxInOld]
         patchSameVnode(existNode, newStartVnode)
         // 处理过的节点在老节点中设置为undefined
@@ -108,14 +108,13 @@ export default function updateChildren(parentElm, oldCh, newCh) {
         // 把该节点移动到老前指向节点的前面
         parentElm.insertBefore(existNode.elm, oldStartVnode.elm)
       } else {
-        console.log('情况六')
+        console.log('情况六，不存在')
         // 如果不存在，则说明老节点中不存在该新节点，则需要创建
         // 情况六：创建
         parentElm.insertBefore(createElement(newStartVnode), oldStartVnode.elm)
       }
       // 新前指针++
       newStartVnode = newCh[++newStartIdx]
-
     }
   }
 
