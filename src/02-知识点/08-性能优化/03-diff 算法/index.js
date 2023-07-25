@@ -1,6 +1,11 @@
 import h from './dom/h'
 import patch from './dom/patch'
 
+document.querySelector('#content').innerHTML = `
+  <div id="container">这是初始节点</div>
+  <button id="btn">改变内容</button>
+`
+
 const container = document.getElementById('container')
 const btn = document.getElementById('btn')
 
