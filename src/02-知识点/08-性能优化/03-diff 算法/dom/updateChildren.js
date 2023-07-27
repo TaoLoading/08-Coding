@@ -3,6 +3,9 @@ import createElement from './createElement'
 
 /**
  * 处理新老节点为同一个节点且都有子节点时的情况
+ * 1. 定义四个指针
+ * 2. 遍历节点，按照规则对节点进行查找。匹配规则时（为同一个节点），修改指针并进行替换
+ * 3. 匹配规则时，不再继续按照其他规则查找
  * 
  * @param {*} parentElm 真实 DOM 节点
  * @param {*} oldCh 老节点的子节点
@@ -10,11 +13,11 @@ import createElement from './createElement'
  */
 export default function updateChildren(parentElm, oldCh, newCh) {
   /**
-   * 替换规则：
-   * 1. 老前 VS 新前，老前 = 新前。匹配则老前指针++，新前指针++
-   * 2. 老后 VS 新后，老后 = 新后。匹配则老后指针--，新后指针--
-   * 3. 老前 VS 新后，老前 = 新后。匹配则老前指针++，新后指针--
-   * 4. 老后 VS 新前，老后 = 新前。匹配则老后指针--，新前指针++
+   * 规则：
+   * 1. 老前 VS 新前。匹配则老前指针++，新前指针++
+   * 2. 老后 VS 新后。匹配则老后指针--，新后指针--
+   * 3. 老前 VS 新后。匹配则老前指针++，新后指针--
+   * 4. 老后 VS 新前。匹配则老后指针--，新前指针++
    * 5. 查找老其他，老其他 VS 新前，老其他 = 新前
    * 6. 不满足前五种条件时，创建新节点
    * 7. 当新老节点个数不一样时，删除或添加
@@ -32,7 +35,7 @@ export default function updateChildren(parentElm, oldCh, newCh) {
 
   // 判断两个节点是否为同一个
   function sameVnode(vNode1, vNode2) {
-    return (vNode1.key == vNode2.key && vNode1.sel === vNode2.sel && vNode1.key !== undefined)
+    return (vNode1.key === vNode2.key && vNode1.sel === vNode2.sel && vNode1.key !== undefined)
   }
 
   while (oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx) {
