@@ -14,13 +14,19 @@ import createElement from './createElement'
 export default function updateChildren(parentElm, oldCh, newCh) {
   /**
    * 规则：
-   * 1. 老前 VS 新前。匹配则老前指针++，新前指针++
-   * 2. 老后 VS 新后。匹配则老后指针--，新后指针--
-   * 3. 老前 VS 新后。匹配则老前指针++，新后指针--。将该节点移动到老后之后
-   * 4. 老后 VS 新前。匹配则老后指针--，新前指针++。将该节点移动到老前之前
-   * 5. 不满足前四种条件时，在老其他节点中循环查找是否存在新前节点，匹配将该节点移动到老前之前
+   * 1. 老前 VS 新前。匹配则老前指针++，新前指针++；老前节点后移，新前节点后移
+   * 2. 老后 VS 新后。匹配则老后指针--，新后指针--；老后节点前移，新后节点前移
+   * 3. 老前 VS 新后。匹配则老前指针++，新后指针--；将老前节点移动到老后之后
+   * 4. 老后 VS 新前。匹配则老后指针--，新前指针++；将老后节点移动到老前之前
+   * 5. 不满足前 4 种条件时，在剩余老节点中遍历查找新前指向节点
+   *    1. 存在，则将该节点移动到老前之前
+   *    2. 不存在，则创建该节点到老前之前
    * 6. 不满足前五种条件时，创建新节点，新前指针++
-   * 7. 当新老节点个数不一样时，删除或添加
+   * 7. 当新老节点个数不一样时，对比指针位置判断添加或删除
+   *    1. 新节点有剩余节点时 - 添加：依次将剩余节点插入到新后之后
+   *    2. 老节点有剩余节点时 - 删除：依次将剩余节点删除
+   * 
+   * 移动节点使用的 insertBefore()
    */
 
   let oldStartIdx = 0 // 老前的指针
@@ -35,19 +41,24 @@ export default function updateChildren(parentElm, oldCh, newCh) {
 
   // 判断两个节点是否为同一个
   function sameVnode(vNode1, vNode2) {
-    return (vNode1.key === vNode2.key && vNode1.sel === vNode2.sel && vNode1.key !== undefined)
+    return (vNode1.key === vNode2.key && vNode1.sel === vNode2.sel)
   }
 
   while (oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx) {
+    // 首先对判断是否为 undefined
+    // 这是因为在情况 5 中，将处理过的节点设置为了 undefined
     if (oldStartVnode == undefined) {
       oldStartVnode = oldCh[++oldStartIdx]
+    }
+    if (oldEndVnode == undefined) {
+      oldEndVnode = oldCh[--oldEndIdx]
     }
 
     if (oldEndVnode == undefined) {
       oldEndVnode = oldCh[--oldEndIdx]
     } else if (sameVnode(oldStartVnode, newStartVnode)) {
       // 情况一：老前 VS 新前
-      console.log('情况一，老前 = 新前')
+      console.log('情况 1，老前 = 新前')
       patchSameVnode(oldStartVnode, newStartVnode)
       if (newStartVnode) {
         newStartVnode.elm = oldStartVnode?.elm
@@ -56,7 +67,7 @@ export default function updateChildren(parentElm, oldCh, newCh) {
       newStartVnode = newCh[++newStartIdx]
     } else if (sameVnode(oldEndVnode, newEndVnode)) {
       // 情况二：老后 VS 新后
-      console.log('情况二，老后 = 新后')
+      console.log('情况 2，老后 = 新后')
       patchSameVnode(oldEndVnode, newEndVnode)
       if (newEndVnode) {
         newEndVnode.elm = oldEndVnode?.elm
@@ -66,32 +77,31 @@ export default function updateChildren(parentElm, oldCh, newCh) {
 
     } else if (sameVnode(oldStartVnode, newEndVnode)) {
       // 情况三：老前 VS 新后
-      console.log('情况三，老前 = 新后')
+      console.log('情况 3，老前 = 新后')
       patchSameVnode(oldStartVnode, newEndVnode)
       if (newEndVnode) {
         newEndVnode.elm = oldEndVnode?.elm
-        /* console.log('newEndVnode.elm是', newEndVnode.elm)
-        console.log('oldEndVnode.elm是', oldEndVnode.elm) */
       }
-      // 把老前指定的节点移动到老后指向节点的后面
+      // 将老前节点移动到老后之后
       parentElm.insertBefore(oldStartVnode.elm, oldEndVnode.elm.nextSibling)
       oldStartVnode = oldCh[++oldStartIdx]
       newEndVnode = newCh[--newEndIdx]
 
     } else if (sameVnode(oldEndVnode, newStartVnode)) {
       // 情况四：老后 VS 新前
-      console.log('情况四，老后 = 新前')
+      console.log('情况 4，老后 = 新前')
       patchSameVnode(oldEndVnode, newStartVnode)
       if (newStartVnode) {
         newStartVnode.elm = oldEndVnode?.elm
       }
-      // 把老后指定的节点移动到老前指向节点的前面
+      // 将老后节点移动到老前之前
       parentElm.insertBefore(oldEndVnode.elm, oldStartVnode.elm)
       oldEndVnode = oldCh[--oldEndIdx]
       newStartVnode = newCh[++newStartIdx]
     } else {
-      // 情况五：查找
-      // 创建对象存取老节点
+      // 情况五：在剩余老节点中遍历查找新前指向节点
+
+      // 1. 创建对象存取老节点
       const keyMap = {}
       for (let i = oldStartIdx; i < oldEndIdx; i++) {
         const key = oldCh[i]?.key
@@ -99,21 +109,22 @@ export default function updateChildren(parentElm, oldCh, newCh) {
           keyMap[key] = i
         }
       }
-      // 在该对象上查找新前指向的新节点是否存在
+
+      // 2. 在该对象上查找新前指向的新节点是否存在
       let idxInOld = keyMap[newStartVnode.key]
+
       if (idxInOld) {
-        // 如果存在，则说明老节点中存在该新节点，即该节点在新老节点中都存在
-        console.log('情况五，老其他 = 新前')
+        // 3-1. 存在，则将该节点移动到老前之前
+        console.log('情况 5-1，老其他 = 新前')
         const existNode = oldCh[idxInOld]
         patchSameVnode(existNode, newStartVnode)
-        // 处理过的节点在老节点中设置为undefined
+        // 3-1-1. 处理过的节点在老节点中设置为 undefined
         oldCh[idxInOld] = undefined
-        // 把该节点移动到老前指向节点的前面
+        // 3-1-2. 把该节点移动到老前指向节点的前面
         parentElm.insertBefore(existNode.elm, oldStartVnode.elm)
       } else {
-        console.log('情况六，不存在')
-        // 如果不存在，则说明老节点中不存在该新节点，则需要创建
-        // 情况六：创建
+        // 3-2. 不存在，则创建该节点到老前之前
+        console.log('情况 5-2，不存在')
         parentElm.insertBefore(createElement(newStartVnode), oldStartVnode.elm)
       }
       // 新前指针++
@@ -123,19 +134,27 @@ export default function updateChildren(parentElm, oldCh, newCh) {
 
   /**
    * 跳出循环则说明出现两种情况：
-   * 1.oldStartIdx> oldEndIdx，此时新增节点
-   * 2.newStartIdx> newEndIdx，此时删除节点
+   * 1. newStartIdx <= newEndIdx，此时为新增节点
+   * 2. oldStartIdx <= oldEndIdx，此时为删除节点
    */
-  if (oldStartIdx > oldEndIdx) {
+  console.log('新', newStartIdx, newEndIdx)
+  console.log('老', oldStartIdx, oldEndIdx)
+  if (newStartIdx <= newEndIdx) {
     // 新增
-    console.log('发生新增')
+    console.log('新节点还有剩余节点，此时为新增')
+
+    // 插入的参考节点，新后之后
     const before = newCh[newEndIdx + 1] ? newCh[newEndIdx + 1].elm : null
+
+    // 依次将剩余节点插入到新后之后
     for (let i = newStartIdx; i <= newEndIdx; i++) {
       parentElm.insertBefore(createElement(newCh[i]), before)
     }
-  } else {
+  } else if (oldStartIdx <= oldEndIdx) {
     // 删除
-    console.log('发生删除')
+    console.log('老节点还有剩余节点，此时为删除')
+
+    // 依次将剩余节点删除
     for (let i = oldStartIdx; i <= oldEndIdx; i++) {
       parentElm.removeChild(oldCh[i].elm)
     }

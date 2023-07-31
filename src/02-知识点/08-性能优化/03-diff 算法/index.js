@@ -17,16 +17,16 @@ const vnode4 = h('ul', { key: 1 }, [
   h('li', { key: 'a' }, 'a'),
   h('li', { key: 'b' }, 'b'),
   h('li', { key: 'c' }, 'c'),
-  h('li', { key: 'd' }, 'vnode4'),
-  // h('li', { key: 'e' }, 'e')
+  h('li', { key: 'd' }, 'd'),
 ])
 
 const vnode5 = h('ul', { key: 1 }, [
   h('li', { key: 'b' }, 'b'),
+  h('li', { key: 'a' }, 'a'),
+  h('li', { key: 'd' }, 'd'),
   h('li', { key: 'e' }, 'e'),
   h('li', { key: 'c' }, 'c'),
-  h('li', { key: 'a' }, 'a'),
-  h('li', { key: 'd' }, 'vnode5'),
+  h('li', { key: 'f' }, 'f'),
 ])
 
 patch(container, vnode4)

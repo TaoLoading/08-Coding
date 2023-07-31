@@ -7,23 +7,20 @@ import updateChildren from './updateChildren'
  * @param {*} oldVnode 老节点
  * @param {*} newVnode 新节点
  */
-export default function patchVnode(oldVnode, newVnode) {
+export default function patchSameVnode(oldVnode, newVnode) {
   // 1. 判断新节点是否有子节点
   if (newVnode.children == undefined || newVnode.children.length === 0) {
     if (newVnode.text !== oldVnode.text) {
       // 1.1 新节点没有子节点且文本不相同时，直接替换文本
-      console.log('新节点没有子节点')
       oldVnode.elm.innerText = newVnode.text
     }
   } else {
     // 2. 判断老节点是否有子节点
     if (oldVnode.children !== undefined && oldVnode.children.length > 0) {
       // 2.1 新老节点都有子节点。diff 核心 (最复杂)
-      console.log('新老节点都有子节点')
       updateChildren(oldVnode.elm, oldVnode.children, newVnode.children)
     } else {
       // 2.2 新节点有子节点，老节点没有子节点时，将老节点清空并完成新节点的添加
-      console.log('新节点有子节点，老节点没有子节点')
       oldVnode.elm.innerHTML = ''
       for (let item of newVnode.children) {
         let childDom = createElement(item)
