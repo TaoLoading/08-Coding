@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>组件方式自定义v-model</title>
+</head>
+
+<body>
+  <div id="app">
+    <input v-my-model="message">
+    <p>{{ message }}</p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <script>
+    Vue.directive('my-model', {
+      /**
+       * bind()：绑定的值发生改变时
+       * el：绑定的元素
+       * binding：对象，包含指令相关的信息和属性
+       * vnode：当前指令所在的虚拟节点
+       */
+      bind(el, binding, vnode) {
+        // 监听输入框值的变化，更新虚拟 DOM
+        el.addEventListener('input', (event) => {
+          vnode.context[binding.expression] = event.target.value
+        })
+
+        // 监听 vnode 值的变化，更新真实 DOM
+        vnode.context.$watch(binding.expression, (newValue) => {
+          el.value = newValue
+        })
+      }
+    })
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: ''
+      }
+    })
+  </script>
+</body>
+
+</html>

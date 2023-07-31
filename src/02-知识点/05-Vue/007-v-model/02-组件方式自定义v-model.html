@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>指令方式自定义v-model</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- <my-model v-model="message"></my-model> -->
+    <my-model :message="message" @input="handleMessageChange"></my-model>
+    <p>{{ message }}</p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <script>
+    Vue.component('my-model', {
+      template: '<input :value="value" @input="onInput">',
+      props: ['value'],
+      methods: {
+        onInput(event) {
+          this.$emit('input', event.target.value)
+        }
+      }
+    })
+
+    const app = new Vue({
+      el: '#app',
+      data: {
+        message: ''
+      },
+      methods: {
+        handleMessageChange(value) {
+          this.message = value
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
