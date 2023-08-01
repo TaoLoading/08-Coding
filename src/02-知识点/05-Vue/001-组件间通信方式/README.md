@@ -108,7 +108,7 @@
 
 4. 代码：
 
-   ```vue
+   ```js
    <!-- 全局，定义 EventBus -->
    // 方法一
    // 抽离成一个单独的 js 文件 Bus.js，然后在需要的地方引入
@@ -125,8 +125,8 @@
    // main.js
    import Vue from 'vue'
    new Vue({
-       el:"#app",
-       data:{
+       el: '#app',
+       data: {
            Bus: new Vue()
        }
    })
@@ -363,7 +363,7 @@
    </template>
    
    <script>
-   export default{
+   export default {
      data(){
        return {
          name: 'TaoLoading'
@@ -386,8 +386,8 @@
    </template>
    
    <script>
-   export default{
-     mounted(){
+   export default {
+     mounted() {
        console.log(this.$attrs) // { name: 'TaoLoading', title: 666 }
      }
    }
@@ -606,7 +606,7 @@ const props = defineProps({
    
    // 组件卸载前取消订阅
    onUnmounted(()=>{
-     mitt.off('custom-event',someMethed)
+     mitt.off('custom-event', someMethod)
    })
    </script>
    ```
@@ -630,7 +630,7 @@ const props = defineProps({
        
    defineExpose({
      xxx: '这是子组件的属性',
-     xxxMethod(){
+     xxxMethod() {
        console.log('这是子组件的方法')
      }
    })
