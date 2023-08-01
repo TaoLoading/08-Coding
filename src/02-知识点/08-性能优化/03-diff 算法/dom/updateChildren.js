@@ -52,10 +52,6 @@ export default function updateChildren(parentElm, oldCh, newCh) {
     }
     if (oldEndVnode == undefined) {
       oldEndVnode = oldCh[--oldEndIdx]
-    }
-
-    if (oldEndVnode == undefined) {
-      oldEndVnode = oldCh[--oldEndIdx]
     } else if (sameVnode(oldStartVnode, newStartVnode)) {
       // 情况一：老前 VS 新前
       console.log('情况 1，老前 = 新前')
@@ -74,7 +70,6 @@ export default function updateChildren(parentElm, oldCh, newCh) {
       }
       oldEndVnode = oldCh[--oldEndIdx]
       newEndVnode = newCh[--newEndIdx]
-
     } else if (sameVnode(oldStartVnode, newEndVnode)) {
       // 情况三：老前 VS 新后
       console.log('情况 3，老前 = 新后')
@@ -86,7 +81,6 @@ export default function updateChildren(parentElm, oldCh, newCh) {
       parentElm.insertBefore(oldStartVnode.elm, oldEndVnode.elm.nextSibling)
       oldStartVnode = oldCh[++oldStartIdx]
       newEndVnode = newCh[--newEndIdx]
-
     } else if (sameVnode(oldEndVnode, newStartVnode)) {
       // 情况四：老后 VS 新前
       console.log('情况 4，老后 = 新前')
@@ -137,8 +131,6 @@ export default function updateChildren(parentElm, oldCh, newCh) {
    * 1. newStartIdx <= newEndIdx，此时为新增节点
    * 2. oldStartIdx <= oldEndIdx，此时为删除节点
    */
-  console.log('新', newStartIdx, newEndIdx)
-  console.log('老', oldStartIdx, oldEndIdx)
   if (newStartIdx <= newEndIdx) {
     // 新增
     console.log('新节点还有剩余节点，此时为新增')
