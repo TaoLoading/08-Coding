@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>为什么组件中 data 设计为函数而根实例中没有限制</title>
+</head>
+
+<body>
+  <div id="app">
+    <comp></comp>
+    <p>{{message}}</p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    Vue.component('comp', {
+      template: `<div @click="counter++">{{ counter }}</div>`,
+      // 组件中的 data 必须为函数形式
+      data() {
+        return {
+          counter: 1
+        }
+      }
+      // 对象形式报错
+      /* data: {
+        counter: 1
+      } */
+    })
+
+    new Vue({
+      el: '#app',
+      /* data: {
+        message: 'Hello, Vue 2!'
+      } */
+      data: {
+        message: 'Hello, Vue 2!'
+      }
+    })
+  </script>
+</body>
+
+</html>
