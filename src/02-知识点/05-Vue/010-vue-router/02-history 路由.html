@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>history路由</title>
+</head>
+
+<body>
+  <nav>
+    <ul>
+      <li><a href="/home" class="jumpLink">Home</a></li>
+      <li><a href="/about" class="jumpLink">About</a></li>
+      <li><a href="/contact" class="jumpLink">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div id="app"></div>
+
+  <script>
+    // 路由内容
+    const routeContent = {
+      '/home': '<h1>Home Page</h1>',
+      '/about': '<h1>About Page</h1>',
+      '/contact': '<h1>Contact Page</h1>'
+    }
+
+    // 1. 修改浏览器历史记录
+    function navigateTo(event, link) {
+      event.preventDefault()
+      const path = link.getAttribute('href')
+      // 替换路由
+      window.history.pushState(null, '', path)
+      renderPage()
+    }
+
+    // 2. 监听导航链接点击事件
+    const links = document.getElementsByClassName('jumpLink')
+    const linksArr = Array.from(links)
+    linksArr.forEach(link => {
+      link.addEventListener('click', event => navigateTo(event, link))
+    })
+
+    // 3. 监听浏览器历史记录变化
+    window.addEventListener('popstate', renderPage)
+
+    // 4. 根据路由渲染页面
+    function renderPage() {
+      const route = window.location.pathname
+      const content = routeContent[route] || '<h1>首页</h1>'
+      document.getElementById('app').innerHTML = content
+    }
+
+    // 初始化页面
+    renderPage()
+  </script>
+</body>
+
+</html>

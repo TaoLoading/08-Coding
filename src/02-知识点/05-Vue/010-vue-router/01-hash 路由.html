@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hash路由</title>
+</head>
+
+<body>
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div id="app"></div>
+
+  <script>
+    // 路由内容
+    const routeContent = {
+      '/home': '<h1>Home Page</h1>',
+      '/about': '<h1>About Page</h1>',
+      '/contact': '<h1>Contact Page</h1>'
+    }
+
+    // 1. 点击跳转修改 hash
+    function navigateTo(route) {
+      window.location.hash = route
+    }
+
+    // 2. 监听 hash 变化
+    window.addEventListener('hashchange', renderPage)
+
+    // 3. 根据 hash 渲染页面
+    function renderPage() {
+      const route = window.location.hash.substring(1)
+      const content = routeContent[route] || '<h1>首页</h1>'
+      document.getElementById('app').innerHTML = route
+    }
+
+    // 初始化页面
+    const initialRoute = 'home'
+    navigateTo(initialRoute)
+  </script>
+</body>
+
+</html>
