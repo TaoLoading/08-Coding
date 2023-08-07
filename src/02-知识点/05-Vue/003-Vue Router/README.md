@@ -260,7 +260,7 @@ hash 部分（#和#之后的参数）不会被发送到服务器
    
    // Vue3
    <router-view v-slot="{ Component }">
-     <keep-alive>
+     <keep-alive :include="myComponent">
        <component :is="Component"></component>
      </keep-alive>
    </router-view>
