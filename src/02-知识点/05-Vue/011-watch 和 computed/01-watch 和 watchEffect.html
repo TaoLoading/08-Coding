@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>watch 和 watchEffect</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>{{ a.b }}</h1>
+    <button @click="changeA">修改值</button>
+  </div>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    const { createApp, ref, watch, watchEffect } = Vue
+
+    const app = createApp({
+      setup() {
+        const a = ref({
+          b: 1
+        })
+        const changeA = () => {
+          a.value.b = 2
+        }
+
+        watch(a.value, (newValue, oldValue) => {
+          console.log('watch newValue', newValue)
+          console.log('watch oldValue', oldValue)
+        }, {
+          deep: true
+        })
+        watchEffect(() => {
+          console.log('watchEffect a.value', a.value.b)
+        })
+
+        return {
+          a,
+          changeA
+        }
+      }
+    })
+    app.mount('#app')
+  </script>
+</body>
+
+</html>

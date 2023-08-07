@@ -67,15 +67,99 @@ computed 用于依赖于已经存在的响应式数据的派生出新的数据�
 
 ### 作用
 
-watch 用于监视某个数据的变化并执行相应的回调函数，一般用于需要在数据变化时执行异步或复杂的逻辑操作
+watch 用于监视某个响应式数据的变化并执行相应的回调函数，一般用于需要在数据变化时执行异步或复杂的逻辑操作
 
 ### 用法
 
 ```vue
+// Vue2
+<script>
+export default {
+  data: {
+    message: 'Hello, Vue!'
+  },
+  watch: {
+    message: {
+      handler(newValue, oldValue) {
+        console.log('newValue', newValue)
+        console.log('oldValue', oldValue)
+      },
+      // 是否在初始化时立即执行
+      immediate: true,
+      // 是否深度监视，针对引用数据类型
+      deep: false
+    }
+  }
+}
+</script>
 
+// Vue3
+<script setup>
+import { watch } from 'vue'
+const message = ref('Hello, Vue!')
+// 基本数据类型
+watch(message.value, (newValue, oldValue) => {
+  console.log('newValue', newValue)
+  console.log('oldValue', oldValue)
+})
+
+const message = reactive({
+  info: 'Hello, Vue!'
+})
+// 引用数据类型，即监视对象中的某个属性
+watch(() => message.info, (newValue, oldValue) => {
+  console.log('newValue', newValue)
+  console.log('oldValue', oldValue)
+})
+</script>
 ```
 
+### Vue3 中 watch 的变化
 
+1. 写法不同。注意 Vue3 中监视基本数据类型和对象中属性时，写法也是不同的
+
+2. 可监视多个数据
+
+   ```vue
+   <script setup>
+   const a = ref(1)
+   const b = ref(2)
+   watch([a, b], ([newA, newB], [oldA, oldB]) => {
+     ......
+   })
+   </script>
+   ```
+
+3. 取消了 immediate，当取消立即执行时使用 watchEffect
+
+## watchEffect
+
+### 作用
+
+watchEffect 是 Vue3 中一个用于自动追踪响应式数据变化并执行相应副作用函数的函数
+
+### 使用
+
+```vue
+<script setup>
+import { watch } from 'vue'
+const person = reactive({
+  age: 30,
+  name: 'John'
+})
+
+watchEffect(() => {
+  // 副作用函数，它会自动追踪内部响应式数据的变化
+  console.log(`Age changed: ${person.age}`)
+  console.log(`Name changed: ${person.name}`)
+})
+</script>
+```
+
+### 与 watch 的区别
+
+1. 数据监视方式。watch 需要指定被监视的数据，watchEffect 会自动追踪副作用函数内部的响应式数据实现监视
+2. 初始化是否执行。watch 不会在初始化时执行，watchEffect 会在初始化时执行
 
 ## 区别
 

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>实现一个 watch</title>
+</head>
+
+<body>
+  <div id="app">
+    <p>当前计数：{{ counter }}</p>
+    <button @click="increment">增加</button>
+    <button @click="decrement">减少</button>
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    function myWatch(vm, key, handler) {
+      // 获取初始值
+      let value = vm[key]
+      Object.defineProperty(vm, key, {
+        get() {
+          return value
+        },
+        set(newValue) {
+          if (value !== newValue) {
+            // 调用回调函数，并将新值和旧值作为参数传递
+            handler.call(vm, newValue, value)
+            // 更新值
+            value = newValue
+            // 手动触发 Vue 的更新
+            vm.$forceUpdate()
+          }
+        }
+      })
+    }
+
+    new Vue({
+      el: '#app',
+      data: {
+        counter: 0
+      },
+      methods: {
+        increment() {
+          this.counter++
+        },
+        decrement() {
+          this.counter--
+        }
+      },
+      mounted() {
+        myWatch(this, 'counter', function (newValue, oldValue) {
+          console.log(`counter 变化，新值：${newValue}，旧值：${oldValue}`)
+        })
+      }
+    })
+  </script>
+</body>
+
+</html>
