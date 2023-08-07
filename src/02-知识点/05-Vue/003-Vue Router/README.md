@@ -249,6 +249,7 @@ hash 部分（#和#之后的参数）不会被发送到服务器
 2. 方法 2，指定缓存和不缓存的路由
 
    ```vue
+   // Vue2
    <keep-alive include="myComponent"> // 使用 include 指定需要缓存的路由
      <router-view></router-view>
    </keep-alive>
@@ -256,8 +257,14 @@ hash 部分（#和#之后的参数）不会被发送到服务器
    <keep-alive exclude="myComponent"> // 使用 exclude 指定排除缓存的路由
      <router-view></router-view>
    </keep-alive>
+   
+   // Vue3
+   <router-view v-slot="{ Component }">
+     <keep-alive>
+       <component :is="Component"></component>
+     </keep-alive>
+   </router-view>
    ```
-
 
 ## 路由守卫
 
