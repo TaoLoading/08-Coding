@@ -30,7 +30,8 @@
           console.log('watch newValue', newValue)
           console.log('watch oldValue', oldValue)
         }, {
-          deep: true
+          deep: true,
+          immediate: true
         })
         watchEffect(() => {
           console.log('watchEffect a.value', a.value.b)

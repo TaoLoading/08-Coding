@@ -1,4 +1,4 @@
-# computed 和 watch
+# computed、watch 和 watchEffect 
 
 ## computed
 
@@ -67,7 +67,7 @@ computed 用于依赖于已经存在的响应式数据的派生出新的数据�
 
 ### 作用
 
-watch 用于监视某个响应式数据的变化并执行相应的回调函数，一般用于需要在数据变化时执行异步或复杂的逻辑操作
+watch 用于监听某个响应式数据的变化并执行相应的回调函数，一般用于需要在数据变化时执行异步或复杂的逻辑操作
 
 ### 用法
 
@@ -86,7 +86,7 @@ export default {
       },
       // 是否在初始化时立即执行
       immediate: true,
-      // 是否深度监视，针对引用数据类型
+      // 是否深度监听，针对引用数据类型
       deep: false
     }
   }
@@ -106,7 +106,7 @@ watch(message.value, (newValue, oldValue) => {
 const message = reactive({
   info: 'Hello, Vue!'
 })
-// 引用数据类型，即监视对象中的某个属性
+// 引用数据类型，即监听对象中的某个属性
 watch(() => message.info, (newValue, oldValue) => {
   console.log('newValue', newValue)
   console.log('oldValue', oldValue)
@@ -116,9 +116,9 @@ watch(() => message.info, (newValue, oldValue) => {
 
 ### Vue3 中 watch 的变化
 
-1. 写法不同。注意 Vue3 中监视基本数据类型和对象中属性时，写法也是不同的
+1. 写法不同。注意 Vue3 中监听基本数据类型和对象中属性时，写法也是不同的
 
-2. 可监视多个数据
+2. 可监听多个数据
 
    ```vue
    <script setup>
@@ -130,7 +130,17 @@ watch(() => message.info, (newValue, oldValue) => {
    </script>
    ```
 
-3. 取消了 immediate，当取消立即执行时使用 watchEffect
+3. 增加停止监听的函数。Vue3 中可以使用 watch 返回的停止监听函数来停止对数据源的监听
+
+   ```vue
+   <script setup>
+   const stop = watch(xxx, (newValue, oldValue) => {
+     ......
+   })
+   
+   stop()
+   </script>
+   ```
 
 ## watchEffect
 
@@ -138,7 +148,7 @@ watch(() => message.info, (newValue, oldValue) => {
 
 watchEffect 是 Vue3 中一个用于自动追踪响应式数据变化并执行相应副作用函数的函数
 
-### 使用
+### 用法
 
 ```vue
 <script setup>
@@ -158,10 +168,10 @@ watchEffect(() => {
 
 ### 与 watch 的区别
 
-1. 数据监视方式。watch 需要指定被监视的数据，watchEffect 会自动追踪副作用函数内部的响应式数据实现监视
-2. 初始化是否执行。watch 不会在初始化时执行，watchEffect 会在初始化时执行
+1. 数据监听方式。watch 需要指定被监听的数据，watchEffect 会自动追踪副作用函数内部的响应式数据实现监听
+2. 初始化是否执行。watch 不会在初始化时执行，除非设置 immediate，watchEffect 会在初始化时执行
 
-## 区别
+## computed 和 watch 的区别
 
 1. 缓存性：computed 具有缓存性，当访问某个计算属性时，只有当被依赖的数据发生变化时才会重新计算，而被依赖数据没有变化时则直接返回缓存的结果，不会再次计算
 2. 返回值：computed 中有返回值，而 watch 中没有
