@@ -48,7 +48,7 @@ Vuex 是一个专为 Vue.js 应用程序开发的**状态管理模式 + 库**。
 1. mutations：直接修改数据
 2. actions：处理异步操作和复杂逻辑。***不直接修改数据***，操作处理完成后通过 commit 触发 mutations 中的事件改变数据
 
-### **为什么不能再 mutations 中进行异步操作**
+### **为什么不能在 mutations 中进行异步操作**
 
 mutations 是同步函数，意味着内部的操作是同步的，当进行异步操作时可能会导致获取不到正确的数据
 
@@ -109,7 +109,9 @@ watch: {
 }
 ```
 
-### store.subscribe()。Vuex 的 API
+### store.subscribe()
+
+Vuex 的 API
 
 ```js
 store.subscribe((mutation, state) => {
