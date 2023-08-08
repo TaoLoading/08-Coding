@@ -56,14 +56,14 @@
 
  10. 第三方库按需引入
 
-    ```vue
-    import { createApp } from 'vue'
-    import { Button, Select } from 'element-plus'
-    
-    const app = createApp()
-    app.use(Button)
-    app.use(Select)
-    ```
+     ```vue
+     import { createApp } from 'vue'
+     import { Button, Select } from 'element-plus'
+     
+     const app = createApp()
+     app.use(Button)
+     app.use(Select)
+     ```
 
  11. 巨量数据使用虚拟列表
 
