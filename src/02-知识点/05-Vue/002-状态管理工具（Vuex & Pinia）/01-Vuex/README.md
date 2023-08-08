@@ -94,7 +94,6 @@ const store = new Vuex.Store({
 })
 
 export default store
-
 ```
 
 ## 监听 Vuex 中的数据变化
