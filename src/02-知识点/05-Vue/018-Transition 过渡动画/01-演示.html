@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>transition 过渡动画</title>
+  <style>
+    .fade-enter-active,
+    .fade-leave-active {
+      transition: opacity 0.5s ease;
+    }
+
+    .fade-enter-from,
+    .fade-leave-to {
+      opacity: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <button @click="isShow = !isShow">切换</button>
+
+    <!-- Transition 是 Vue 中的一个内置组件，用于在元素进入或离开 DOM 时添加过渡效果。配合 CSS 使用 -->
+    <Transition name="fade">
+      <p v-if="isShow">演示效果</p>
+    </Transition>
+  </div>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    const { createApp, reactive, toRefs, ref, onMounted } = Vue
+
+    const app = createApp({
+      setup() {
+        const isShow = ref(true)
+        return {
+          isShow
+        }
+      }
+    })
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
