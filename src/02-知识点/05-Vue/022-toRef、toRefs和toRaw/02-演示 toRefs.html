@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>toRefs</title>
+</head>
+
+<body>
+  <div id="app">
+  </div>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    const { createApp, reactive, toRefs, ref } = Vue
+
+    const app = createApp({
+      setup() {
+        const data1 = reactive({
+          a: 'a',
+          b: 'b',
+          c: 1
+        })
+        const data2 = reactive({
+          d: 'd',
+          e: 'e',
+          f: 2
+        })
+        const { a, b, c } = toRefs(data1)
+        const { d, e, f } = data2
+
+        console.log('a, b, c', a, b, c) // 转换为了 ref 对象
+        console.log('d, e, f', d, e, f) // d e 2
+      }
+    })
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
