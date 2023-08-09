@@ -44,6 +44,11 @@ class Http {
     return Http.axiosInstance.post(url, params).then(res => res.data).catch()
   }
 
+  // put
+  public httpRequestPut<T>(url: string, params: AxiosRequestConfig): Promise<T> {
+    return Http.axiosInstance.put(url, params).then(res => res.data).catch()
+  }
+
   // delete
   public httpRequestDelete<T>(url: string, params: AxiosRequestConfig): Promise<T> {
     return Http.axiosInstance.delete(url, params).then(res => res.data).catch()
