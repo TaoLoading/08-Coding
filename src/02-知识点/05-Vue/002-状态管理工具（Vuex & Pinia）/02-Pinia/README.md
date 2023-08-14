@@ -32,7 +32,7 @@
    })
    ```
 
-2. 创建 store。见 01-基础使用.js
+2. 定义 store。见 01-定义 store.js
 
 3. 使用 store
 
