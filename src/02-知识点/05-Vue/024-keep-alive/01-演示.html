@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>keep-alive</title>
+</head>
+
+<body>
+  <div id="app">
+    <button @click="toggleComponent">切换组件</button>
+    <!-- <component :is="activeComponent"></component> -->
+    <keep-alive>
+      <component :is="activeComponent"></component>
+    </keep-alive>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    Vue.component('ComponentA', {
+      template: '<div>Component A</div>',
+      created() {
+        console.log('Component A created')
+      },
+      destroyed() {
+        console.log('Component A destroyed')
+      }
+    })
+
+    Vue.component('ComponentB', {
+      template: '<div>Component B</div>',
+      created() {
+        console.log('Component B created')
+      },
+      destroyed() {
+        console.log('Component B destroyed')
+      }
+    })
+
+    new Vue({
+      el: '#app',
+      data: {
+        activeComponent: 'ComponentA'
+      },
+      methods: {
+        toggleComponent() {
+          this.activeComponent = (this.activeComponent === 'ComponentA') ? 'ComponentB' : 'ComponentA'
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
