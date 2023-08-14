@@ -230,42 +230,6 @@ router.push('/')
 
 hash 部分（#和#之后的参数）不会被发送到服务器
 
-## 结合 keep-alive 的使用
-
-### 作用
-
-在切换路由时，路由会销毁 A 路由创建 B 路由。keep-alive 可以将组件缓存起来，保存其状态，使得在频繁切换时不需要重复创建和销毁
-
-### 使用
-
-1. 方法 1，直接缓存路由
-
-   ```vue
-   <keep-alive>
-     <myComponent></myComponent>
-   </keep-alive>
-   ```
-
-2. 方法 2，指定缓存和不缓存的路由
-
-   ```vue
-   // Vue2
-   <keep-alive include="myComponent"> // 使用 include 指定需要缓存的路由
-     <router-view></router-view>
-   </keep-alive>
-   
-   <keep-alive exclude="myComponent"> // 使用 exclude 指定排除缓存的路由
-     <router-view></router-view>
-   </keep-alive>
-   
-   // Vue3
-   <router-view v-slot="{ Component }">
-     <keep-alive :include="myComponent">
-       <component :is="Component"></component>
-     </keep-alive>
-   </router-view>
-   ```
-
 ## 路由守卫
 
 ### 按执行时间分类
