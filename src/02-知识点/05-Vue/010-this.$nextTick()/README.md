@@ -2,15 +2,47 @@
 
 ## 解决的问题
 
-Vue 中，数据更新后 DOM 更新不会立即执行，而是通过异步队列的方式进行批量更新，这样可以提高性能。但可能会导致获取不到最新的 DOM
+Vue 中，数据更新后 DOM 更新不会立即执行，而是通过异步队列的方式进行批量更新，这样设计是为了提高性能，但由于异步更新可能会导致获取不到最新的 DOM 的问题
 
 ## 作用
 
 1. this.$nextTick() 是一个用于在下次 DOM 更新循环结束后执行回调函数的方法
-
 2. 可以确保在进行 DOM 更新后执行相关操作
+3. 当 DOM 更新循环中多次修改数据，Vue 会将这些操作合并，一次性更新 DOM，那么 this.$nextTick() 只执行一次
 
-3. 当 DOM 更新循环中多次修改数据，那么 this.$nextTick() 只执行一次
+## 使用
+
+```vue
+<template>
+  <div>
+    <p>{{ message }}</p>
+    <button @click="updateMessage">更新</button>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      message: 'Hello, Vue!'
+    }
+  },
+  methods: {
+    updateMessage() {
+      this.message = 'Updated Message1'
+      this.message = 'Updated Message2'
+      this.message = 'Updated Message3'
+      this.$nextTick(() => {
+        // 在 DOM 更新后执行的操作
+        // 例如访问更新后的 DOM 元素
+        const updatedElement = this.$el.querySelector('p')
+        console.log(updatedElement.textContent) // Updated Message3
+      })
+    }
+  }
+}
+</script>
+```
 
 ## 实现
 
