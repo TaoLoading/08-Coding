@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>使用 CSS 画三角形</title>
+  <style>
+    /* 普通三角形 */
+    .triangle1 {
+      width: 0;
+      height: 0;
+      border-width: 50px;
+      border-style: solid;
+      border-color: transparent transparent skyblue transparent;
+    }
+
+    /* 等边三角形 */
+    .triangle2 {
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 50px 86.6px 50px;
+      border-color: transparent transparent skyblue transparent;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="triangle1"></div>
+  <div class="triangle2"></div>
+
+  <script>
+    /**
+     * 原理：宽高为 0，导致 border 相交，隐藏和现实部分边框出现三角形
+     */
+  </script>
+</body>
+
+</html>
