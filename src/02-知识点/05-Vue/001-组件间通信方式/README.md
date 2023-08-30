@@ -530,17 +530,12 @@ const props = defineProps({
    ```vue
    <!-- 子组件 -->
    <template>
-     // 写法一
-     <button @click="emit('custom-event')">按钮</buttom>
-     // 写法二
      <button @click="handleClick">按钮</buttom>
    </template>
    <script setup>
-     // 方法一 适用于 Vue3.2 版本 不需要引入
+     // 方法一 适用于 Vue3.2 版本及之后版本
      import { defineEmits } from 'vue'
-     // 对应写法一
      const emit = defineEmits(['custom-event'])
-     // 对应写法二
      const handleClick = () => {
        emit('custom-event', '这是发送给父组件的信息')
      }
@@ -549,8 +544,7 @@ const props = defineProps({
      import { useContext } from 'vue'
      const { emit } = useContext()
      const handleClick = () => {
-       const data = 'Hello, parent!'
-       emit('custom-event', data)
+       emit('custom-event', '这是发送给父组件的信息')
      }
    </script>
    ```
