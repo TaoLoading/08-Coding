@@ -6,32 +6,34 @@ Vue 组件从创建到销毁的过程叫做 Vue 的生命周期
 
 ## 生命周期
 
-| Vue2          | Vue3（option API）                        | 描述                                     |
-| ------------- | ----------------------------------------- | ---------------------------------------- |
+| Vue2          | Vue3（option API）                          | 描述                                     |
+| ------------- | ------------------------------------------- | ---------------------------------------- |
 | beforeCreate  | beforeCreate（生命周期钩子中被 setup 代替） | 组件实例被创建之前                       |
 | created       | created（生命周期钩子中被 setup 代替）      | 组件实例已经完全创建                     |
-| beforeMount   | beforeMount                               | 组件挂载之前                             |
-| mounted       | mounted                                   | 组件挂载到实例上去之后                   |
-| beforeUpdate  | beforeUpdate                              | 组件数据发生变化，更新之前               |
-| updated       | updated                                   | 数据数据更新之后                         |
-| beforeDestroy | beforeUnmount                             | 组件实例销毁之前                         |
-| destroyed     | unmounted                                 | 组件实例销毁之后                         |
-| activated     | activated                                 | keep-alive 缓存的组件激活时              |
-| deactivated   | deactivated                               | keep-alive 缓存的组件停用时调用          |
-| errorCaptured | errorCaptured                             | 捕获一个来自子孙组件的错误时被调用       |
-| -             | renderTracked                             | 调试钩子，响应式依赖被收集时调用         |
-| -             | renderTriggered                           | 调试钩子，响应式依赖被触发时调用         |
-| -             | serverPrefetch                            | ssr only，组件实例在服务器上被渲染前调用 |
+| beforeMount   | beforeMount                                 | 组件挂载之前                             |
+| mounted       | mounted                                     | 组件挂载到实例上去之后                   |
+| beforeUpdate  | beforeUpdate                                | 组件数据发生变化，更新之前               |
+| updated       | updated                                     | 数据数据更新之后                         |
+| beforeDestroy | beforeUnmount                               | 组件实例销毁之前                         |
+| destroyed     | unmounted                                   | 组件实例销毁之后                         |
+| activated     | activated                                   | keep-alive 缓存的组件激活时              |
+| deactivated   | deactivated                                 | keep-alive 缓存的组件停用时调用          |
+| errorCaptured | errorCaptured                               | 捕获一个来自子孙组件的错误时被调用       |
+| -             | renderTracked                               | 调试钩子，响应式依赖被收集时调用         |
+| -             | renderTriggered                             | 调试钩子，响应式依赖被触发时调用         |
+| -             | serverPrefetch                              | ssr only，组件实例在服务器上被渲染前调用 |
 
-## Vue3 Composition API 中常用的生命周期钩子
+## Vue2 与 Vue3生命周期钩子变化对比
 
-1. onBeforeMount()
-2. onMounted()
-3. onBeforeUpdate()
-4. onUpdated()
-5. onBeforeUnmount()
-6. onUnmounted()
-7. setup 继承了 beforeCreate() 和 created()
+1. beforeCreate -> use setup()
+2. created() -> use setup()
+3. beforeMount() -> onBeforeMount()
+4. mounted() -> onMounted()
+5. beforeUpdate() -> onBeforeUpdate()
+6. updated() -> onUpdated()
+7. beforeDestroy() -> onBeforeUnmount()
+8. destroyed() -> onUnmounted()
+9. setup 继承了 beforeCreate() 和 created()
 
 ## 结合实践
 
