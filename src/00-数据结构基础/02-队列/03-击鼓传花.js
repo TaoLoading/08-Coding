@@ -41,5 +41,5 @@ function passGame(names, number) {
   console.log(`${name}获得胜利，它是第${index + 1}个元素`)
 }
 
-var names = ['A', 'B', 'C']
+const names = ['A', 'B', 'C']
 passGame(names, 3)

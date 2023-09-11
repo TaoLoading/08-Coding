@@ -56,9 +56,9 @@ pQueue.enqueue("abc", 10)
 pQueue.enqueue("cba", 5)
 pQueue.enqueue("nba", 12)
 pQueue.enqueue("mba", 3)
-var size = pQueue.size()
+const size = pQueue.size()
 console.log(size)
-for (var i = 0; i < size; i++) {
-  var item = pQueue.dequeue()
+for (const i = 0; i < size; i++) {
+  const item = pQueue.dequeue()
   console.log(item.data, item.priority)
 }

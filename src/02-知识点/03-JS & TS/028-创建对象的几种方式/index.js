@@ -8,7 +8,7 @@ const obj1 = {
 
 // 2. 工厂函数
 function createPerson(name, age) {
-  var p = {
+  const p = {
     name: name,
     age: age,
     setName: function (name) {

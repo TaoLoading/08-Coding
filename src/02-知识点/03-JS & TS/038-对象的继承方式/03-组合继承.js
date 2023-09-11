@@ -24,5 +24,5 @@ Child.prototype = new Parent()
 // 修复构造函数指向。不修复则 Child.prototype.constructor 指向 Parent
 Child.prototype.constructor = Child
 
-var child = new Child()
+const child = new Child()
 child.sayHello()  // Hello, Child

@@ -9,7 +9,7 @@
  * 4. 不存在则将该遍历到的值和它的下标存入字典中，进行循环查询
  */
 
-var twoSum = function (nums, target) {
+const twoSum = function (nums, target) {
   const map = new Map()
   for (let i = 0; i < nums.length; i++) {
     const m = nums[i]

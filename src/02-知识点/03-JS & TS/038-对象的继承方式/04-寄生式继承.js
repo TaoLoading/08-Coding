@@ -10,7 +10,7 @@
 
 function createChild(parent) {
   // 创建新对象，以 parent 为原型对象
-  var child = Object.create(parent)
+  let child = Object.create(parent)
   // 添加子类特有属性
   child.name = 'Child'
   // 添加子类特有方法

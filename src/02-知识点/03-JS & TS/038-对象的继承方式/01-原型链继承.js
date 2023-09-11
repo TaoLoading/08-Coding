@@ -19,5 +19,5 @@ function Child() {
 // 通过原型链连接
 Child.prototype = new Parent()
 
-var child = new Child()
+const child = new Child()
 child.sayHello()  // Hello, Child

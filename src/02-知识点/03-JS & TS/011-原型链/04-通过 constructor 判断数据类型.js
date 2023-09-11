@@ -16,6 +16,6 @@ console.log(({}).constructor === Object) // true */
 // 修改了原型对象
 function Fn() { }
 Fn.prototype = new Array()
-var f = new Fn()
+const f = new Fn()
 console.log(f.constructor === Fn) // false
 console.log(f.constructor === Array) // true

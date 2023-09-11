@@ -5,9 +5,9 @@
  * 输出： [null, 1, 2, 3, 3] =>> 即最初 1 次，100 毫秒时两次，同理。注意在 3001 毫秒时发送了 3 次，因为采取闭区间，即 [0, 3000]、[1, 3001]...
  * */
 
-var RecentCounter = function () {
+const RecentCounter = function () {
   this.queue = []
-};
+}
 
 RecentCounter.prototype.ping = function (t) { // t 为发起请求的时间
   this.queue.push(t)
@@ -17,7 +17,7 @@ RecentCounter.prototype.ping = function (t) { // t 为发起请求的时间
   }
   // 计算队列的长度，即处于 [t-3000, t] 范围内元素的个数，结果即最近的请求次数
   return this.queue.length
-};
+}
 
 // 时间复杂度是 O(n)，因为存在一个 while 循环，n 为需要被提出队列的请求个数
 // 空间复杂度是 O(n)，因为存在一个 queue 队列，n 为请求的次数

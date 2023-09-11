@@ -2,7 +2,7 @@
  * 给定两个数组，编写一个函数来计算它们的交集
  */
 
-var intersection = function (nums1, nums2) {
+const intersection = function (nums1, nums2) {
   const map = new Map()
   nums1.forEach(m => {
     map.set(m, true)

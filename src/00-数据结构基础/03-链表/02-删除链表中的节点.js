@@ -6,10 +6,10 @@
  * 解题思路：删除下一个节点，并在删除前将下一节点的值赋值到当前节点上
  */
 
-var deleteNode = function (node) {
+const deleteNode = function (node) {
   node.val = node.next.val
   node.next = node.next.next
-};
+}
 
 // 时间复杂度为 O(1)
 // 空间复杂度为 O(1)

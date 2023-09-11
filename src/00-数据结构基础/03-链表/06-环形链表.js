@@ -8,7 +8,7 @@
  * 解题思路：用一快一慢两个指针遍历链表，若两个指针相逢，则证明有环
  */
 
-var hasCycle = function (head) {
+const hasCycle = function (head) {
   let p1 = head
   let p2 = head
   while (p2 && p2.next) {

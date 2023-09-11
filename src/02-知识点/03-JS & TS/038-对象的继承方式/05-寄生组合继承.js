@@ -22,5 +22,5 @@ Child.prototype = Object.create(Parent.prototype)
 // 修复构造函数指向
 Child.prototype.constructor = Child
 
-var child = new Child()
+const child = new Child()
 child.sayHello()  // Hello, Child

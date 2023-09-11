@@ -19,5 +19,5 @@ function Child() {
   this.name = 'Child'
 }
 
-var child = new Child()
+const child = new Child()
 child.sayHello() // Hello, Child

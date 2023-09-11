@@ -3,7 +3,7 @@
  * 请你将两个数相加，并以相同形式返回一个表示和的链表。你可以假设除了数字 0 之外，这两个数都不会以 0 开头。
  */
 
-var addTwoNumbers = function (l1, l2) {
+const addTwoNumbers = function (l1, l2) {
   // 创建空节点
   const l3 = new ListNode(0)
   // 生成指针分别执行链表头部

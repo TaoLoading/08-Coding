@@ -21,7 +21,7 @@ function myInstanceof(obj, constructor) {
 // 测试
 function Foo() { }
 function Foo2() { }
-var obj = new Foo()
+const obj = new Foo()
 console.log(myInstanceof(obj, Foo))
 console.log(myInstanceof(obj, Foo2))
 console.log(myInstanceof(obj, Object))

@@ -5,7 +5,7 @@
  * 2. 左括号必须以正确的顺序闭合
  */
 
-var isValid = function (s) {
+const isValid = function (s) {
   if (s.length % 2 == 1) return false
   const stack = []
   const map = new Map()

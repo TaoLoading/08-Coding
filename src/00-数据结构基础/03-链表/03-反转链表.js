@@ -6,7 +6,7 @@
  *           将第一个指针指向保存好的元素，及下一个元素，此时完成了指针的前进和指针方向的改变，以此类推完成反转
  */
 
-var reverseList = function (head) {
+const reverseList = function (head) {
   let p1 = head
   let p2 = null
   while (p1) {

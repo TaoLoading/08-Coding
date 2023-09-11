@@ -25,6 +25,6 @@ class Child extends Parent {
   }
 }
 
-var child = new Child('Child', 10)
+const child = new Child('Child', 10)
 child.sayHello() // Hello, Child
 child.sayAge() // My age is 10

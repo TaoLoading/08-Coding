@@ -21,7 +21,7 @@ const tree = {
         {
           val: '3-1-1',
           children: []
-        },
+        }
       ]
     },
     {
@@ -34,9 +34,9 @@ const tree = {
         {
           val: '3-2-2',
           children: []
-        },
+        }
       ]
-    },
+    }
   ]
 }
 

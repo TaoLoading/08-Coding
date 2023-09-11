@@ -10,7 +10,7 @@
  *    注意此时没有对左指针直接进行加 1，因为如果 (TODO)
  */
 
-var lengthOfLongestSubstring = function (s) {
+const lengthOfLongestSubstring = function (s) {
   let l = 0
   let res = 0
   const map = new Map()

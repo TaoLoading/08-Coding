@@ -5,7 +5,7 @@
  * 2. 左括号必须以正确的顺序闭合
  */
 
-var isValid = function (s) {
+const isValid = function (s) {
   // 当栈的长度为奇数时，则立即断定不合法
   if (s.length % 2 == 1) return false
   const stack = []

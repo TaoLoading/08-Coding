@@ -15,6 +15,6 @@ function myNew(fn, ...args) {
 
 // 测试
 function Foo() { }
-var obj = myNew(Foo)
+const obj = myNew(Foo)
 console.log(obj instanceof Foo) // true
 console.log(obj instanceof Object) // true
