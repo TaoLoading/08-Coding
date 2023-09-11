@@ -4,10 +4,14 @@ function flat1(arr) {
   return newArr
 }
 
-// 方法 2：正则
+// 方法 2：... + some() + concat()
+// 当元素类型为数组时，将其展开放到新数组中
 function flat2(arr) {
-  const newArr = JSON.parse('[' + JSON.stringify(arr).replace(/\[|\]/g, '') + ']')
-  return newArr
+  while (arr.some(item => Array.isArray(item))) {
+    // 通过 concat() 达到去除一层数组的效果
+    arr = [].concat(...arr)
+  }
+  return arr
 }
 
 // 方法 3：递归 + reduce() + concat()
@@ -21,14 +25,10 @@ function flat3(arr, deep = 1) {
   }, [])
 }
 
-// 方法 4：... + some() + concat()
-// 当元素类型为数组时，将其展开放到新数组中
+// 方法 4：正则
 function flat4(arr) {
-  while (arr.some(item => Array.isArray(item))) {
-    // 通过 concat() 达到去除一层数组的效果
-    arr = [].concat(...arr)
-  }
-  return arr
+  const newArr = JSON.parse('[' + JSON.stringify(arr).replace(/\[|\]/g, '') + ']')
+  return newArr
 }
 
 // 测试

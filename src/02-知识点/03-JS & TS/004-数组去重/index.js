@@ -1,5 +1,20 @@
-// 方法 1：forEach() + indexOf。双重遍历，效率低
+// 方法 1：ES6 语法
+// 原理：Set 对象是一组唯一值的集合，其中每个值只能出现一次。当将一个数组传递给 Set 对象时，Set 对象会自动过滤掉其中的重复项
 const unique1 = arr => {
+  // return [...new Set(arr)]
+  return Array.from(new Set(arr))
+}
+
+// 方法 2：filter
+const unique2 = arr => {
+  return arr.filter((item, index) => {
+    // 判断元素第一次出现的位置
+    return arr.indexOf(item) === index
+  })
+}
+
+// 方法 3：forEach() + indexOf。双重遍历，效率低
+const unique3 = arr => {
   const newArr = []
   arr.forEach(item => {
     if (newArr.indexOf(item) == -1) {
@@ -9,8 +24,8 @@ const unique1 = arr => {
   return newArr
 }
 
-// 方法 2：forEach() + 对象形式。单次遍历，效率稍高
-const unique2 = arr => {
+// 方法 4：forEach() + 对象形式。单次遍历，效率稍高
+const unique4 = arr => {
   const newArr = []
   // 空对象，存放第一次遍历的元素，元素为属性名，true 为属性值
   const obj = {}
@@ -21,21 +36,6 @@ const unique2 = arr => {
     }
   })
   return newArr
-}
-
-// 方法 3：ES6 语法
-// 原理：Set 对象是一组唯一值的集合，其中每个值只能出现一次。当将一个数组传递给 Set 对象时，Set 对象会自动过滤掉其中的重复项
-const unique3 = arr => {
-  // return [...new Set(arr)]
-  return Array.from(new Set(arr))
-}
-
-// 方法 4：filter
-const unique4 = arr => {
-  return arr.filter((item, index) => {
-    // 判断元素第一次出现的位置
-    return arr.indexOf(item) === index
-  })
 }
 
 // 测试

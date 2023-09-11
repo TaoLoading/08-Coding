@@ -1,4 +1,4 @@
-import './02-知识点/08-性能优化/03-diff 算法'
+import './02-知识点/03-JS & TS/999-test.js'
 
 document.querySelector<HTMLDivElement>('#title')!.innerHTML = `
   <div>
