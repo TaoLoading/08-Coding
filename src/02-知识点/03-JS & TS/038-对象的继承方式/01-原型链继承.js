@@ -21,4 +21,3 @@ Child.prototype = new Parent()
 
 var child = new Child()
 child.sayHello()  // Hello, Child
-

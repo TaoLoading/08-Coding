@@ -21,4 +21,3 @@ function Child() {
 
 var child = new Child()
 child.sayHello() // Hello, Child
-
