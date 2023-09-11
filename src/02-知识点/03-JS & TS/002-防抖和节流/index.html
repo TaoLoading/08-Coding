@@ -20,15 +20,15 @@
      */
 
     function debounce(fn, delay = 200) {
-      let timer = 0
+      let timer = null
       return function () {
         if (timer) {
           clearTimeout(timer)
         }
 
         timer = setTimeout(() => {
-          fn.apply(this, arguments)
-          timer = 0
+          fn.apply(this, arguments) // arguments是调用fn时穿传的参数
+          timer = null
         }, delay)
       }
     }
@@ -40,7 +40,7 @@
      * 应用场景：1.窗口拖拽 2.点击抢购商品
      */
     function throttle(fn, delay = 500) {
-      let timer = 0
+      let timer = null
       return function () {
         if (timer) {
           return
@@ -48,7 +48,7 @@
 
         timer = setTimeout(() => {
           fn.apply(this, arguments)
-          timer = 0
+          timer = null
         }, delay)
       }
     }
