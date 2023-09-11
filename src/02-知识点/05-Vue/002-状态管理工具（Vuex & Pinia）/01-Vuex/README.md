@@ -71,7 +71,7 @@ Vuex 是一个专为 Vue.js 应用程序开发的**状态管理模式 + 库**。
 
 ### **为什么不能在 mutations 中进行异步操作**
 
-mutations 是同步函数，意味着内部的操作是同步的，当进行异步操作时可能会导致获取不到正确的数据
+mutations 必须是同步函数，因为只有这样才能确保在调用 mutation 后立即获取最新的状态。如果在 mutation 中进行异步操作，那么在 mutation 执行的过程中，state 可能会被其他的 mutation 改变，这样就会造成 state 的状态不可预测，违背了 Vuex 的设计理念
 
 ### modules
 
