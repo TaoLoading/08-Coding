@@ -1,4 +1,4 @@
-# window.onload() 和$(document).ready() 的区别
+# 几种 onload 的区别
 
 ## window.onload()
 
@@ -14,3 +14,7 @@
 
 1. 运行时机：在 DOM 结构加载完毕后立即执行，此时可能某些资源（如图像）仍在加载中
 2. 多次绑定：可以多次绑定，它们会按绑定的顺序依次执行
+
+## 注！
+
+测试时 $(document).ready() 会在 window.onload() 之后触发，这是正常的，jQuery 当前的实现机制和页面资源的大小可能会影响执行顺序

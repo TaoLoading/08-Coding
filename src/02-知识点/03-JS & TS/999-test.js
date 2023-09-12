@@ -1,18 +1,12 @@
-function currying(fn) {
-  const argsLength = fn.length
-  const curried = (...args) => {
-    if (argsLength > args.length) {
-      return (...rest) => curried(...args, ...rest)
-    }
-    return fn(...args)
-  }
-  return curried
+function mySetTimeout(fn, delay) {
+  const timer = setInterval(() => {
+    fn()
+    clearInterval(timer)
+  }, delay)
 }
 
-function add(a, b, c) {
-  return a + b + c
+// 测试
+const testFn = () => {
+  console.log('输出成功')
 }
-const curriedAdd = currying(add)
-console.log(curriedAdd(1, 2, 3))
-console.log(curriedAdd(1)(2, 3))
-console.log(curriedAdd(1)(2)(3))
+mySetTimeout(testFn, 3000)

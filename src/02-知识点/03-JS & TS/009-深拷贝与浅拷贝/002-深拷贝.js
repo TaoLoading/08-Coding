@@ -1,6 +1,9 @@
 /**
  * 方法 1：JSON 转化
- * 缺点：1.函数属性丢失   2.抛弃对象的 constructor，将对象的构造函数变为 Object，存在循环引用时出错
+ * 缺点：1. 函数属性丢失。JSON 字符串中不能表示函数
+ *       2. undefined 和 Symbol 类型的值丢失。序列化过程中，值为 undefined 或者 Symbol 类型的属性会被忽略，不会被拷贝
+ *       3. 抛弃对象的 constructor，将对象的构造函数变为 Object，存在循环引用时出错
+ *       4. 对于大型数据结构，序列化和反序列化操作可能会带来性能问题
  */
 const deepClone1 = (target) => {
   return JSON.parse(JSON.stringify(target))
@@ -9,10 +12,11 @@ const deepClone1 = (target) => {
 /**
  * 方法 2：浅拷贝 + 递归
  * 思路：获取源数组中的元素向新数组中依次添加
- * 缺点：1.函数属性丢失   2.抛弃对象的 constructor，将对象的构造函数变为 Object，存在循环引用时出错
+ * 缺点：1. 函数属性丢失
+ *       2. 抛弃对象的 constructor，将对象的构造函数变为 Object，存在循环引用时出错
  */
 const deepClone2 = (target) => {
-  if (target instanceof Array || (target !== null && typeof target === 'object')) {
+  if (target instanceof Array || target instanceof Object) {
     // 创建拷贝对象
     const cloneTarget = target instanceof Array ? [] : {}
     for (const key in target) {
@@ -34,8 +38,8 @@ const deepClone2 = (target) => {
  */
 const deepClone3 = (target, map = new Map()) => {
   // 1.如果是数组或对象，则进行下一步拷贝操作，其他则直接返回值
-  if (target instanceof Array || (target !== null && typeof target === 'object')) {
-    // 2.判断是否进行已经进行了拷贝，如果已经拷贝则直接返回值
+  if (target instanceof Array || target instanceof Object) {
+    // 2.判断是否已经进行了拷贝，如果已经拷贝则直接返回值
     let cloneTarget = map.get(target)
     if (cloneTarget) {
       return cloneTarget
@@ -62,7 +66,7 @@ const deepClone3 = (target, map = new Map()) => {
  */
 const deepClone4 = (target, map = new Map()) => {
   // 1.如果是数组或对象，则进行下一步拷贝操作，其他则直接返回值
-  if (target instanceof Array || (target !== null && typeof target === 'object')) {
+  if (target instanceof Array || target instanceof Object) {
     // 2.判断是否进行已经进行了拷贝，如果已经拷贝则直接返回值
     let cloneTarget = map.get(target)
     if (cloneTarget) {
@@ -98,6 +102,7 @@ const deepClone4 = (target, map = new Map()) => {
 }
 
 const obj1 = {
+  x: undefined,
   a: 1,
   b: ['1', '2', '3'],
   c: {
@@ -110,7 +115,7 @@ const obj1 = {
 }
 
 // 测试定义的深拷贝方法
-const obj2 = deepClone4(obj1)
+const obj2 = deepClone1(obj1)
 obj2.c.z = 2
 console.log('obj1', obj1.c.z) // 1
 console.log('obj2', obj2.c.z) // 2

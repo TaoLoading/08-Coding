@@ -1,5 +1,5 @@
 /**
- * 效果：返回一个新函数，新函数的逻辑是将传入的函数按顺序全部执行
+ * 效果：返回一个新函数，新函数的逻辑是将传入的函数按顺序依次执行
  */
 
 function compose(...fns) {
@@ -12,8 +12,8 @@ function compose(...fns) {
   }
 
   return fns.reduce((acc, cur) => {
-    return (num) => {
-      return cur(acc(num))
+    return (arg) => {
+      return cur(acc(arg))
     }
   })
 }

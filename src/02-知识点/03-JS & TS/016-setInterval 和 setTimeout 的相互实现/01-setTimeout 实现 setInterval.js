@@ -1,5 +1,5 @@
 // 原理：使用递归不停生成 setTimeout 定时器，并赋值给 timer 变量便于清除
-function mySetTimeout(fn, delay) {
+function mySetInterval(fn, delay = 1000) {
   let timer = null
   const interval = () => {
     fn()
@@ -15,10 +15,10 @@ function mySetTimeout(fn, delay) {
 }
 
 // 测试
-const testFn = () => {
+const fn = () => {
   console.log('输出成功')
 }
-const { cancel } = mySetTimeout(testFn, 1000)
+const { cancel } = mySetInterval(fn, 1000)
 setTimeout(() => {
   cancel()
-}, 6000)
+}, 3000)
