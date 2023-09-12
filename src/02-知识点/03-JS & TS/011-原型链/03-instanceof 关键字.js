@@ -6,14 +6,14 @@
 
 function myInstanceof(obj, constructor) {
   // 获取 obj 的隐式原型对象
-  let proto = Object.getPrototypeOf(obj)
+  let proto = obj.__proto__ // 也可使用 Object.getPrototypeOf(obj) 获取 obj 的隐式原型对象
   while (proto) {
     // 对比 obj 的隐式原型对象和 constructor 的显式原型对象
     if (proto === constructor.prototype) {
       return true
     }
     // 沿原型链向上一层
-    proto = Object.getPrototypeOf(proto)
+    proto = proto.__proto__
   }
   return false
 }
@@ -22,8 +22,8 @@ function myInstanceof(obj, constructor) {
 function Foo() { }
 function Foo2() { }
 const obj = new Foo()
-console.log(myInstanceof(obj, Foo))
-console.log(myInstanceof(obj, Foo2))
-console.log(myInstanceof(obj, Object))
+console.log(myInstanceof(obj, Foo)) // true
+console.log(myInstanceof(obj, Foo2)) // false
+console.log(myInstanceof(obj, Object)) // true
 
 console.log('2 instanceof Number', 2 instanceof Number) // false。因为 instanceof 只能对引用数据类型做判断

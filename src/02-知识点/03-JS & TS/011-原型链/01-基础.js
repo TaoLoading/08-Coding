@@ -11,8 +11,10 @@
  * 
  * 
  * hasOwnProperty 和 in
- * 1. hasOwnProperty：判断一个对象是否包含自定义属性而不是原型链上的属性，是 JavaScript 中唯一一个处理属性但是不查找原型链的函数
- * 2. in：判断一个对象是否包含自定义属性，会查找原型链上的属性
+ * 1. hasOwnProperty：判断一个对象自身是否包含某个属性而不是原型链上的属性，是 JavaScript 中唯一一个处理属性但是不查找原型链的函数
+ *    person.hasOwnProperty('name')
+ * 2. in：判断一个对象是否包含某个属性，会查找原型链上的属性
+ *    'name' in person
  * 
  * 原型链的终点
  * Object.prototype.__proto__=== null 成立，故原型链的终点是 null
