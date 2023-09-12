@@ -76,7 +76,7 @@ const deepClone4 = (target, map = new Map()) => {
       // 5.如果值类型是数组则遍历源数组进行拷贝
       target.forEach((item, index) => {
         // 通过对属性值进行递归拷贝，实现深拷贝
-        cloneTarget[index] = deepClone33(item, map)
+        cloneTarget[index] = deepClone4(item, map)
       })
     } else {
       cloneTarget = {}
@@ -86,7 +86,7 @@ const deepClone4 = (target, map = new Map()) => {
       for (const key in target) {
         if (target.hasOwnProperty(key)) {
           // 通过对属性值进行递归拷贝，实现深拷贝
-          cloneTarget[key] = deepClone33(target[key], map)
+          cloneTarget[key] = deepClone4(target[key], map)
         }
       }
     }
@@ -103,19 +103,14 @@ const obj1 = {
   c: {
     x: {
       y: 2
-    }
+    },
+    z: 1
   },
   d: function () { }
 }
 
 // 测试定义的深拷贝方法
-const testObj1 = deepClone1(obj1)
-console.log('testObj1', testObj1)
-console.log(testObj1 === obj1, testObj1.a === obj1.a, testObj1.b === obj1.b, testObj1.c === obj1.c, testObj1.d === obj1.d) // false true false false false
-
-
-// 可直接使用的数组深拷贝方法
-const testArr1 = obj1.b.slice()
-const testArr2 = [].concat(obj1.b)
-console.log('testArr1 === obj1.b', testArr1 === obj1.b)
-console.log('testArr2 === obj1.b', testArr2 === obj1.b)
+const obj2 = deepClone4(obj1)
+obj2.c.z = 2
+console.log('obj1', obj1.c.z) // 1
+console.log('obj2', obj2.c.z) // 2
