@@ -1,5 +1,5 @@
 function myKeys(obj) {
-  const keys = []
+  let keys = []
   for (const key in obj) {
     if (obj.hasOwnProperty(key)) { // 确保 key 是来自于 obj 而非其原型链
       keys.push(key)

@@ -44,16 +44,15 @@
     // call
     Function.prototype.myCall = function (obj, ...args) {
       // 1.处理 obj 是 undefined 或 null 的情况
-      if (obj == undefined || obj == null) {
-        // obj 为 undefined 或 null 时，this 变为 window
+      if (obj == null) {
         obj = window
       }
-      // 2.给函数添加一个方法。this 是调用的方法
-      obj.temFn = this
+      // 2.给函数添加一个方法。此处的 this 是调用的方法
+      obj.tempFn = this
       // 3.调用添加的方法，传入 args 参数，得到返回的值
-      const result = obj.temFn(...args)
+      const result = obj.tempFn(...args)
       // 4.删除添加的方法
-      delete obj.temFn
+      delete obj.tempFn
       // 5.返回方法返回的值
       return result
     }
@@ -61,25 +60,28 @@
     // apply
     Function.prototype.myApply = function (obj, args) {
       // 1.处理 obj 是 undefined 或 null 的情况
-      if (obj == undefined || obj == null) {
-        // obj 为 undefined 或 null 时，this 变为 window
+      if (obj == null) {
         obj = window
       }
-      // 2.给函数添加一个方法。this 是调用的方法
-      obj.temFn = this
+      // 2.给函数添加一个方法。此处的 this 是调用的方法
+      obj.tempFn = this
       // 3.调用添加的方法，传入 args 参数，得到返回的值
-      const result = obj.temFn(...args)
+      const result = obj.tempFn(...args)
       // 4.删除添加的方法
-      delete obj.temFn
+      delete obj.tempFn
       // 5.返回方法返回的值
       return result
     }
 
     // 手写 bind
     Function.prototype.myBind = function (obj, ...args) {
-      // 1.返回一个新函数
-      return (...args2) => {
-        // 2.新函数内部调用原来的函数，指定 this 为 obj，参数列表由 args 和 args2 组成
+      // 1.处理 obj 是 undefined 或 null 的情况
+      if (obj == null) {
+        obj = window
+      }
+      // 2.返回一个新函数
+      return (...args2) => { // args2 是后续调用时传入的新参数
+        // 3.新函数内部调用原来的函数，指定 this 为 obj，参数列表由 args 和 args2 组成
         return this.call(obj, ...args, ...args2)
       }
     }
@@ -90,9 +92,11 @@
       return a + b
     }
     const obj = { m: 0 }
-    fn.myCall(obj, 10, 20) // 10 20 obj 2
-    fn.myApply(obj, [1, 2]) // 1 2 obj 2
-    fn.myCall(null, 1, 2) // 1 2 window 2
+    // fn.myCall(obj, 10, 20) // 10 20 obj 2
+    // fn.myApply(obj, [1, 2]) // 1 2 obj 2
+    // fn.myCall(null, 1, 2) // 1 2 window 2
+    fn.myBind(null, 3, 4)() // 3, 4 window 2
+    fn.myBind(obj, 3, 4)() // 3, 4 obj 2
     fn.myBind(obj)(3, 4) // 3, 4 obj 2
     fn.myBind(obj, 5)(3, 4) // 5 3 obj 3
     fn.myBind(obj, 5, 6)(3, 4) // 5 6 obj 4

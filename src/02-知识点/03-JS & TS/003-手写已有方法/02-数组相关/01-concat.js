@@ -2,10 +2,10 @@
  * concat()
  * 作用：将 n 个数组或值与当前数组合并生成一个新数组。该方法不会改变原数组
  * 
- * @param  {...Array} values 
+ * @param  {...Array} values
  */
 Array.prototype.myConcat = function (...values) {
-  const newArr = [...arr]
+  let newArr = [...arr]
   values.forEach(value => {
     if (Array.isArray(value)) {
       newArr.push(...value)

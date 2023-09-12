@@ -1,9 +1,10 @@
 /**
  * 常见的浅拷贝操作：
- * 1. 扩展运算符
- * 2. Object.assign()
- * 3. 数组.slice()
- * 4. Array.from()。作用：从可迭代或类数组对象创建一个新的浅拷贝的数组
+ * 1. 直接赋值
+ * 2. 扩展运算符
+ * 3. Object.assign()
+ * 4. 数组.slice()
+ * 5. Array.from()。作用：从可迭代或类数组对象创建一个新的浅拷贝的数组
  */
 
 const shallowClone1 = (target) => {
@@ -33,17 +34,20 @@ const shallowClone2 = (target) => {
   }
 }
 
-// 测试定义的浅拷贝方法
+// 测试
 const obj1 = {
   a: 1,
   b: ['1', '2', '3'],
   c: {
     x: {
       y: 2
-    }
+    },
+    z: 1
   },
   d: function () { }
 }
-const obj2 = shallowClone2(obj1)
-console.log('obj2', obj2)
-console.log(obj2 === obj1, obj2.a === obj1.a, obj2.b === obj1.b, obj2.c === obj1.c, obj2.d === obj1.d) // false true true true true
+const obj2 = shallowClone1(obj1)
+obj2.c.z = 2
+console.log('obj1', obj1.c.z) // 2
+console.log('obj2', obj2.c.z) // 2
+

@@ -1,7 +1,6 @@
 // 方法 1：使用 flat()
 function flat1(arr) {
-  const newArr = arr.flat(Infinity) // Infinity 为展开所有嵌套
-  return newArr
+  return arr.flat(Infinity) // Infinity 为展开所有嵌套
 }
 
 // 方法 2：... + some() + concat()
