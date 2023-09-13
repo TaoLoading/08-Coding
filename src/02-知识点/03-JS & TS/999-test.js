@@ -4,7 +4,6 @@ function reverseLetterCase(str) {
   }
 
   let res = ''
-
   for (let i = 0; i < str.length; i++) {
     const item = str[i]
     const code = item.charCodeAt(0)
