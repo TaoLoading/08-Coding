@@ -1,5 +1,5 @@
 // 方法 1：正则表达式，性能较差
-function switchLetterCase1(str) {
+function reverseLetterCase1(str) {
   if (str.length === 0) {
     return str
   }
@@ -26,7 +26,7 @@ function switchLetterCase1(str) {
 }
 
 // 方法 2：ASCII
-function switchLetterCase2(str) {
+function reverseLetterCase2(str) {
   if (str.length === 0) {
     return str
   }
@@ -54,14 +54,14 @@ function switchLetterCase2(str) {
 // 功能测试
 const str = '100aBcD$#xYz'
 console.log('原字符串为：', str)
-// console.log('转换后的字符串为：', switchLetterCase1(str))
-console.log('转换后的字符串为：', switchLetterCase2(str))
+// console.log('转换后的字符串为：', reverseLetterCase1(str))
+console.log('转换后的字符串为：', reverseLetterCase2(str))
 
 // 性能测试
 /* const str = '100aBcD$#xYz100aBcD$#xYz100aBcD$#xYz100aBcD$#xYz100aBcD$#xYz100aBcD$#xYz'
-console.time('switchLetterCase')
+console.time('reverseLetterCase')
 for (let i = 0; i < 10 * 10000; i++) {
-  // switchLetterCase1(str)
-  switchLetterCase2(str)
+  // reverseLetterCase1(str)
+  reverseLetterCase2(str)
 }
-console.timeEnd('switchLetterCase') */
+console.timeEnd('reverseLetterCase') */
