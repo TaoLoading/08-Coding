@@ -1,22 +1,25 @@
-function formatNumberWithCommas(number) {
+/**
+ * 思路：对整数位每三位进行切割，从第 length-3 位由后往前拼接逗号
+ */
+
+function formatNumber(num) {
   // 将数字转换为字符串
-  let str = number.toString()
+  const numStr = num.toString()
 
   // 格式化整数部分和小数部分
-  let parts = str.split('.')
-  let integerPart = parts[0]
-  let integerArr = integerPart.split('')
-  let decimalPart = parts.length > 1 ? '.' + parts[1] : ''
+  const parts = numStr.split('.')
+  const intStr = parts[0]
+  const decimalStr = parts[1] ? '.' + parts[1] : ''
+  const intStrArr = intStr.split('')
 
   // 将整数部分每三位添加逗号
-  for (let i = integerArr.length - 3; i > 0; i -= 3) {
-    integerArr.splice(i, 0, ',')
+  for (let i = intStrArr.length - 3; i > 0; i -= 3) {
+    intStrArr.splice(i, 0, ',')
   }
 
-  // 返回格式化后的结果
-  return integerArr.join('') + decimalPart
+  return intStrArr.join('') + decimalStr
 }
 
-console.log(formatNumberWithCommas(1234567)) // 1,234,567
-console.log(formatNumberWithCommas(9876543.21)) // 9,876,543.21
-console.log(formatNumberWithCommas(1000)) // 1,000
+console.log(formatNumber(1234567)) // 1,234,567
+console.log(formatNumber(9876543.21)) // 9,876,543.21
+console.log(formatNumber(1000)) // 1,000
