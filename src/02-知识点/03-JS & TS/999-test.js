@@ -1,26 +1,26 @@
-function reverseLetterCase(str) {
-  if (str.length === 0) {
-    return str
-  }
+const myEvent = new Event('myEvent')
+const myCustomEvent = new CustomEvent('myCustomEvent', {
+  detail: { message: 'Hello World!' }
+})
 
-  let res = ''
-  for (let i = 0; i < str.length; i++) {
-    const item = str[i]
-    const code = item.charCodeAt(0)
+document.addEventListener('myEvent', () => {
+  console.log('myEvent 事件触发')
+})
 
-    if (code >= 97 && code <= 122) {
-      res += item.toUpperCase()
-    } else if (code >= 65 && code <= 90) {
-      res += item.toLowerCase()
-    } else {
-      res += item
-    }
-  }
+document.addEventListener('myCustomEvent', (e) => {
+  const { detail } = e
+  console.log('myCustomEvent 事件触发', detail)
+})
 
-  return res
+document.dispatchEvent(myEvent)
+document.dispatchEvent(myCustomEvent)
+
+
+const a = {}
+const b = {
+  a: 1
 }
-
-// 功能测试
-const str = '100aBcD$#xYz'
-console.log('原字符串为：', str)
-console.log('转换后的字符串为：', reverseLetterCase(str))
+console.log('---', Object.keys(a).length)
+console.log('---', Object.keys(b).length)
+console.log('---', JSON.stringify(a))
+console.log('---', JSON.stringify(b))
