@@ -129,7 +129,7 @@ module.exports = {
 		quiet: true,
 		// 配置代理 (解决 404 页面)
 		proxy: {
-			// 匹配以/api开头的请求
+			// 匹配以 /api 开头的请求
 			'/api': {
 				// 转发的目标地址
 				target: 'http://localhost:4000',

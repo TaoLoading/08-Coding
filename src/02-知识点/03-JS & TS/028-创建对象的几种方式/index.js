@@ -41,7 +41,7 @@ class PersonClass {
 }
 const person4 = new Person('John', 25)
 
-// 4. Object.create()：使用 Object.create() 方法可以创建一个新对象，并将其原型设置为指定的对象
+// 4. Object.create()：使用 Object.create() 方法可根据源对象创建一个新对象，并将源对象设置为新对象的原型对象
 const prototypeObj = {
   property1: 'value1',
   property2: 'value2',
