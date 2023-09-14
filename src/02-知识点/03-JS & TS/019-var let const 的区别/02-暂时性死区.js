@@ -6,5 +6,5 @@
  */
 
 // 报错：Uncaught ReferenceError: Cannot access 'a' before initialization
-/* console.log('a', a)
-const a = 1 */
+console.log('a', a)
+const a = 1
