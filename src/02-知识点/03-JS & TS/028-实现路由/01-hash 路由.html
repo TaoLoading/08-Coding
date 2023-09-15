@@ -19,6 +19,12 @@
   <div id="app"></div>
 
   <script>
+    /**
+     * 实现思路：
+     * 1. 对跳转链接设置为 #xxx，实现点击链接时修改 hash 值
+     * 2. 监听浏览器的 hashchange 事件，当 hash 值发生变化时渲染对应的页面
+     */
+
     // 路由内容
     const routeContent = {
       'home': '<h1>Home Page</h1>',
