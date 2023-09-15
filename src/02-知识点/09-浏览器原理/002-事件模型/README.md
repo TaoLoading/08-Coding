@@ -9,8 +9,25 @@
 
 ## 阻止事件的冒泡和默认行为
 
-1. 阻止事件冒泡：event.stopPropagation()
-2. 阻止事件默认行为：event.preventDefault()
+1. 阻止事件冒泡
+
+   ```js
+   // 原生
+   event.stopPropagation()
+   
+   // vue
+   @click.stop="自定义方法"
+   ```
+
+2. 阻止事件默认行为
+
+   ```js
+   // 原生
+   event.preventDefault()
+   
+   // vue
+   @click.prevent="自定义方法"
+   ```
 
 ## 事件委托
 
