@@ -12,44 +12,50 @@
  * get 方式 ajax，传参通过拼接在 url 后
  * post 方式 ajax，传参通过传入 send()
  */
-const ajax = {
+const ajax1 = {
   get(url) {
     // 1. 创建 XMLHttpRequest 对象
     const xhr = new XMLHttpRequest()
     // 2. 创建 http 请求
     xhr.open('GET', url, true) // 第三个参数代表该请求是否为异步
     // 3. 设置监听函数
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = () => {
       // 4. 处理请求成功与失败的情况
       if (xhr.readyState === 4 && xhr.status === 200) {
         console.log('成功：', xhr.responseText)
+        return xhr.responseText
       } else {
         console.log('失败：', xhr.status)
+        throw new Error(xhr.status)
       }
     }
     // 5. 设置请求失败监听函数
-    xhr.onerror = function () {
+    xhr.onerror = () => {
       console.log('失败：', xhr.status)
+      throw new Error(xhr.status)
     }
     // 6. 发起请求
     xhr.send()
   },
-  post(url, data) {
+  post(url, params) {
     const xhr = new XMLHttpRequest()
     xhr.open('POST', url, true)
     // 设置请求头
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = () => {
       if (xhr.readyState === 4 && xhr.status === 200) {
         console.log('成功：', xhr.responseText)
+        return xhr.responseText
       } else {
         console.log('失败：', xhr.status)
+        throw new Error(xhr.status)
       }
     }
-    xhr.onerror = function () {
+    xhr.onerror = () => {
       console.log('失败：', xhr.status)
+      throw new Error(xhr.status)
     }
-    xhr.send(JSON.stringify(data))
+    xhr.send(JSON.stringify(params))
   }
 }
 
@@ -59,19 +65,20 @@ const ajax = {
  * 
  * fetch 语法更简洁，且支持 promise
  */
-function ajax2(url, method, data) {
-  const option = {
+const ajax2 = (url, method, params) => {
+  let option = {
     method: method
   }
   if (method === 'POST') {
-    option.body = JSON.stringify(data)
+    option.body = JSON.stringify(params)
     option.headers = {
       'Content-Type': 'application/json'
     }
   }
-  return fetch(url, option).then(res => {
+  fetch(url, option).then(res => {
     console.log('成功：', res.json())
+    return res.json()
   }).catch(error => {
-    console.log('失败：', error)
+    throw new Error(error)
   })
 }
