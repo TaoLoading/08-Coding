@@ -12,11 +12,14 @@ const deepClone1 = (target) => {
 /**
  * 方法 2：浅拷贝 + 递归
  * 思路：获取源数组中的元素向新数组中依次添加
- * 缺点：1. 函数属性丢失
- *       2. 抛弃对象的 constructor，将对象的构造函数变为 Object，存在循环引用时出错
+ * 缺点：1. 抛弃对象的 constructor，将对象的构造函数变为 Object，存在循环引用时出错
  */
 const deepClone2 = (target) => {
   if (target instanceof Array || target instanceof Object) {
+    if (typeof target === 'function') {
+      // 当值为函数时直接返回
+      return target
+    }
     // 创建拷贝对象
     const cloneTarget = target instanceof Array ? [] : {}
     for (const key in target) {
@@ -39,6 +42,10 @@ const deepClone2 = (target) => {
 const deepClone3 = (target, map = new Map()) => {
   // 1.如果是数组或对象，则进行下一步拷贝操作，其他则直接返回值
   if (target instanceof Array || target instanceof Object) {
+    if (typeof target === 'function') {
+      // 当值为函数时直接返回
+      return target
+    }
     // 2.判断是否已经进行了拷贝，如果已经拷贝则直接返回值
     let cloneTarget = map.get(target)
     if (cloneTarget) {
@@ -67,6 +74,10 @@ const deepClone3 = (target, map = new Map()) => {
 const deepClone4 = (target, map = new Map()) => {
   // 1.如果是数组或对象，则进行下一步拷贝操作，其他则直接返回值
   if (target instanceof Array || target instanceof Object) {
+    if (typeof target === 'function') {
+      // 当值为函数时直接返回
+      return target
+    }
     // 2.判断是否进行已经进行了拷贝，如果已经拷贝则直接返回值
     let cloneTarget = map.get(target)
     if (cloneTarget) {
