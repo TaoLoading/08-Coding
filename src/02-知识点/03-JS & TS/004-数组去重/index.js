@@ -6,14 +6,15 @@ const unique1 = arr => {
 }
 
 // 方法 2：filter
+// 判断元素第一次出现的位置
 const unique2 = arr => {
   return arr.filter((item, index) => {
-    // 判断元素第一次出现的位置
     return arr.indexOf(item) === index
   })
 }
 
 // 方法 3：forEach() + indexOf。双重遍历，效率低
+// 判断元素是否在新数组中出现过
 const unique3 = arr => {
   const newArr = []
   arr.forEach(item => {
