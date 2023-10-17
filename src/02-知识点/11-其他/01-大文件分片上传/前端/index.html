@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>大文件分片上传</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/1.5.0/axios.js"></script>
+</head>
+
+<body>
+  <input type="file" id="input">
+  <button id="upload">开始上传</button>
+  <div style="width: 300px" id="progress"></div>
+
+  <script>
+    const input = document.getElementById('input')
+    const upload = document.getElementById('upload')
+
+    // 文件对象
+    let files = {}
+    // 存放切片的数组
+    let chunkList = []
+
+    // 获取上传的文件信息
+    input.addEventListener('change', (e) => {
+      files = e.target.files[0]
+
+      // 切片
+      chunkList = createChunk(files)
+
+      // 整理切片数据
+      chunkList = initChunkList(chunkList)
+    })
+
+    /**
+     * 文件切片
+     * @param file 文件
+     * @param size 切片的大小。此处默认 2MB
+     * @returns 切片数组
+     */
+    function createChunk(file, size = 2 * 1024 * 1024) {
+      let chunkLise = []
+      // 已经被切片的文件大小
+      let curSize = 0
+
+      while (curSize < file.size) {
+        chunkList.push({
+          // 切片
+          // 此处的 slice() 是 file 继承与 Blob 的方法，实际上使用的是 Blob.slice() 方法
+          file: file.slice(curSize, curSize + size)
+        })
+        curSize += size
+      }
+      return chunkList
+    }
+
+    /**
+     * 整理文件。将每个切片信息转换为包含文件特征信息的对象，并转换为FormData对象用来发送请求
+     * @param chunkList 切片数组
+     * @returns 包含文件特征信息切片数组
+     */
+    function initChunkList(chunkList) {
+      const chunkDataList = chunkList.map(({ file }, index) => {
+        return {
+          file,
+          size: file.size,
+          percent: 0,
+          chunkName: `${files.name}-${index}`,
+          fileName: files.name,
+          index
+        }
+      })
+
+      const requestList = chunkDataList.map(({ file, fileName, index, chunkName }) => {
+        const formData = new FormData()
+        formData.append('file', file)
+        formData.append('fileName', fileName)
+        formData.append('chunkName', chunkName)
+        return { formData, index }
+      })
+      return requestList
+    }
+
+    // 上传
+    upload.addEventListener('click', () => {
+      uploadFile(chunkList)
+    })
+
+    /**
+     * 上传文件
+     * @param chunkList 包含文件特征信息切片数组
+     */
+    async function uploadFile(chunkList) {
+      chunkList.map(({ formData, index }) => sendRequest({
+        method: 'post',
+        url: 'http://localhost:3000/upload',
+        data: formData
+      })
+        .then(res => {
+          console.log('res', res)
+          // 显示每个切片上传进度
+          let p = document.createElement('p')
+          p.innerHTML = `${chunkList[index].chunkName}--${res.data.message}`
+          document.getElementById('progress').appendChild(p)
+        })
+      )
+      // 保证所有的切片都已经传输完毕
+      await Promise.all(chunkList)
+    }
+
+    /**
+     * 发送请求的工具函数
+     */
+    function sendRequest({ method = 'post', url, data }) {
+      return new Promise((resolve, reject) => {
+        const config = {
+          headers: 'Content-Type:application/x-www-form-urlencoded',
+        }
+        axios[method](url, data, config).then((res) => {
+          resolve(res)
+        }).catch(err => {
+          reject(err)
+        })
+      })
+    }
+  </script>
+</body>
+
+</html>
