@@ -54,9 +54,9 @@ app.post('/upload', (req, res) => {
 // 合并
 app.post('/merge', async (req, res) => {
   const params = req.body
-  const { fileName, size } = params
+  const { fileName, chunkSizeList } = params
   const filePath = path.resolve(UPLOAD_DIR, fileName)
-  await mergeFileChunk(filePath, fileName, size)
+  await mergeFileChunk(filePath, fileName, chunkSizeList)
   res.send(JSON.stringify({
     code: 0,
     message: '合并切片成功'
@@ -67,9 +67,9 @@ app.post('/merge', async (req, res) => {
  * 合并切片
  * @param filePath 文件路径
  * @param fileName 文件名
- * @param size 文件大小
+ * @param chunkSizeList 存放切片文件大小的数组
  */
-async function mergeFileChunk(filePath, fileName, size) {
+async function mergeFileChunk(filePath, fileName, chunkSizeList) {
   const chunkDir = path.resolve(UPLOAD_DIR, `${fileName}-chunks`)
 
   // 读取切片目录内容
@@ -81,8 +81,8 @@ async function mergeFileChunk(filePath, fileName, size) {
       path.resolve(chunkDir, chunkPath),
       // 在指定的位置创建可写流
       fse.createWriteStream(filePath, {
-        start: index * size,
-        end: (index + 1) * size
+        start: chunkSizeList[0] * index,
+        end: index === 0 ? chunkSizeList[index] : chunkSizeList[index - 1] + chunkSizeList[index]
       })
     )
   })

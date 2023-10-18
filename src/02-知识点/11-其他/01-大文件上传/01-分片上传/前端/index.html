@@ -21,9 +21,12 @@
     let files = {}
     // 存放切片的数组
     let chunkList = []
+    // 存放切片文件大小的数组
+    let chunkSizeList = []
 
     // 获取上传的文件信息
     input.addEventListener('change', (e) => {
+      chunkSizeList = []
       files = e.target.files[0]
 
       // 切片
@@ -62,6 +65,7 @@
      */
     function initChunkList(chunkList) {
       const chunkDataList = chunkList.map(({ file }, index) => {
+        chunkSizeList.push(file.size)
         return {
           file,
           size: file.size,
@@ -124,7 +128,7 @@
         method: 'post',
         url: 'http://localhost:3000/merge',
         data: {
-          size: files.size,
+          chunkSizeList,
           fileName: files.name
         }
       })
