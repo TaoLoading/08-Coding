@@ -11,7 +11,7 @@
 <body>
   <input type="file" id="input">
   <button id="upload">开始上传</button>
-  <div style="width: 300px" id="progress"></div>
+  <div style="width: 500px" id="uploadResult"></div>
 
   <script>
     const input = document.getElementById('input')
@@ -56,7 +56,7 @@
     }
 
     /**
-     * 整理文件。将每个切片信息转换为包含文件特征信息的对象，并转换为FormData对象用来发送请求
+     * 整理文件。将每个切片信息转换为包含文件特征信息的对象，并转换为FormData对象用于发送请求
      * @param chunkList 切片数组
      * @returns 包含文件特征信息切片数组
      */
@@ -92,21 +92,42 @@
      * @param chunkList 包含文件特征信息切片数组
      */
     async function uploadFile(chunkList) {
-      chunkList.map(({ formData, index }) => sendRequest({
+      // 标识，用于标记切片文件是否全部上传成功
+      let flag = false
+      const uploadRes = chunkList.map(({ formData, index }) => sendRequest({
         method: 'post',
         url: 'http://localhost:3000/upload',
         data: formData
       })
         .then(res => {
-          console.log('res', res)
-          // 显示每个切片上传进度
+          // 显示每个切片上传结果
           let p = document.createElement('p')
-          p.innerHTML = `${chunkList[index].chunkName}--${res.data.message}`
-          document.getElementById('progress').appendChild(p)
+          console.log('chunkList[index]', chunkList[index])
+          p.innerHTML = `${chunkList[index].formData.get('chunkName')}--${res.data.message}`
+          document.getElementById('uploadResult').appendChild(p)
         })
       )
+
       // 保证所有的切片都已经传输完毕
-      await Promise.all(chunkList)
+      flag = await Promise.all(uploadRes)
+      if (flag) {
+        merge()
+      }
+    }
+
+    /**
+     * 合并文件
+     */
+    function merge() {
+      console.log('files.fileName', files.name)
+      sendRequest({
+        method: 'post',
+        url: 'http://localhost:3000/merge',
+        data: {
+          size: files.size,
+          fileName: files.name
+        }
+      })
     }
 
     /**
