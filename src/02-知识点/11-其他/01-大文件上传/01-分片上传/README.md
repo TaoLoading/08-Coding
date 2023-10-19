@@ -14,10 +14,11 @@
 
       ```js
       const multipart = new multiparty.Form()
-      multipart.parse(req, async (err, fields, files) => {
+      multipart.parse(req, async (err, fields, files, hash) => {
         const [file] = files.file
         const [fileName] = fields.fileName
         const [chunkName] = fields.chunkName
+        const [hash] = fields.hash
       })
       ```
 
@@ -28,8 +29,8 @@
       // 文件夹不存在，新建该文件夹
       if (!fse.existsSync(chunkDir)) {
         await fse.mkdirs(chunkDir)
-      } else if (fse.existsSync(`${chunkDir}/${chunkName}`)) {
-        // 切片文件存在时，不做处理
+      } else if (hashArr.indexOf(hash) !== -1) {
+        // hash 值相同则切片文件存在，不做处理
         return res.send(JSON.stringify({
           code: 0,
           message: '切片上传成功'
@@ -81,6 +82,9 @@
         // 读取切片目录内容
         let chunkPaths = await fse.readdir(chunkDir)
         chunkPaths.sort((a, b) => a.split('-')[1] - b.split('-')[1])
+      
+        // 清空记录的 hash 值
+        hashArr = []
       
         const arr = chunkPaths.map((chunkPath, index) => {
           return pipeStream(

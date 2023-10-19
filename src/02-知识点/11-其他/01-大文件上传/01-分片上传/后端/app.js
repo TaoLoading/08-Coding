@@ -17,6 +17,9 @@ app.use(express.urlencoded({ extended: true }))
 // 获取根目录下 largeFileUpload 文件夹的路径，用于下文存放切片
 const UPLOAD_DIR = path.resolve(__dirname, '.', 'largeFileUpload')
 
+// 用于存放文件 hash 值的数组
+let hashArr = []
+
 // 上传
 app.post('/upload', (req, res) => {
   // 解析 FormData 对象
@@ -29,13 +32,14 @@ app.post('/upload', (req, res) => {
     const [file] = files.file
     const [fileName] = fields.fileName
     const [chunkName] = fields.chunkName
+    const [hash] = fields.hash
 
     const chunkDir = path.resolve(UPLOAD_DIR, `${fileName}-chunks`)
     // 文件夹不存在，新建该文件夹
     if (!fse.existsSync(chunkDir)) {
       await fse.mkdirs(chunkDir)
-    } else if (fse.existsSync(`${chunkDir}/${chunkName}`)) {
-      // 切片文件存在时，不做处理
+    } else if (hashArr.indexOf(hash) !== -1) {
+      // hash 值相同则切片文件存在，不做处理
       return res.send(JSON.stringify({
         code: 0,
         message: '切片上传成功'
@@ -44,6 +48,7 @@ app.post('/upload', (req, res) => {
 
     // 把切片移动进 chunkDir
     await fse.move(file.path, `${chunkDir}/${chunkName}`)
+    hashArr.push(hash)
     res.send(JSON.stringify({
       code: 0,
       message: '切片上传成功'
@@ -75,6 +80,9 @@ async function mergeFileChunk(filePath, fileName, chunkSizeList) {
   // 读取切片目录内容
   let chunkPaths = await fse.readdir(chunkDir)
   chunkPaths.sort((a, b) => a.split('-')[1] - b.split('-')[1])
+
+  // 清空记录的 hash 值
+  hashArr = []
 
   const arr = chunkPaths.map((chunkPath, index) => {
     return pipeStream(
