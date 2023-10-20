@@ -12,7 +12,6 @@ for (const key in obj) {
 }
 console.timeEnd()
 
-
 // keys() + forEach
 console.time()
 console.log('keys() + forEach')
