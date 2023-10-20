@@ -5,7 +5,7 @@
  *       3. 抛弃对象的 constructor，将对象的构造函数变为 Object，存在循环引用时出错
  *       4. 对于大型数据结构，序列化和反序列化操作可能会带来性能问题
  */
-const deepClone1 = (target) => {
+const deepClone1 = target => {
   return JSON.parse(JSON.stringify(target))
 }
 
@@ -14,7 +14,7 @@ const deepClone1 = (target) => {
  * 思路：获取源数组中的元素向新数组中依次添加
  * 缺点：1. 抛弃对象的 constructor，将对象的构造函数变为 Object，存在循环引用时出错
  */
-const deepClone2 = (target) => {
+const deepClone2 = target => {
   if (target instanceof Array || target instanceof Object) {
     if (typeof target === 'function') {
       // 当值为函数时直接返回
