@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Worker</title>
+</head>
+
+<body>
+  <button onclick="startWorker()">开启</button>
+  <button onclick="stopWorker()">关闭</button>
+  <br />
+  <output id="result"></output>
+
+  <script>
+    let worker
+
+    const startWorker = () => {
+      if (typeof (Worker) !== 'undefined') {
+        if (typeof (worker) == 'undefined') {
+          worker = new Worker('worker.js')
+
+          // 接收 worker 线程发送回来的数据
+          worker.onmessage = function (e) {
+            document.getElementById('result').innerText = '接收到的数据：' + e.data
+          }
+
+          // 监听 worker 线程错误事件
+          worker.onerror = function (error) {
+            console.error('发生错误：' + error.message)
+          }
+        }
+
+        // 发送数据到 worker 线程
+        worker.postMessage(1000000000)
+      } else {
+        document.getElementById('result').innerText = '当前浏览器不支持 Web Worker'
+      }
+    }
+
+    // 主线程中关闭 worker
+    const stopWorker = () => {
+      worker.terminate()
+      worker = undefined
+    }
+  </script>
+</body>
+
+</html>
