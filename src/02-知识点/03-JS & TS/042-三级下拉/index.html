@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>三级下拉</title>
+</head>
+
+<body>
+  <select id="level1" onchange="populateLevel2()">
+    <option value="">请选择一级选项</option>
+    <option value="option1">选项 1</option>
+    <option value="option2">选项 2</option>
+    <option value="option3">选项 3</option>
+  </select>
+
+  <select id="level2" onchange="populateLevel3()">
+    <option value="">请选择二级选项</option>
+  </select>
+
+  <select id="level3">
+    <option value="">请选择三级选项</option>
+  </select>
+
+  <script>
+    const level1Select = document.getElementById('level1')
+    const level2Select = document.getElementById('level2')
+    const level3Select = document.getElementById('level3')
+
+    const level2Options = {
+      option1: ['选项 1-1', '选项 1-2', '选项 1-3'],
+      option2: ['选项 2-1', '选项 2-2', '选项 2-3'],
+      option3: ['选项 3-1', '选项 3-2', '选项 3-3']
+    }
+
+    const level3Options = {
+      '选项 1-1': ['选项 1-1-1', '选项 1-1-2', '选项 1-1-3'],
+      '选项 1-2': ['选项 1-2-1', '选项 1-2-2', '选项 1-2-3'],
+      '选项 1-3': ['选项 1-3-1', '选项 1-3-2', '选项 1-3-3'],
+      '选项 2-1': ['选项 2-1-1', '选项 2-1-2', '选项 2-1-3'],
+      '选项 2-2': ['选项 2-2-1', '选项 2-2-2', '选项 2-2-3'],
+      '选项 2-3': ['选项 2-3-1', '选项 2-3-2', '选项 2-3-3'],
+      '选项 3-1': ['选项 3-1-1', '选项 3-1-2', '选项 3-1-3'],
+      '选项 3-2': ['选项 3-2-1', '选项 3-2-2', '选项 3-2-3'],
+      '选项 3-3': ['选项 3-3-1', '选项 3-3-2', '选项 3-3-3']
+    }
+
+    function populateLevel2() {
+      const level1Value = level1Select.value
+      level2Select.innerHTML = '<option value="">请选择二级选项</option>'
+      level3Select.innerHTML = '<option value="">请选择三级选项</option>'
+
+      if (level1Value !== '') {
+        const level2OptionValues = level2Options[level1Value]
+        for (let i = 0; i < level2OptionValues.length; i++) {
+          let option = document.createElement('option')
+          option.value = level2OptionValues[i]
+          option.text = level2OptionValues[i]
+          level2Select.appendChild(option)
+        }
+      }
+    }
+
+    function populateLevel3() {
+      const level2Value = level2Select.value
+      level3Select.innerHTML = '<option value="">请选择三级选项</option>'
+
+      if (level2Value !== '') {
+        const level3OptionValues = level3Options[level2Value]
+        for (let i = 0; i < level3OptionValues.length; i++) {
+          let option = document.createElement('option')
+          option.value = level3OptionValues[i]
+          option.text = level3OptionValues[i]
+          level3Select.appendChild(option)
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>
