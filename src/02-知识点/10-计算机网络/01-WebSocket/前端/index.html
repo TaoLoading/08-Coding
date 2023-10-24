@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Websocket</title>
+</head>
+
+<body>
+  <script>
+    // 创建 WebSocket 连接
+    const socket = new WebSocket('ws://localhost:3000')
+
+    // 成功建立连接时的回调函数
+    socket.onopen = function () {
+      console.log('WebSocket 连接已建立')
+
+      // 向服务器发送消息
+      socket.send('Hello, Server!')
+    }
+
+    // 接收到服务器消息时的回调函数
+    socket.onmessage = function (event) {
+      console.log('接收到服务器消息：', event.data)
+    }
+
+    // 连接关闭时的回调函数
+    socket.onclose = function () {
+      console.log('WebSocket 连接已关闭')
+    }
+  </script>
+</body>
+
+</html>
