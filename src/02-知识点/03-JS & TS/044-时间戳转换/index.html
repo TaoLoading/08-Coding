@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>时间戳转换</title>
+  <script src="https://unpkg.com/dayjs"></script>
+</head>
+
+<body>
+  <script>
+    // 原生
+    const timestamp1 = 1627481600000
+    const date1 = new Date(timestamp1)
+    const formattedDate1 = date1.toLocaleString()
+    console.log(formattedDate1)
+
+    // dayjs
+    const timestamp2 = 1627481600000
+    const date2 = dayjs(timestamp2)
+    const formattedDate2 = date2.format('YYYY/MM/DD HH:mm:ss')
+    console.log(formattedDate2)
+  </script>
+</body>
+
+</html>
