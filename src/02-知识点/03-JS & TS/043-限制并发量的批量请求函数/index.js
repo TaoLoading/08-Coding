@@ -1,5 +1,7 @@
 /**
  * 限制并发量的批量请求函数
+ * 思路：发送请求后将返回的 promise 放到数组，
+ *       数组长度超过限制并发数时等到数组中的 promise 完毕后再执行新请求
  * @param {*} urls 请求地址
  * @param {*} maxConcurrent 最大并发请求数
  * @returns
