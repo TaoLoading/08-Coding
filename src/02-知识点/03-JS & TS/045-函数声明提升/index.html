@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>函数变量提升</title>
+</head>
+
+<body>
+  <script>
+    /**
+     * 如下代码输出：foo1、foo2、foo2、foo2
+     * 
+     * 前两个简单不再赘述，第三个打印 foo2 的原因：
+     * 函数声明会在任何代码执行之前先被读取并添加到执行上下文，此时第四个函数覆盖了第三个函数的声明，故打印 foo1
+     */
+
+    var foo = function () {
+      console.log('foo1')
+    }
+    foo()
+
+    var foo = function () {
+      console.log('foo2')
+    }
+    foo()
+
+
+    function foo() {
+      console.log('foo1')
+    }
+    foo()
+
+    function foo() {
+      console.log('foo2')
+    }
+    foo()
+  </script>
+</body>
+
+</html>
