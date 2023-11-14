@@ -2,7 +2,7 @@
 
 ## Vue2（12 种）
 
-### props
+### 1.props
 
 1. 方向：父向子
 
@@ -36,7 +36,7 @@
    </script>
    ```
 
-### $emit / v-on
+### 2.$emit / v-on
 
 1. 方向：子向父
 
@@ -98,7 +98,7 @@
    </script>
    ```
 
-### EventBus（事件总线）
+### 3.EventBus（事件总线）
 
 1. 方向：任意组件
 
@@ -167,7 +167,7 @@
 
 5. 注意：在组件销毁前要取消监听，防止内存泄漏、
 
-### slot（插槽）
+### 4.slot（插槽）
 
 1. 方向：父向子
 
@@ -202,13 +202,13 @@
    </template>
    ```
 
-### Vuex
+### 5.Vuex
 
 1. 方向：任意组件
 2. 原理：Vuex 是专门为 Vue.js 应用程序开发的状态管理工具
 3. 方法：见 "002-状态管理工具（Vuex & Pinia）"
 
-### ref
+### 6.ref
 
 1. 方向：父向子
 
@@ -235,7 +235,7 @@
    </script>
    ```
 
-### provide / inject
+### 7.provide / inject
 
 1. 方向：父组件向子孙组件
 
@@ -285,7 +285,7 @@
    ```
 
 
-### $children / $parent
+### 8.$children / $parent
 
 1. 方向：
 
@@ -342,7 +342,7 @@
 
 
 
-### $attrs / $listeners
+### 9.$attrs / $listeners
 
 1. 方向：父组件向子孙组件
 
@@ -394,7 +394,7 @@
    </script>
    ```
 
-### .sync
+### 10..sync
 
 1. 方向：父向子
 
@@ -447,7 +447,7 @@
    </script>
    ```
 
-### v-model
+### 11.v-model
 
 1. 方向：父向子
 
@@ -493,7 +493,7 @@
    </script>
    ```
 
-### $root
+### 12.$root
 
 1. 方向：子向根
 2. 原理：$root 可以访问到根组件 App.vue 的实例
@@ -501,7 +501,7 @@
 
 ## Vue3
 
-### props
+### 1.props
 
 与 Vue2 类似，只是子组件接收的写法上有区别：
 
@@ -519,7 +519,7 @@ const props = defineProps({
 </script>
 ```
 
-### $emit / v-on
+### 2.$emit / v-on
 
 1. 与 Vue2 类似，只是子组件声明事件的写法上有区别：
 
@@ -549,7 +549,7 @@ const props = defineProps({
    </script>
    ```
 
-### mitt
+### 3.mitt
 
 1. 方向：任意组件
 
@@ -563,7 +563,7 @@ const props = defineProps({
 3. 代码：
 
    ```vue
-   <!-- 发送事件的组件 -->
+   <!-- 发布事件的组件 -->
    <template>
      <button @click="sendMessage">Send Message</button>
    </template>
@@ -581,7 +581,7 @@ const props = defineProps({
    ```
 
    ```vue
-   <!-- 发送事件的组件 -->
+   <!-- 监听事件的组件 -->
    <template>
      <div>
        <p>Message received: {{ message }}</p>
@@ -605,11 +605,11 @@ const props = defineProps({
    </script>
    ```
 
-### slot（插槽）
+### 4.slot（插槽）
 
 与 Vue2 一致
 
-### expose / ref
+### 5.expose / ref
 
 1. 方向：子向父
 
@@ -650,7 +650,7 @@ const props = defineProps({
    </script>
    ```
 
-### provide / inject
+### 6.provide / inject
 
 1. 与 Vue2 一致
 
@@ -674,12 +674,12 @@ const props = defineProps({
    </script>
    ```
 
-### Vuex / Pinia
+### 7.Vuex / Pinia
 
 1. 方向：任意组件
 2. 原理：状态管理工具
 3. 方法：见 "002-状态管理工具（Vuex & Pinia）"
 
-### v-model
+### 8.v-model
 
 与 Vue2 一致

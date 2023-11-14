@@ -59,9 +59,9 @@
 
    2. 修改数据
 
-      1. 单条数据修改直接使用 store.属性名 的形式
+      1. 单条数据修改直接使用`store.属性名`的形式
 
-      2. 多条数据修改使用 $patch
+      2. 多条数据修改使用`$patch`
    
          ```js
          // 方式 1
@@ -94,13 +94,13 @@
    
       4. 除 $patch 外，还有以下方法：
    
-         1. $reset 重置状态，将状态重置成为初始值
+         1. `$reset`：重置状态，将状态重置成为初始值
    
             ```js
             store.$reset()
             ```
    
-         2. $state 通过将其 state 属性设置为新对象来替换 Store 的整个状态
+         2. `$patch`：通过将其 state 属性设置为新对象来替换 Store 的整个状态
    
             ```js
             store.$patch({
@@ -109,7 +109,7 @@
             })
             ```
    
-         3. $subscribe 订阅 store 中的状态变化
+         3. `$subscribe`：订阅 store 中的状态变化
    
             ```js
             store.$subscribe((mutation, state) => {
