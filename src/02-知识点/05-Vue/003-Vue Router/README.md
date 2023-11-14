@@ -2,7 +2,7 @@
 
 ## 基础使用
 
-### 第一步：注册路由
+### 第一步：声明路由
 
 知识点：
 
@@ -46,13 +46,10 @@ export default router
 
 ```js
 import { createApp } from 'vue'
-import ArcoVue from '@arco-design/web-vue'
-import '@arco-design/web-vue/dist/arco.css'
 import App from './App.vue'
 import router from './router/index'
 
 const app = createApp(App)
-app.use(ArcoVue)
 app.use(router)
 app.mount('#app')
 ```
@@ -82,7 +79,7 @@ const routes = [
 
 ### 读取参数
 
-使用$route.params 读取动态路由参数
+使用`$route.params(Vue2)`或`route.params(Vue3)`读取动态路由参数
 
 ## 路由跳转
 
@@ -90,15 +87,17 @@ const routes = [
 
 ```vue
 <router-link to="/home">Home</router-link>
-<router-link :to="{name:'home', params:{id:1}"></router-link>
+<router-link :to="{name:'home', params:{id:1}}"></router-link>
 ```
 
 ### 编程式导航
 
 ```js
-this.$router.push('/home')
+const router = useRouter()
+
+router.push('/home')
 // 替换当前路由。相较 push，replace 不会将当前路由记录放到历史记录中，意味着不能使用浏览器的后退键返回之前的路由
-this.$router.replace('/about')
+router.replace('/about')
 ```
 
 ## 路由传参
@@ -112,7 +111,7 @@ this.$router.replace('/about')
    <router-link :to="{ name: 'user', params: { userId: '123' }}">User</router-link>
    
    // 编程式
-   this.$router.push({ name: 'user', params: { userId: '123' }})
+   router.push({ name: 'user', params: { userId: '123' }})
    ```
 
 2. query 参数。参数会显示在地址栏内，传参形式：
@@ -123,7 +122,7 @@ this.$router.replace('/about')
    <router-link :to="{path:'/home/?id=1'}"></router-link>
    
    // 编程式
-   this.$router.push({ path: '/user', query: { userId: '123' }})
+   router.push({ path: '/user', query: { userId: '123' }})
    ```
 
 注：还可使用 props 进行传参，但使用度极低，故略过
@@ -131,11 +130,13 @@ this.$router.replace('/about')
 ### 读取参数
 
 ```js
+const route = useRoute()
+
 // params 参数
-this.$route.params.xxx
+route.params.xxx
 
 // query 参数
-this.$route.query.xxx
+route.query.xxx
 ```
 
 ## $route 和 $router
@@ -175,17 +176,17 @@ router.push('/')
 ### 区别
 
 1. hash 路由在 url 有"#"，如`https://example.com/#/about`，而 history 路由中没有
-2. hash 路由兼容性更好，因为 history 路由需要 history.pushState API（HTML5）支持，并且 history 需要配置服务器来匹配路由
+2. hash 路由兼容性更好，因为 history 路由需要 `history.pushState` （HTML5 API）支持，并且 history 需要配置服务器来匹配路由
 
 ### 设置
 
 1. 3.x 版本
 
    ```js
-   // history 模式。默认   
-   mode: 'history'
-   
    // hash 模式
+   mode: 'hash'
+   
+   // history 模式。默认
    mode: 'history'
    ```
 
@@ -257,8 +258,6 @@ hash 部分（#和#之后的参数）不会被发送到服务器
      next()
    })
    ```
-
-   
 
 2. 路由独享的守卫
 
