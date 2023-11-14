@@ -79,7 +79,7 @@ const routes = [
 
 ### 读取参数
 
-使用`$route.params(Vue2)`或`route.params(Vue3)`读取动态路由参数
+使用`route.query`读取动态路由参数
 
 ## 路由跳转
 
