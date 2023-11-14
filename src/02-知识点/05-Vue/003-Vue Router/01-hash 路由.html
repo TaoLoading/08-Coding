@@ -19,31 +19,31 @@
   <div id="app"></div>
 
   <script>
+    /**
+     * 实现思路：
+     * 1. 对跳转链接设置为 #xxx，实现点击链接时修改 hash 值
+     * 2. 监听浏览器的 hashchange 事件，当 hash 值发生变化时渲染对应的页面
+     */
+
     // 路由内容
     const routeContent = {
-      '/home': '<h1>Home Page</h1>',
-      '/about': '<h1>About Page</h1>',
-      '/contact': '<h1>Contact Page</h1>'
+      'home': '<h1>Home Page</h1>',
+      'about': '<h1>About Page</h1>',
+      'contact': '<h1>Contact Page</h1>'
     }
 
-    // 1. 点击跳转修改 hash
-    function navigateTo(route) {
-      window.location.hash = route
+    // 1. 根据 hash 渲染页面
+    function renderPage() {
+      const route = window.location.hash.substring(1)
+      const content = routeContent[route] || '<h1>首页</h1>'
+      document.getElementById('app').innerHTML = content
     }
 
     // 2. 监听 hash 变化
     window.addEventListener('hashchange', renderPage)
 
-    // 3. 根据 hash 渲染页面
-    function renderPage() {
-      const route = window.location.hash.substring(1)
-      const content = routeContent[route] || '<h1>首页</h1>'
-      document.getElementById('app').innerHTML = route
-    }
-
     // 初始化页面
-    const initialRoute = 'home'
-    navigateTo(initialRoute)
+    renderPage()
   </script>
 </body>
 

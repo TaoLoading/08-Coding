@@ -23,7 +23,7 @@ Vue 组件从创建到销毁的过程叫做 Vue 的生命周期
 | -             | renderTriggered                             | 调试钩子，响应式依赖被触发时调用         |
 | -             | serverPrefetch                              | ssr only，组件实例在服务器上被渲染前调用 |
 
-## Vue2 与 Vue3生命周期钩子变化对比
+## Vue2 与 Vue3 生命周期钩子变化对比
 
 1. beforeCreate -> use setup()
 2. created() -> use setup()
@@ -37,7 +37,7 @@ Vue 组件从创建到销毁的过程叫做 Vue 的生命周期
 
 ## 结合实践
 
-1. beforeCreate：通常用于插件开发中执行一些初始化任务
+1. beforeCreate：用于组件开发中执行一些初始化任务
 2. created：组件初始化完毕，可以获取不与 DOM 交互的数据
 3. mounted：DOM 已创建，可以获取数据和 DOM 元素；访问子组件等
 4. beforeUpdate：此时 view 层还未更新，可用于获取更新前各种状态
