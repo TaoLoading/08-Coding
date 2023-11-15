@@ -8,13 +8,21 @@
 ## 实现思路
 
 1. hash 路由
+
    1. 对跳转链接设置为 `#xxx`，实现点击链接时修改 hash 值
    2. 监听浏览器的 `hashchange` 事件，当 hash 值发生变化时渲染对应的页面
+
 2. history 路由
+
    1. 对跳转链接设置为 `/xxx`，实现点击链接时修改路由部分
-   2. 对每个链接增加点击事件，点击时阻止其默认事件并使用 `pushState` 修改历史记录
-   3. 监听浏览器的 `popstate` 事件，当历史记录发生变化时渲染对应的页面
-   4. **注意**：history.pushState() 和 history.replaceState() 并不会触发 popstate 事件，而是在由 history.pushState() 或者 history.replaceState() 形成的历史节点中前进后退触发
+
+   2. 对每个链接增加点击事件，点击时阻止其默认事件并使用 `pushState` 修改 `pathname`
+
+   3. 根据 `pathname` 渲染页面
+
+   4. 监听浏览器的 `popstate` 事件，当历史记录发生变化时渲染对应的页面
+
+      **注意**：`history.pushState()` 和 `history.replaceState()` 并不会触发 `popstate` 事件，而是在由 `history.pushState()` 或者 `history.replaceState()` 形成的历史节点中前进后退触发
 
 
 ## 优缺点

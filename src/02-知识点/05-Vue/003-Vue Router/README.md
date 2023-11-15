@@ -293,9 +293,22 @@ hash 部分（#和#之后的参数）不会被发送到服务器
 
 ### 思路
 
-1. 借助 hash 或者 history api 实现 url 跳转页面不刷新
-2. 监听 hashchange 事件或者 popstate 事件处理跳转
-3. 根据 hash 值或者 history 路由值渲染对应的组件
+1. hash 路由
+
+   1. 对跳转链接设置为 `#xxx`，实现点击链接时修改 hash 值
+   2. 监听浏览器的 `hashchange` 事件，当 hash 值发生变化时渲染对应的页面
+
+2. history 路由
+
+   1. 对跳转链接设置为 `/xxx`，实现点击链接时修改路由部分
+
+   2. 对每个链接增加点击事件，点击时阻止其默认事件并使用 `pushState` 修改 `pathname`
+
+   3. 根据 `pathname` 渲染页面
+
+   4. 监听浏览器的 `popstate` 事件，当历史记录发生变化时渲染对应的页面
+
+      **注意**：`history.pushState()` 和 `history.replaceState()` 并不会触发 `popstate` 事件，而是在由 `history.pushState()` 或者 `history.replaceState()` 形成的历史节点中前进后退触发
 
 ### 实现
 

@@ -22,9 +22,9 @@
     /**
      * 实现思路：
      * 1. 对跳转链接设置为 /xxx，实现点击链接时修改路由部分
-     * 2. 对每个链接增加点击事件，点击时阻止其默认事件并使用 pushState 修改历史记录，
-     *    并根据历史记录渲染页面
-     * 3. 监听浏览器的 popstate 事件，当历史记录发生变化时渲染对应的页面
+     * 2. 对每个链接增加点击事件，点击时阻止其默认事件并使用 pushState 修改 pathname
+     * 3. 根据 pathname 渲染页面
+     * 4. 监听浏览器的 popstate 事件，当历史记录发生变化时渲染对应的页面
      * 
      * 注意：history.pushState() 和 history.replaceState() 并不会触发 popstate 事件，
      *       而是在由 history.pushState() 或者 history.replaceState() 形成的历史节点中前进后退触发
@@ -42,6 +42,7 @@
       event.preventDefault()
       const path = link.getAttribute('href')
       window.history.pushState(event.state, '', path)
+      renderPage()
     }
 
     // 2. 监听导航链接点击事件
@@ -59,9 +60,7 @@
     }
 
     // 4. 监听浏览器历史记录变化
-    window.addEventListener('popstate', function () {
-      renderPage()
-    })
+    window.addEventListener('popstate', renderPage)
 
     // 初始化页面
     renderPage()
