@@ -8,9 +8,6 @@
 </head>
 
 <body>
-  <div id="app">
-  </div>
-
   <script src="https://unpkg.com/vue@next"></script>
   <script>
     const { createApp, reactive, toRaw, ref } = Vue
@@ -18,11 +15,10 @@
     const app = createApp({
       setup() {
         const data = reactive({ name: 'TaoLoading' })
-        // const data = { name: 'TaoLoading' }
         const newData = toRaw(data)
 
         console.log('data', data) // 响应式对象
-        console.log('newData', newData) // { name: 'TaoLoading' }
+        console.log('newData', newData) // 原始对象：{ name: 'TaoLoading' }
       }
     })
     app.mount('#app')
