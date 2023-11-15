@@ -17,6 +17,11 @@
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
+    /**
+     * vm：监听的 Vue 示例对象
+     * key：监听的具体属性
+     * handler：执行的相关方法
+     */
     function myWatch(vm, key, handler) {
       // 获取初始值
       let value = vm[key]
