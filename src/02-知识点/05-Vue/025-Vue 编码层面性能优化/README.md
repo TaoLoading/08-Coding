@@ -22,9 +22,9 @@
    </router-view>
    ```
 
-4. 使用 v-show 而非 v-if：避免重复创建 DOM
+4. 避免 v-if 和 v-for 同时使用
 
-5. 避免 v-if 和 v-for 同时使用
+5. 合理使用 v-show 和 v-if
 
 6. 合理使用 v-once 和 v-memo
 
