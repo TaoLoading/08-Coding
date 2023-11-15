@@ -23,14 +23,14 @@
 ```vue
 <template>
   <div>
-    <button ref="myButton">DOM</button>
+    <p ref="paragraph">This is a paragraph.</p>
   </div>
 </template>
 
 <script>
 export default {
-  // ...
-  const buttonElement = this.$refs.myButton
+  ...
+  const paragraphElement = this.$refs.paragraph
 }
 </script>
 ```
@@ -39,14 +39,11 @@ export default {
 
 ```vue
 <template>
-  <div>
-    <button ref="myButton">DOM</button>
-  </div>
+  <p ref="paragraph">This is a paragraph.</p>
 </template>
 
 <script setup lang="ts">
-import { ref  } from 'vue'
-
-const myButton = ref(null)
+  const paragraphElement = ref<HTMLElement | null>(null)
+  paragraphElement.value
 </script>
 ```
