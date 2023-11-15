@@ -66,14 +66,14 @@
          ```js
          // 方式 1
          store.$patch({
-          msg: 'hello',
-          count: store.count + 1
+           msg: 'hello',
+           count: store.count + 1
          })
          
          // 方式 2
          store.$patch(state => {
-          state.msg = 'hello'
-          state.count++
+           state.msg = 'hello'
+           state.count++
          })
          ```
 
