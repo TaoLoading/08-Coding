@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>作用域插槽</title>
+</head>
+
+<body>
+  <div id="app">
+    <table-component :data="tableData" :columns="columns">
+      <template v-slot:default="{ row, column, value }">
+        <span v-if="column.type === 'date'">{{ new Date(value).toLocaleDateString() }}</span>
+        <span v-else>{{ value }}</span>
+      </template>
+    </table-component>
+  </div>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    const { createApp, defineComponent } = Vue
+
+    const TableComponent = defineComponent({
+      props: {
+        data: Array,
+        columns: Array
+      },
+      template: `
+        <table>
+          <tr>
+            <th v-for="column in columns" :key="column.field">
+              {{ column.title }}
+            </th>
+          </tr>
+          <tr v-for="row in data" :key="row.id">
+            <td v-for="column in columns" :key="column.field">
+              <slot :row="row" :column="column" :value="row[column.field]">{{ row[column.field] }}</slot>
+            </td>
+          </tr>
+        </table>
+      `
+    })
+
+    createApp({
+      components: {
+        TableComponent
+      },
+      data() {
+        return {
+          tableData: [
+            { id: 1, name: 'John', date: '2023-01-01' },
+            { id: 2, name: 'Jane', date: '2023-01-02' }
+          ],
+          columns: [
+            { title: 'Name', field: 'name' },
+            { title: 'Date', field: 'date', type: 'date' }
+          ]
+        }
+      }
+    }).mount('#app')
+  </script>
+</body>
+
+</html>
