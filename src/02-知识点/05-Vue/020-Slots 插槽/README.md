@@ -52,11 +52,11 @@
 ```vue
 <template>
   <child-component>
-    <template v-slot:header>
+    <template #header>
       这是头部内容
     </template>
 
-    <template v-slot:footer>
+    <template #footer>
       这是底部内容
     </template>
   </child-component>
@@ -94,8 +94,8 @@ export default {
 ```vue
 <template>
   <ChildComponent>
-    <!-- 使用作用域插槽 -->
-    <template v-slot:default="slotProps">
+    <!-- 使用作用域插槽。default 是默认插槽名，此处还可简写为：#="slotProps"-->
+    <template #default="slotProps">
       <!-- slotProps 是一个对象，包含子组件传递的数据 -->
       {{ slotProps.scopedData }}
     </template>
