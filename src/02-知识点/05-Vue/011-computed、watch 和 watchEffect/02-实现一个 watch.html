@@ -18,23 +18,34 @@
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script>
     /**
+     * 实现思路：
+     * 1. 获取初始值
+     * 2. 监听该值操作
+     *    2.1 getter 读取值
+     *    2.2 setter 操作值。当值发生改变时进行操作
+     *        2.2.1 调用传入的函数，改写 this 指向并传入新旧值
+     *        2.2.2 更新值
+     *        2.2.3 手动触发 Vue 的更新
+     */
+
+    /**
      * vm：监听的 Vue 示例对象
      * key：监听的具体属性
      * handler：执行的相关方法
      */
     function myWatch(vm, key, handler) {
       // 获取初始值
-      let value = vm[key]
+      let currentValue = vm[key]
       Object.defineProperty(vm, key, {
         get() {
-          return value
+          return currentValue
         },
         set(newValue) {
-          if (value !== newValue) {
+          if (currentValue !== newValue) {
             // 调用回调函数，并将新值和旧值作为参数传递
-            handler.call(vm, newValue, value)
+            handler.call(vm, newValue, currentValue)
             // 更新值
-            value = newValue
+            currentValue = newValue
             // 手动触发 Vue 的更新
             vm.$forceUpdate()
           }

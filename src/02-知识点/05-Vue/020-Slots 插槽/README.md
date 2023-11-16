@@ -17,7 +17,6 @@
     <slot></slot>
   </div>
 </template>
-
 ```
 
 父组件：
@@ -44,7 +43,6 @@
     <slot name="footer"></slot>
   </div>
 </template>
-
 ```
 
 父组件：
@@ -61,7 +59,6 @@
     </template>
   </child-component>
 </template>
-
 ```
 
 ### 作用域插槽
