@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>太极</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    div {
+      width: 200px;
+      height: 400px;
+      margin: 100px auto;
+      background-color: #fff;
+      /* 通过设置边框完成一半黑色 */
+      border-left: 200px solid #000;
+      border-radius: 50%;
+    }
+
+    /* 通过给小圆点添加边框完成太极图案 */
+    div::before,
+    div::after {
+      content: "";
+      display: block;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #fff;
+      border: 75px solid #000;
+      margin-left: -100px;
+    }
+
+    div::after {
+      border-color: #fff;
+      background-color: #000;
+    }
+
+    /* 旋转动画 */
+    @keyframes rotate {
+      0% {
+        transform: rotateZ(0deg);
+      }
+
+      100% {
+        transform: rotateZ(360deg);
+      }
+    }
+
+    div:hover {
+      animation: rotate 2s;
+    }
+  </style>
+</head>
+
+<body>
+  <div></div>
+</body>
+
+</html>
