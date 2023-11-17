@@ -100,11 +100,11 @@ HTTP 1.1 采用文本传输而非二进制传输，没有帧和流的概念，�
 
 ### 304 多了好还是少了好
 
-304 命中了协商缓存，所请求的资源未修改，对于页面加载速度的提升，304 有好处；但 304 同时也代表页面未更新，搜索引擎更青睐更新频繁的网站，所以对于 SEO，太多的 304 没有好处
+304 命中了协商缓存，所请求的资源未修改，对于页面加载速度的提升 304 有好处；但 304 同时也代表页面未更新，搜索引擎更青睐更新频繁的网站，所以对于 SEO 太多的 304 没有好处
 
 ### 实现 304
 
-1. 请求头中加入 If-Modified-Since 或者 If-None-Match 字段，标记资源上次修改时间
+1. 请求头中加入`If-Modified-Since`或者`If-None-Match`字段，标记资源上次修改时间
 2. 服务器端拿到后进行比对，没变则返回 304，变化则返回资源
 
 ## 7. GET 请求和 POST 请求的区别
@@ -131,5 +131,141 @@ HTTP 1.1 采用文本传输而非二进制传输，没有帧和流的概念，�
 
 ### 解决跨域
 
+1. JSONP：利用`<script>`标签的请求不受同源策略限制的特性，但只支持 get 请求
 
+   ```html
+   <script>
+     function jsonpCallback(data) {
+       console.log('Data from server: ', data)
+     }
+   </script>
+   <script src="http://example.com/data?callback=jsonpCallback"></script>
+   ```
 
+2. CORS（跨源资源共享）：在服务器端设置`Access-Control-Allow-Origin`响应头，允许来自不同源的请求
+
+   ```js
+   // 以 node.js 为例
+   const express = require('express')
+   const app = express()
+   
+   app.use((req, res, next) => {
+       res.header('Access-Control-Allow-Origin', '*')
+       res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+       next()
+   })
+   ```
+
+3. 代理服务器（devServer、nginx）
+
+4. postMessage 跨标签通信
+
+   ```js
+   // 页面 A
+   window.onload = function() {
+     const win = window.open('http://example.com/pageB', 'pageB')
+     win.postMessage('Hello from Page A!', 'http://example.com') // 发送消息语法：targetWindow.postMessage(message, targetOrigin)
+   }
+   
+   // 页面 B
+   window.addEventListener('message', function(event) {
+     console.log('Message received:', event.data) // 接收消息语法：event.data
+     // 可以回复消息
+     event.source.postMessage('Hello from Page B!', event.origin)
+   }, false)
+   ```
+
+## 10. 请求与响应
+
+### 请求头
+
+请求头包含了关于请求的元数据，如客户端信息、所需内容类型、认证信息等。。常见的请求头包括`Content-Type`（请求体的媒体类型）、`Accept`（客户端可接受的响应媒体类型）、`Authorization`（认证信息）等
+
+```apache
+GET /path/file.html HTTP/1.1
+Host: www.example.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+```
+
+### 请求体
+
+请求体包含了发送给服务器的数据。在 GET 请求中通常为空，而在 POST、PUT 等请求中用于携带数据
+
+```js
+{
+  "username": "username",
+  "password": "password"
+}
+```
+
+### 响应头
+
+响应头包含了服务器对请求的响应的元数据，如响应的状态码、内容类型、服务器信息等。常见的响应头有`Content-Type`（响应体的媒体类型）、`Content-Length`（响应体的长度）等
+
+```apache
+HTTP/1.1 200 OK
+Date: Mon, 23 May 2005 22:38:34 GMT
+Server: Apache/1.3.3.7 (Unix) (Red-Hat/Linux)
+Last-Modified: Wed, 08 Jan 2003 23:11:55 GMT
+Content-Type: text/html; charset=UTF-8
+Content-Length: 131
+Connection: close
+```
+
+### 响应体
+
+响应体是服务器返回的实际数据。这可能是 HTML 文档、JSON 对象、二进制文件等
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Example Page</title>
+</head>
+<body>
+    <h1>Hello, World!</h1>
+</body>
+</html>
+```
+
+## 11. CDN 原理
+
+CDN（内容分发网络，Content Delivery Network）的原理是基于将内容分布到多个地理位置分散的服务器上，根据网络情况和距用户的距离，将请求重新导向离用户最近的服务节点上，以加快访问速度
+
+## 12. 缓存机制
+
+浏览器缓存主要分为强缓存和协商缓存两种形式，可以减少请求次数，减轻服务器压力
+
+### 强缓存
+
+强缓存是指浏览器在缓存资源时不需要向服务器发送请求来确认资源的状态。使用`Cache-Control`实现
+
+### 协商缓存
+
+当强缓存失效后，浏览器携带缓存标识向服务器发送请求，由服务器来决定是否使用缓存
+
+### 低版本 IE 中存在的缓存问题
+
+低版本 IE 中 Ajax 存在严重缓存问题，即在请求地址不发生变化的情况下，只有第一次请求会发送到服务器，后续请求是读取这个缓存。解决办法是在请求地址后面加随机数，使得请求地址变化
+
+## 13. 五层网络模型
+
+1. 应用层：负责为网络应用软件提供服务，构建用户和网络之间的接口。包括 HTTP（网页浏览）、FTP（文件传输）、SMTP（邮件传输）等
+2. 传输层：负责提供进程与进程之间的数据传输。包括 TCP（传输控制协议，提供可靠的、面向连接的服务）和 UDP（用户数据报协议，提供无连接的服务）
+3. 网络层：负责数据包的路由选择和转发。包括 IP（互联网协议，负责寻址和路由选择）等
+4. 数据链路层：负责在相邻节点间的可靠传输。包括以太网（Ethernet）等
+5. 物理层：负责在物理媒介上实现原始比特流的传输。包括电缆、光纤、无线电波等
+
+## 14. TCP 和 UDP
+
+TCP（传输控制协议）和 UDP（用户数据报协议）是网络通信中两种非常重要的协议，它们都位于传输层。有以下区别：
+
+1. **连接方式**：TCP 是面向连接的；UDP 是无连接的
+2. **可靠性**：TCP 是可靠的，它通过确认和重传机制保证数据的正确传输；UDP 是不可靠的
+3. **头部开销**：TCP 的头部开销比 UDP 大，因为它需要更多的信息来维护可靠性和连接状态
+4. **数据传输方式**：TCP 是流式传输，数据没有明确边界；UDP 是以数据报为单位的传输，每个数据报都有明确的边界
+5. **速度和效率**：TCP 由于其可靠性机制，速度较慢；UDP 由于其轻量级和无需建立连接的特点，速度更快
