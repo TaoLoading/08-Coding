@@ -3,7 +3,7 @@ import updateChildren from './updateChildren'
 
 /**
  * 处理新老节点为同一个节点时的情况
- * 
+ *
  * @param {*} oldVnode 老节点
  * @param {*} newVnode 新节点
  */

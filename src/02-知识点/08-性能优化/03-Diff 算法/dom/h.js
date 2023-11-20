@@ -3,10 +3,10 @@ import vnode from './vnode'
 /**
  * 创建虚拟 DOM
  * 主要实现就是根据传入的参数类型，结合 vnode() 去构建虚拟 DOM 的 js 对象
- * 
+ *
  * @param {*} sel 元素选择器
  * @param {*} data 元素属性
- * @param {*} params 文字/子节点/新的h()
+ * @param {*} params 文字/子节点/新的 h()
  * @returns 虚拟 DOM
  */
 export default function h(sel, data, params) {
