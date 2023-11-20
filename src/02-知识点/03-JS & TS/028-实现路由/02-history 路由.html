@@ -37,7 +37,7 @@
       '/contact': '<h1>Contact Page</h1>'
     }
 
-    // 1. 修改浏览器历史记录
+    // 修改浏览器历史记录
     function navigateTo(event, link) {
       event.preventDefault()
       const path = link.getAttribute('href')
@@ -45,21 +45,21 @@
       renderPage()
     }
 
-    // 2. 监听导航链接点击事件
+    // 监听导航链接点击事件
     const links = document.getElementsByClassName('jumpLink')
     const linksArr = Array.from(links)
     linksArr.forEach(link => {
       link.addEventListener('click', event => navigateTo(event, link))
     })
 
-    // 3. 根据路由渲染页面
+    // 根据路由渲染页面
     function renderPage() {
       const route = window.location.pathname
       const content = routeContent[route] || '<h1>首页</h1>'
       document.getElementById('app').innerHTML = content
     }
 
-    // 4. 监听浏览器历史记录变化
+    // 监听浏览器历史记录变化
     window.addEventListener('popstate', renderPage)
 
     // 初始化页面

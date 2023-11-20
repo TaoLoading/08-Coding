@@ -32,14 +32,14 @@
       'contact': '<h1>Contact Page</h1>'
     }
 
-    // 1. 根据 hash 渲染页面
+    // 根据 hash 渲染页面
     function renderPage() {
       const route = window.location.hash.substring(1)
       const content = routeContent[route] || '<h1>首页</h1>'
       document.getElementById('app').innerHTML = content
     }
 
-    // 2. 监听 hash 变化
+    // 监听 hash 变化
     window.addEventListener('hashchange', renderPage)
 
     // 初始化页面
