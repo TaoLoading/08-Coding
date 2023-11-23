@@ -2,7 +2,7 @@
 
 ## 原理
 
-v-model 是一个语法糖，相当于:value 和@input 的结合
+v-model 是一个语法糖，相当于 :value 和 @input 的结合
 
 1. v-bind 绑定属性值
 2. v-on 绑定 input 事件到监听函数，函数获取最新值再赋值带绑定的属性中

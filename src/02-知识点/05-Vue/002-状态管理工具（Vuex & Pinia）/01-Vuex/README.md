@@ -77,7 +77,7 @@ mutations 必须是同步函数，因为只有这样才能确保在调用 mutati
 
 modules 用于在项目过大时拆分 store 对象，通过模块的方式进行维护
 
-**注意：**当读取状态时要加上模块名，如`store.state.moduleA.countA`，而 getters、mutations 和 actions 不需要
+**注意：** 当读取状态时要加上模块名，如`store.state.moduleA.countA`，而 getters、mutations 和 actions 不需要
 
 ```js
 const moduleA = {
