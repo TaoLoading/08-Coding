@@ -4,25 +4,25 @@
 
 常用配置项：
 
-1. mode：指定开发/生成模式
+1. mode：指定开发/生产模式
 2. entry：指定入口文件
 3. output：指定输出路径
 4. module：配置模块的加载和转换规则
 5. plugins：配置插件。用于扩展 webpack 功能
 6. devServer：开发服务器
 7. resolve：配置模块解析的规则，包括设置模块的搜索路径、配置别名等
-8. optimization：配置优化相关的选项，包括代码分割、压缩等
+8. optimization：配置优化相关的选项，包括代码分包、压缩等
 9. devtool：配置源代码映射方式
 
 ## loader
 
 ### 作用
 
-用于对不同类型的文件进行加载和转换
-
-在 module 中配置，使用多个 loader 时，loader 的执行顺序为从下到上，从右到左
+webpack 本身只能处理 JavaScript 和 JSON 文件，针对其他文件可以使用 loader 将其转换为 webpack 可以处理的模块
 
 ### 使用
+
+在 module 中配置，使用多个 loader 时，loader 的执行顺序为从下到上，从右到左
 
 ```js
 module: {
@@ -48,7 +48,7 @@ module: {
 ### 常用的 loader
 
 1. babel-loader：将 ES6+ 的 JavaScript 代码转换为 ES5 兼容的代码
-2. css-loader：解析 css 文件中的@import 和 url 语句，处理 css-modules，并将结果作为一个 js 模块返回
+2. css-loader：解析 css 文件中的 @import 和 url 语句，处理 css-modules，并将结果作为一个 js 模块返回
 3. sass-loader：将 Sass 或 Scss 文件转换为 CSS
 4. file-loader：处理文件，将文件复制到输出目录，并返回文件的 URL 路径
 
@@ -111,7 +111,7 @@ module.exports = {
 
 ### 作用
 
-Babel 是一个广泛使用的 JavaScript 编译器，它的主要作用是将新版本的 JavaScript 代码转换为向后兼容的旧版本代码，以便在不支持最新语法和功能的浏览器或环境中运行
+Babel 是一个广泛使用的 JavaScript 编译器，它的主要作用是将新版本的 JavaScript 代码转换为兼容的旧版本代码，以便在不支持最新语法和功能的浏览器或环境中运行
 
 ### 原理
 
@@ -141,7 +141,7 @@ module.exports = {
             // presets: ['@babel/preset-env'] // 使用 preset-env 转换代码，可能会导致转换不全
             presets: [
               [
-                '@babel/preset-env',
+                '@babel/preset-polyfill',
                 {
                   'useBuiltIns': 'usage' // 使用 polyfill 并按业务代码去引入 polyfills。注意此时应该已在入口文件引入 polyfills
                 }
@@ -155,10 +155,13 @@ module.exports = {
 }
 ```
 
-### @babel/preset-env 和@babel/polyfill 的区别
+### @babel/preset-env 和 @babel/polyfill 的区别
 
 1. @babel/preset-env 只转换语法，并不处理新的 API
+
 2. @babel/polyfill 是一个用于转换新的 API，如 Promise、Array.from、Object.assign 等
+
+   **注：** 在 Babel 7.4.0 版本之后，@babel/polyfill 被弃用。官方建议直接使用 core-js 和 regenerator-runtime 来替代，因为 @babel/polyfill 本质上是这两个库的集合
 
 ### .babelrc
 
@@ -168,11 +171,11 @@ module.exports = {
 
 ### 作用
 
-Tree shaking 是一种优化技术，用于减小 JavaScript 或其他编程语言中的代码包的体积。它通过静态分析代码，识别出未使用的代码，并将其从最终的构建输出中删除，以减少文件大小
+Tree shaking 是一种优化技术，用于打包时移除项目中未被使用的代码，以减小打包文件的体积
 
 ### 原理
 
-通过静态分析代码，确定哪些代码被实际使用，哪些代码是不可达的。从入口文件开始，追踪代码的依赖关系，并标记未使用的代码。通过构建工具将未使用的代码从最终的构建输出中删除，只保留实际使用的代码
+通过静态分析代码，从入口文件开始追踪代码的依赖关系，标记未使用的代码，最后通过构建工具将未使用的代码从构建输出中删除
 
 ### 注意
 
@@ -208,7 +211,7 @@ Tree shaking 只支持 ES Module 的引入方式
 
 ### 概念
 
-代码分割（Code splitting）是一种将应用程序的代码分割成多个较小文件的技术，有助于优化应用程序的加载性能。不仅限于 Webpack 中
+代码分包（Code splitting）是一种将应用程序的代码分包成多个较小文件的技术，有助于优化应用程序的加载性能
 
 ### Webpack 中使用代码分包
 
@@ -224,7 +227,7 @@ Tree shaking 只支持 ES Module 的引入方式
      })
    ```
 
-2. 方式 3：使用 MiniCssExtractPlugin 和 SplitChunksPlugin 插件实现代码分包
+2. 方式 2：使用 MiniCssExtractPlugin 和 SplitChunksPlugin 插件实现代码分包
 
    1. MiniCssExtractPlugin：用于将 CSS 代码从打包生成的 JavaScript 文件中提取出来，生成独立的 CSS 文件
 
@@ -334,9 +337,9 @@ import(/* webpackPreload: true */ './myModule.js')
 ```js
 /**
  * 自定义 loader：文本转大写
- * @param {*} source 资源文件内容，表示待处理的源代码或文件内容
- * @param {*} map 资源文件的源映射
- * @param {*} meta 源文件的附加信息
+ * @param {*} source 源代码
+ * @param {*} map 源映射。转换后的代码和原始代码之间的映射关系
+ * @param {*} meta 元数据。当前模块相关的额外信息
  */
 module.exports = function (source, map, meta) { // 不可使用箭头函数，因为 webpack 会对 this 进行处理以获取某些方法或变量
   const uppercaseText = source.toUpperCase()
