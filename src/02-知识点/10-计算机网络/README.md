@@ -133,13 +133,25 @@ HTTP 1.1 采用文本传输而非二进制传输，没有帧和流的概念，�
 
 1. JSONP：利用`<script>`标签的请求不受同源策略限制的特性，但只支持 get 请求
 
-   ```html
-   <script>
-     function jsonpCallback(data) {
-       console.log('Data from server: ', data)
-     }
-   </script>
-   <script src="http://example.com/data?callback=jsonpCallback"></script>
+   ```js
+   // 前端
+   // 1. 需要进行跨域处理的操作
+   window.jsonpCallback = function (result) {
+       console.log(result)
+   }
+   // 2. 动态创建一个 script 节点
+   const scriptNode = document.createElement('script')
+   scriptNode.src = 'http://localhost:3000/test?callback=jsonpCallback'
+   // 3. 将节点插入页面
+   document.body.appendChild(scriptNode)
+   
+   
+   // 后端
+   app.get('/test', function (req, res) {
+     const { callback } = req.query
+     const params = {}
+     res.send(`${callback}(${JSON.stringify(params)})`)
+   })
    ```
 
 2. CORS（跨源资源共享）：在服务器端设置`Access-Control-Allow-Origin`响应头，允许来自不同源的请求
@@ -242,7 +254,7 @@ CDN（内容分发网络，Content Delivery Network）的原理是基于将内�
 
 ### 强缓存
 
-强缓存是指浏览器在缓存资源时不需要向服务器发送请求来确认资源的状态。使用`Cache-Control`实现
+强缓存是指不需要向服务器发送请求就可以直接使用缓存的机制。使用`Cache-Control`设置资源过期时间实现
 
 ### 协商缓存
 
