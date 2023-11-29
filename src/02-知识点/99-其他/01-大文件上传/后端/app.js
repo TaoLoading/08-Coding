@@ -8,9 +8,11 @@ const fse = require('fs-extra')
 
 const app = express()
 
-app.use(cors({
-  origin: '*'
-}))
+app.use(
+  cors({
+    origin: '*'
+  })
+)
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
@@ -42,19 +44,23 @@ app.post('/upload', (req, res) => {
       await fse.mkdirs(chunkDir)
     } else if (hashArr.indexOf(hash) !== -1) {
       // hash 值相同则切片文件存在，不做处理
-      return res.send(JSON.stringify({
-        code: 0,
-        message: '切片上传成功'
-      }))
+      return res.send(
+        JSON.stringify({
+          code: 0,
+          message: '切片上传成功'
+        })
+      )
     }
 
     // 把切片移动进 chunkDir
     await fse.move(file.path, `${chunkDir}/${chunkName}`)
     hashArr.push(hash)
-    res.send(JSON.stringify({
-      code: 0,
-      message: '切片上传成功'
-    }))
+    res.send(
+      JSON.stringify({
+        code: 0,
+        message: '切片上传成功'
+      })
+    )
   })
 })
 
@@ -65,10 +71,12 @@ app.post('/merge', async (req, res) => {
   hashNowArr = chunkHashList
   const filePath = path.resolve(UPLOAD_DIR, fileName)
   await mergeFileChunk(filePath, fileName, chunkSizeList)
-  res.send(JSON.stringify({
-    code: 0,
-    message: '合并切片成功'
-  }))
+  res.send(
+    JSON.stringify({
+      code: 0,
+      message: '合并切片成功'
+    })
+  )
 })
 
 /**
@@ -105,7 +113,7 @@ async function mergeFileChunk(filePath, fileName, chunkSizeList) {
  * 将切片转换成流
  * @param path 切片文件的文件路径
  * @param writeStream 函数，在指定的位置创建可写流
- * @returns 
+ * @returns
  */
 function pipeStream(path, writeStream) {
   return new Promise(resolve => {
