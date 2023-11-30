@@ -22,8 +22,11 @@ const p = new Promise((resolve, reject) => {
     console.log('err', err)
   } */
 })
-p.then((value) => {
-  console.log('onResolved()', value)
-}, (err) => {
-  console.log('onRejected()', err)
-})
+p.then(
+  value => {
+    console.log('onResolved()', value)
+  },
+  err => {
+    console.log('onRejected()', err)
+  }
+)

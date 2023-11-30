@@ -18,7 +18,7 @@ export default class MyPromise {
   onRejectedCallbacks = []
 
   // 成功
-  resolve = (value) => {
+  resolve = value => {
     if (this.promiseStatus === 'pending') {
       this.promiseStatus = 'fulfilled'
       this.PromiseResult = value
@@ -27,7 +27,7 @@ export default class MyPromise {
   }
 
   // 失败
-  reject = (error) => {
+  reject = error => {
     if (this.promiseStatus === 'pending') {
       this.promiseStatus = 'rejected'
       this.PromiseResult = error
@@ -42,7 +42,12 @@ export default class MyPromise {
   then(onFulfilled, onRejected) {
     // 校验参数，确保传入的是函数
     onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value => value
-    onRejected = typeof onRejected === 'function' ? onRejected : reason => { throw reason }
+    onRejected =
+      typeof onRejected === 'function'
+        ? onRejected
+        : reason => {
+            throw reason
+          }
 
     // 返回一个新的 promise
     const newPromise = new MyPromise((resolve, reject) => {
@@ -119,14 +124,14 @@ export default class MyPromise {
       })
     }
 
-    return new MyPromise((resolve) => {
+    return new MyPromise(resolve => {
       resolve(value)
     })
   }
 }
 
 /**
- * 
+ *
  * @param {promise} newPromise 前一个 promise.then 方法返回的新 promise 对象
  * @param {*} x                前一个 promise 中 onFulfilled 或 onRejected 的返回值。类型：普通值/Promise
  * @param {*} resolve          新 promise 对象的 resolve 方法
@@ -143,7 +148,7 @@ function resolvePromise(newPromise, x, resolve, reject) {
     x.then(y => {
       resolvePromise(newPromise, y, resolve, reject)
     }, reject)
-  } else if (x !== null && ((typeof x === 'object' || (typeof x === 'function')))) {
+  } else if (x !== null && (typeof x === 'object' || typeof x === 'function')) {
     // 如果 x 为 对象或函数，x.then 赋值给 then
     try {
       var then = x.then
@@ -185,4 +190,3 @@ function resolvePromise(newPromise, x, resolve, reject) {
     return resolve(x)
   }
 }
-

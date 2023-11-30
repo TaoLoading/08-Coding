@@ -17,11 +17,14 @@ console.log('p2', p2)
 
 // 示例
 // 打印输出：1,2,3
-Promise.resolve(1).then(() => {
-  console.log('1')
-  throw new Error('myErr')
-}).catch(() => {
-  console.log('2')
-}).catch(() => {
-  console.log('3')
-})
+Promise.resolve(1)
+  .then(() => {
+    console.log('1')
+    throw new Error('myErr')
+  })
+  .catch(() => {
+    console.log('2')
+  })
+  .catch(() => {
+    console.log('3')
+  })

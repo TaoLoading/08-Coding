@@ -7,7 +7,9 @@
  * @returns
  */
 function concurrentRequests(urls, maxConcurrent) {
-  let promiseArr = []
+  if (!maxConcurrent) {
+    throw '最大限制数为 0'
+  }
 
   // 发送请求
   async function sendRequest(url) {
@@ -18,18 +20,22 @@ function concurrentRequests(urls, maxConcurrent) {
 
   // 执行全部请求
   async function processQueue() {
-    for (let i = 0; i < urls.length; i++) {
-      const currentUrl = urls[i]
-      // 发送请求得到一个 promise
-      const reqPromise = sendRequest(currentUrl)
-      promiseArr.push(reqPromise)
+    let promiseArr = []
 
+    console.log('执行全部请求')
+    for (let i = 0; i < urls.length; i++) {
       if (promiseArr.length >= maxConcurrent) {
         console.log('达到最大并发数')
         // 达到最大并发数时，等待全部 promise 执行完毕
         await Promise.race(promiseArr)
         promiseArr = []
         console.log('当前并发执行完毕')
+      } else {
+        console.log('发送请求')
+        const currentUrl = urls[i]
+        // 发送请求得到一个 promise
+        const reqPromise = sendRequest(currentUrl)
+        promiseArr.push(reqPromise)
       }
     }
 
