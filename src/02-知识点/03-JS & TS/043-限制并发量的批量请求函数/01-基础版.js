@@ -27,7 +27,7 @@ function concurrentRequests(urls, maxConcurrent) {
       if (promiseArr.length >= maxConcurrent) {
         console.log('达到最大并发数')
         // 达到最大并发数时，等待全部 promise 执行完毕
-        await Promise.race(promiseArr)
+        await Promise.all(promiseArr)
         promiseArr = []
         console.log('当前并发执行完毕')
       } else {
