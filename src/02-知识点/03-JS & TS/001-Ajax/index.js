@@ -8,7 +8,7 @@
 
 /**
  * XMLHttpRequest 版
- * 
+ *
  * get 方式 ajax，传参通过拼接在 url 后
  * post 方式 ajax，传参通过传入 send()
  */
@@ -59,10 +59,9 @@ const ajax1 = {
   }
 }
 
-
 /**
  * fetch 版
- * 
+ *
  * fetch 语法更简洁，且支持 promise
  */
 const ajax2 = (url, method, params) => {
@@ -75,10 +74,12 @@ const ajax2 = (url, method, params) => {
       'Content-Type': 'application/json'
     }
   }
-  fetch(url, option).then(res => {
-    console.log('成功：', res.json())
-    return res.json()
-  }).catch(error => {
-    throw new Error(error)
-  })
+  fetch(url, option)
+    .then(res => {
+      console.log('成功：', res.json())
+      return res.json()
+    })
+    .catch(error => {
+      throw new Error(error)
+    })
 }

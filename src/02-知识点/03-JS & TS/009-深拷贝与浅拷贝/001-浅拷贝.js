@@ -7,7 +7,7 @@
  * 5. Array.from()。作用：从可迭代或类数组对象创建一个新的浅拷贝的数组
  */
 
-const shallowClone1 = (target) => {
+const shallowClone1 = target => {
   if (target instanceof Array) {
     // 拷贝目标为数组
     return [...target]
@@ -20,11 +20,12 @@ const shallowClone1 = (target) => {
   }
 }
 
-const shallowClone2 = (target) => {
+const shallowClone2 = target => {
   if (target instanceof Array || (target !== null && typeof target === 'object')) {
     const cloneTarget = target instanceof Array ? [] : {}
     for (const key in target) {
-      if (target.hasOwnProperty(key)) { // hasOwnProperty 是为了保证 key 是来自 target 而不是 target 的原型对象
+      if (target.hasOwnProperty(key)) {
+        // hasOwnProperty 是为了保证 key 是来自 target 而不是 target 的原型对象
         cloneTarget[key] = target[key]
       }
     }
@@ -44,10 +45,9 @@ const obj1 = {
     },
     z: 1
   },
-  d: function () { }
+  d: function () {}
 }
 const obj2 = shallowClone1(obj1)
 obj2.c.z = 2
 console.log('obj1', obj1.c.z) // 2
 console.log('obj2', obj2.c.z) // 2
-
