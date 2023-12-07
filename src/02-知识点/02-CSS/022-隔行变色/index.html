@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>隔行变色</title>
+  <style>
+    /* 奇数行样式 */
+    table tr:nth-child(odd) {
+      background-color: red;
+    }
+
+    /* 偶数行样式 */
+    table tr:nth-child(even) {
+      background-color: yellow;
+    }
+  </style>
+</head>
+
+<body>
+  <table>
+    <tr>
+      <td>Row 1</td>
+    </tr>
+    <tr>
+      <td>Row 2</td>
+    </tr>
+    <tr>
+      <td>Row 3</td>
+    </tr>
+    <tr>
+      <td>Row 4</td>
+    </tr>
+    <tr>
+      <td>Row 5</td>
+    </tr>
+    <tr>
+      <td>Row 6</td>
+    </tr>
+  </table>
+</body>
+
+</html>
