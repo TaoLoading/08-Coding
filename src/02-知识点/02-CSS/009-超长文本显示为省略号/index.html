@@ -7,13 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>超长文本显示为省略号</title>
   <style>
-    .box {
-      width: 100px;
-      height: 100px;
-      border: 1px solid red;
-    }
-
     .singleOverflow {
+      width: 200px;
       overflow: hidden;
       /* 溢出部分使用省略号显示 */
       text-overflow: ellipsis;
@@ -21,8 +16,9 @@
       white-space: nowrap;
     }
 
-    /* 存在兼容性问题，限定基于 WebKit 的浏览器 */
+    /* 存在兼容性问题，限定基于 WebKit/Blink 的浏览器 */
     .moreOverflow {
+      width: 200px;
       overflow: hidden;
       text-overflow: ellipsis;
       /* 作为弹性伸缩盒子模型显示 */
@@ -30,17 +26,21 @@
       /* 设置伸缩盒子的子元素排列方式：从上到下垂直排列 */
       -webkit-box-orient: vertical;
       /* 显示的行数 */
-      -webkit-line-clamp: 3;
+      -webkit-line-clamp: 2;
+      /* 允许在单词内换行 */
+      word-wrap: break-word;
     }
   </style>
 </head>
 
 <body>
   <!-- 单行文本溢出 -->
-  <div class="box singleOverflow">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+  <div class="singleOverflow">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+
+  <br>
 
   <!-- 多行文本溢出 -->
-  <div class="box moreOverflow1">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+  <div class="moreOverflow">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
 
   <!-- 推荐 npm 包：auto-ellipsis-text -->
 </body>
