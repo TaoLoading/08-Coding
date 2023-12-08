@@ -23,7 +23,8 @@ const deepClone2 = target => {
     // 创建拷贝对象
     const cloneTarget = target instanceof Array ? [] : {}
     for (const key in target) {
-      if (target.hasOwnProperty(key)) { // hasOwnProperty 是为了保证 key 是来自 target 而不是 target 的原型对象
+      if (target.hasOwnProperty(key)) {
+        // hasOwnProperty 是为了保证 key 是来自 target 而不是 target 的原型对象
         // 通过对属性值进行递归拷贝，实现深拷贝
         cloneTarget[key] = deepClone2(target[key])
       }
@@ -84,25 +85,14 @@ const deepClone4 = (target, map = new Map()) => {
       return cloneTarget
     }
     // 3.如果不存在，则根据值类型分别创建拷贝对象
-    if (target instanceof Array) {
-      cloneTarget = []
-      // 4.将要拷贝的值保存到 map 容器
-      map.set(target, cloneTarget)
-      // 5.如果值类型是数组则遍历源数组进行拷贝
-      target.forEach((item, index) => {
+    cloneTarget = target instanceof Array ? [] : {}
+    // 4.将要拷贝的值保存到 map 容器
+    map.set(target, cloneTarget)
+    // 5. 遍历源数组进行拷贝
+    for (const key in target) {
+      if (target.hasOwnProperty(key)) {
         // 通过对属性值进行递归拷贝，实现深拷贝
-        cloneTarget[index] = deepClone4(item, map)
-      })
-    } else {
-      cloneTarget = {}
-      // 4.将要拷贝的值保存到 map 容器
-      map.set(target, cloneTarget)
-      // 5.如果值类型是对象则遍历源对象进行拷贝
-      for (const key in target) {
-        if (target.hasOwnProperty(key)) {
-          // 通过对属性值进行递归拷贝，实现深拷贝
-          cloneTarget[key] = deepClone4(target[key], map)
-        }
+        cloneTarget[key] = deepClone4(target[key], map)
       }
     }
 
@@ -122,7 +112,7 @@ const obj1 = {
     },
     z: 1
   },
-  d: function () { }
+  d: function () {}
 }
 
 // 测试定义的深拷贝方法

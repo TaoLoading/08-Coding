@@ -5,19 +5,18 @@
 function compose(...fns) {
   // 排除特殊情况
   if (fns.length === 0) {
-    return (num) => num
+    return num => num
   }
   if (fns.length === 1) {
     return fns[0]
   }
 
   return fns.reduce((acc, cur) => {
-    return (arg) => {
+    return arg => {
       return cur(acc(arg))
     }
   })
 }
-
 
 // 测试
 function fn1(x) {
