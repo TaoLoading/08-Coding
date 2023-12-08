@@ -128,6 +128,64 @@ export default class MyPromise {
       resolve(value)
     })
   }
+
+  static all(promises) {
+    return new MyPromise((resolve, reject) => {
+      if (!Array.isArray(promises)) {
+        return reject(new TypeError('promises must be an array'))
+      }
+
+      let results = []
+      let resolvedCount = 0
+
+      if (promises.length === 0) {
+        // 空数组的情况应立即解决
+        resolve(results)
+      }
+
+      promises.forEach((promise, index) => {
+        // 确保每个元素都是 MyPromise 实例
+        MyPromise.resolve(promise).then(
+          // 当 Promise 成功解决时
+          value => {
+            // 存储成功的结果
+            results[index] = value
+            // 增加已解决的 Promise 计数
+            resolvedCount++
+
+            // 全部成功
+            if (resolvedCount === promises.length) {
+              resolve(results)
+            }
+          },
+          // 当 Promise 拒绝时
+          reason => {
+            // 失败
+            reject(reason)
+          }
+        )
+      })
+    })
+  }
+
+  static race(promises) {
+    return new MyPromise((resolve, reject) => {
+      if (!Array.isArray(promises)) {
+        return reject(new TypeError('promises must be an array'))
+      }
+
+      promises.forEach(promise => {
+        MyPromise.resolve(promise).then(
+          value => {
+            resolve(value)
+          },
+          reason => {
+            reject(reason)
+          }
+        )
+      })
+    })
+  }
 }
 
 /**

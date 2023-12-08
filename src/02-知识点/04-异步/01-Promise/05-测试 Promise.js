@@ -62,7 +62,7 @@ promise.then(value => {
 }).then(undefined, undefined) */
 
 // 异步执行顺序
-console.log(1)
+/* console.log(1)
 const promise = new MyPromise((resolve, reject) => {
   console.log(2)
   setTimeout(() => {
@@ -78,7 +78,7 @@ promise.then(
     console.log('rejected:', reason)
   }
 )
-console.log(3)
+console.log(3) */
 
 // 返回当前 promise
 /* const promise = new MyPromise((resolve, reject) => {
@@ -107,7 +107,7 @@ const p1 = promise.then(value => {
 
 /* Promise 核心部分的多种情况测试 end */
 
-// Promise.resolve
+// Promise.resolve()
 /* let promise = new MyPromise((resolve, reject) => {
   setTimeout(() => {
     resolve('Hello, world!')
@@ -116,3 +116,33 @@ const p1 = promise.then(value => {
 Promise.resolve(promise).then(result => {
   console.log(result)
 }) */
+
+// Promise.all()
+/* const promise1 = new MyPromise(resolve => setTimeout(() => resolve('Promise 1 resolved'), 1000))
+const promise2 = new MyPromise((_, reject) => setTimeout(() => reject('Promise 2 failed'), 2000))
+const promise3 = new MyPromise(resolve => setTimeout(() => resolve('Promise 3 resolved'), 1500))
+
+MyPromise.all([promise1, promise3]).then(
+  value => {
+    console.log('value', value)
+  },
+  error => {
+    console.log('error', error)
+  }
+) */
+
+// Promise.race()
+// 创建多个 Promise，模拟不同的延迟时间
+const promise1 = new Promise(resolve => setTimeout(() => resolve('Promise 1 resolved'), 3000))
+const promise2 = new Promise(resolve => setTimeout(() => resolve('Promise 2 resolved'), 2000))
+const promise3 = new Promise((_, reject) => setTimeout(() => reject('Promise 3 failed'), 1500))
+
+// 使用 Promise.race() 观察哪个 Promise 最快完成
+Promise.race([promise1, promise2, promise3]).then(
+  result => {
+    console.log('value', result)
+  },
+  error => {
+    console.log('error', error)
+  }
+)
