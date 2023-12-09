@@ -121,3 +121,9 @@
             ```
 
 注：除上述形式外，也可使用 mapStores()、mapState()、mapActions() 对属性或方法进行结构使用
+
+## 问题补充
+
+### 为什么 Vuex 不建议直接修改数据，而 Pinia 可以
+
+在 Vuex 的设计中数据是单向流动的，这种模式下 state 中的数据是只读的，只能通过 mutation 去修改数据，每个状态更改都通过一个可追踪的 mutation 完成，直接修改数据绕过了 mutation 会导致无法正常追踪数据的状态；而 Pinia 采用了基于 Vue 3 的 Reactive API，state 中的数据是响应式的，可以直接访问和修改
