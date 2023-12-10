@@ -101,3 +101,20 @@ wss.on('connection', function (ws) {
   ws.send('来自服务器主动发送的消息')
 })
 ```
+
+## 心跳机制
+
+WebSocket 心跳机制是一种确保 WebSocket 连接保持活跃，通过定期发送小的、无害的消息来实现
+
+```js
+// 客户端发起
+
+function heartbeat() {
+    if (socket.readyState === socket.OPEN) {
+        socket.send('heartbeat')
+    }
+}
+
+// 每 30 秒发送一次心跳
+const timer = setInterval(heartbeat, 30000)
+```
