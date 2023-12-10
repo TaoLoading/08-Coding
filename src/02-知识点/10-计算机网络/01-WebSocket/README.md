@@ -26,12 +26,12 @@ WebSocket 是基于 TCP 的一种新的应用层网络协议，实现了浏览�
 
 ## WebSocket 与 HTTP 的区别
 
-1. 连接方式
-   1. HTTP 是一种无状态的请求 - 响应协议，每次请求都需要重新建立连接。客户端发起请求，服务器做出响应，然后关闭连接
-   2. WebSocket 是一种双向通信协议，它建立了客户端和服务器之间的持久连接，双方可以随时发送数据
-2. 数据传输
-   1. HTTP 中的数据传输是文本格式的，数据传输相对较大
-   2. WebSocket 可以传输二进制数据，使用更轻量级的帧格式，并且在建立连接后只需要发送少量的控制帧和数据帧
+1. 通信模式
+   1. HTTP 是单向的，客户端发起请求，服务器做出响应
+   2. WebSocket 是双向通信协议，客户端和服务器都可以主动发起请求给对方
+2. 持久性
+   1. HTTP 连接（在非持久连接中）用完即关闭
+   2. WebSocket 建立了客户端和服务之间的持久连接
 3. 连接开销
    1. HTTP 每次请求都需要建立新的连接，连接开销较大
    2. WebSocket 的连接是持久的，连接开销较小
@@ -55,6 +55,9 @@ socket.onopen = function () {
 // 接收到服务器消息时的回调函数
 socket.onmessage = function (event) {
   console.log('接收到服务器消息：', event.data)
+
+  // 关闭连接
+  socket.close()
 }
 
 // 连接关闭时的回调函数
@@ -85,6 +88,9 @@ wss.on('connection', function (ws) {
 
     setTimeout(function () {
       ws.send('5s 后来自服务器主动发送的消息')
+
+      // 关闭连接
+      socket.close()
     }, 5000)
   })
 

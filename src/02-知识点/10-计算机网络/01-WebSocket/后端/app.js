@@ -26,6 +26,9 @@ wss.on('connection', function (ws) {
 
     setTimeout(function () {
       ws.send('5s 后来自服务器主动发送的消息')
+
+      // 关闭连接
+      socket.close()
     }, 5000)
   })
 

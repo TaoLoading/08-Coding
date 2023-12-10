@@ -23,6 +23,9 @@
     // 接收到服务器消息时的回调函数
     socket.onmessage = function (event) {
       console.log('接收到服务器消息：', event.data)
+
+      // 关闭连接
+      socket.close()
     }
 
     // 连接关闭时的回调函数
