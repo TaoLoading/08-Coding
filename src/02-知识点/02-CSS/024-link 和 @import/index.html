@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>link 和 @import</title>
+  <!-- link 的使用 -->
+  <link rel="stylesheet" type="text/css" href="xxx.css">
+  <style>
+    /* @import 的使用 */
+    @import url('xxx.css');
+  </style>
+</head>
+
+<body>
+  <script>
+    /**
+     * link 和 @import 的区别：
+     * 1. 从属关系
+     *    1. link 属于 XHTML 标签。除了加载 CSS，还可以定义 RSS，定义 rel 连接属性等
+     *    2. @import 是 CSS 提供的语法规则。只能加载 CSS
+     * 2. 加载顺序
+     *    1. 页面加载时，link 会同时被加载
+     *    2. @import 引用的 CSS 会等页面被加载完后再加载
+     * 3. 兼容性
+     *    1. link 是 XHTML 标签，无兼容问题
+     *    2. @import 只有 IE5 以上才能被识别
+     * 4. DOM 可控性
+     *    1.link 引入的 CSS 可通过 JavaScript（例如使用 document.styleSheets）访问和操作 
+     *    2. @import 引入的样式表不可
+     */
+  </script>
+</body>
+
+</html>
