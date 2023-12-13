@@ -93,7 +93,7 @@ console.log(arr) */
 console.log(arr) */
 
 /**
- * unshift()
+ * shift()
  * 作用：在数组头部删除 1 个元素，返回删除的元素
  * 备注：会改变原数组
  */
