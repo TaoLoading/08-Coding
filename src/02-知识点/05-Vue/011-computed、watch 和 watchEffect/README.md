@@ -98,7 +98,7 @@ export default {
 import { watch } from 'vue'
 const message = ref('Hello, Vue!')
 // 基本数据类型
-watch(message.value, (newValue, oldValue) => {
+watch(() => message.value, (newValue, oldValue) => {
   console.log('newValue', newValue)
   console.log('oldValue', oldValue)
 })
