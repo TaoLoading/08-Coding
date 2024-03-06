@@ -1,18 +1,15 @@
-const currying = fn => {
-  const argsLength = fn.length
-  const curried = (...args) => {
-    if (args.length < argsLength) {
-      return (...rest) => curried(...rest, ...args)
-    }
-    return fn(...args)
-  }
-  return curried
-}
+console.log('a')
 
-function add(a, b, c) {
-  return a + b + c
-}
-const curriedAdd = currying(add)
-console.log(curriedAdd(1, 2, 3))
-console.log(curriedAdd(1)(2, 3))
-console.log(curriedAdd(1)(2)(3))
+setTimeout(() => {
+  console.log('setTimeout1')
+}, 0)
+
+Promise.resolve().then(() => {
+  console.log('Promise')
+})
+
+setTimeout(() => {
+  console.log('setTimeout2')
+}, 0)
+
+console.log('b')

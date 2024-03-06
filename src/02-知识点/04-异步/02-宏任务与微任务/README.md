@@ -10,8 +10,8 @@ JS 引擎是单线程的，如果将全部任务都放到一个队列中会造�
 
 ## 分类
 
-1. 宏任务：定时器、MessageChannel、I/O 与事件队列、script（整体代码块）、setImmediate（Node 环境）
-2. 微任务：Promise（then/catch/finally，注意不包含 pending 状态）、MutationObserver（浏览器环境）、process.nextTick（Node 环境）
+1. 宏任务：定时器、postMessage、MessageChannel、I/O 操作、script（整体代码块）、setImmediate（Node 环境）
+2. 微任务：Promise（then/catch/finally，注意不包含 pending 状态）、MutationObserver（浏览器环境，监听 DOM 变化的回调函数）、process.nextTick（Node 环境）
 
 ## 理解 script 整体代码块是宏任务
 

@@ -1,4 +1,4 @@
-import './02-知识点/04-异步/01-Promise/05-测试 Promise.js'
+import './02-知识点/03-JS & TS/999-test.js'
 
 document.querySelector<HTMLDivElement>('#title')!.innerHTML = `
   <div>
