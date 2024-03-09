@@ -5,14 +5,14 @@
 ### 使用
 
 ```js
-// 设置 cookie
+// 设置 cookie。包括内容、expires（过期时间）、path（路径）、domain（域名）、secure（安全标志）等
 document.cookie = 'username=John Doe; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/'
 
 // 获取 cookies
 const cookies = document.cookie
 
-// 删除 cookie
-document.cookie = 'username=John Doe; expires=Thu, 18 Dec 2023 12:00:00 UTC; path=/'
+// 删除 cookie。将 cookie 的过期时间设置为过去的某个时间来使其失效
+document.cookie = 'username=John Doe; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
 ```
 
 ### 部分属性
@@ -46,7 +46,7 @@ localStorage.clear()
    1. localStorage、cookie：数据在同一浏览器且同一域名下的所有页面之间共享
    2. sessionStorage：每个页面都有独立的 sessionStorage 空间，同一浏览器且同一域名下页面的 sessionStorage 不共享
 2. 存储量
-   1. localStorage、sessionStorage：存储空间较大，与浏览器相关，一般是 5-10 兆
+   1. localStorage、sessionStorage：存储空间较大，与浏览器相关，一般是 5-10 MB
    2. cookie：存储空间较小，与浏览器相关，一般是 4KB
 3. 存储时效
    1. localStorage：除非手动删除，否则永久存在
