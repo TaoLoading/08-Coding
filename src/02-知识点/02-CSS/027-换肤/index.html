@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>换肤</title>
+  <style>
+    body {
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+
+    .light-theme {
+      background-color: white;
+      color: black;
+    }
+
+    .dark-theme {
+      background-color: #333;
+      color: #ddd;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+
+    .light-theme button {
+      background-color: black;
+      color: white;
+    }
+
+    .dark-theme button {
+      background-color: #ddd;
+      color: #333;
+    }
+  </style>
+</head>
+
+<body class="light-theme">
+  <div>
+    <h1>换肤效果</h1>
+    <button id="switch-theme">点击切换皮肤</button>
+  </div>
+
+  <script>
+    document.getElementById('switch-theme').addEventListener('click', function () {
+      const body = document.body
+
+      if (body.classList.contains('light-theme')) {
+        console.log('白天切换到夜间')
+        body.classList.remove('light-theme')
+        body.classList.add('dark-theme')
+      } else {
+        console.log('夜间切换到白天')
+        body.classList.remove('dark-theme')
+        body.classList.add('light-theme')
+      }
+    })
+  </script>
+</body>
+
+</html>
