@@ -27,19 +27,11 @@ arr.forEach(item => {
 })
 console.timeEnd()
 
-// for..in（会查找原型链）
-console.time()
-console.log('for..of')
-for (const item of arr) {
-  let element4 = item
-}
-console.timeEnd()
-
 // keys() + forEach（遍历两次）
 console.time()
 console.log('keys() + forEach')
 Object.keys(arr).forEach(index => {
-  let element5 = arr[index]
+  let element4 = arr[index]
 })
 console.timeEnd()
 
@@ -49,7 +41,7 @@ console.log('while')
 const length = arr.length
 let index = 0
 while (index++ < length) {
-  let element6 = arr[index]
+  let element5 = arr[index]
 }
 console.timeEnd()
 
