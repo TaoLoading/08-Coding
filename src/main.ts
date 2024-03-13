@@ -1,4 +1,4 @@
-import './02-知识点/03-JS & TS/999-test.js'
+import './02-知识点/03-JS & TS/029-对象的创建方式'
 
 document.querySelector<HTMLDivElement>('#title')!.innerHTML = `
   <div>
